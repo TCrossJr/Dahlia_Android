@@ -1,4 +1,4 @@
-package com.example.dahlia_android.ui.slideshow;
+package com.example.dahlia_android.ui.groups;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dahlia_android.R;
 
-public class SlideshowFragment extends Fragment {
+public class GroupsFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private GroupsViewModel slideshowViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+                new ViewModelProvider(this).get(GroupsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_groups, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

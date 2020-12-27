@@ -3,18 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none"
+        android:id="@+id/menu_primary">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/home_icon"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_messages"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="@string/menu_messages" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/friends_icon"
+            android:title="@string/menu_friends" />
+        <item
+            android:id="@+id/nav_groups"
+            android:icon="@android:drawable/stat_notify_chat"
+            android:title="@string/menu_groups" />
+        <item
+            android:id="@+id/nav_aupair_nearby"
+            android:icon="@drawable/aupair_nearby_icon"
+            android:title="@string/menu_aupair_nearby" />
+        <item
+            android:id="@+id/nav_rss_feed"
+            android:icon="@drawable/rss_feed_icon"
+            android:title="@string/menu_rss_feed" />
+    </group>
+    <group android:checkableBehavior="none"
+            android:id="@+id/menu_secondary">
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/about_icon"
+            android:title="@string/menu_about" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/settings_icon"
+            android:title="@string/action_settings" />
     </group>
 </menu>

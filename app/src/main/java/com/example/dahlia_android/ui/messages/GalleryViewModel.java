@@ -1,4 +1,4 @@
-package com.example.dahlia_android.ui.gallery;
+package com.example.dahlia_android.ui.messages;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
