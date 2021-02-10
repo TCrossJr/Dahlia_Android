@@ -16,15 +16,15 @@ import com.example.dahlia_android.R;
 
 public class GroupsFragment extends Fragment {
 
-    private GroupsViewModel slideshowViewModel;
+    private GroupsViewModel groupsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
+        groupsViewModel =
                 new ViewModelProvider(this).get(GroupsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_groups, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        groupsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
