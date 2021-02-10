@@ -9,11 +9,11 @@ public class FriendsViewModel extends ViewModel {
     private MutableLiveData<String> mText;
 
     public FriendsViewModel() {
-//        mText = new MutableLiveData<>();
-//        mText.setValue("This is slideshow fragment");
+        mText = new MutableLiveData<>();
+        mText.setValue("This is slideshow fragment");
     }
 
-//    public LiveData<String> getText() {
-//        return mText;
-//    }
+    public LiveData<String> getText() {
+        return mText;
+    }
 }

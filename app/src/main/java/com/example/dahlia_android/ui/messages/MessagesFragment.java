@@ -16,15 +16,15 @@ import com.example.dahlia_android.R;
 
 public class MessagesFragment extends Fragment {
 
-    private MessagesViewModel galleryViewModel;
+    private MessagesViewModel messagesViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
+        messagesViewModel =
                 new ViewModelProvider(this).get(MessagesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_messages, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        messagesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
