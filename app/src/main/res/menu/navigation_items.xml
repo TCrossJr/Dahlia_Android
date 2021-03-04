@@ -7,7 +7,8 @@
     <item android:id="@+id/action_friends"
         android:title="@string/menu_friends"
         android:icon="@drawable/friends_icon"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:onClick="goFriends"/>
     <item android:id="@+id/action_groups"
         android:title="@string/menu_groups"
         android:icon="@android:drawable/stat_notify_chat"

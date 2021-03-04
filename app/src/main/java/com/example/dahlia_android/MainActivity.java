@@ -1,13 +1,17 @@
 package com.example.dahlia_android;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.dahlia_android.ui.groups.GroupsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -59,5 +63,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void goFriends(MenuItem item) {
+        FragmentTransaction frag = getSupportFragmentManager().beginTransaction();
+
+        frag.replace(this.getTaskId(), FragmentManager.findFragment((View) item));
+        frag.commit();
     }
 }
