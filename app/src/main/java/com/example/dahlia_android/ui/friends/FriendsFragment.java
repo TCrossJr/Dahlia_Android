@@ -24,7 +24,6 @@ public class FriendsFragment extends Fragment {
         friendsViewModel =
                 new ViewModelProvider(this).get(FriendsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_friends, container, false);
-        ImageView testImage = root.findViewById(R.id.testFriendsImage);
 
         return root;
     }
