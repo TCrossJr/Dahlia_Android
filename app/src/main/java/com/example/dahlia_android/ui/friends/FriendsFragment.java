@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,14 +23,9 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         friendsViewModel =
                 new ViewModelProvider(this).get(FriendsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_groups, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        friendsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        View root = inflater.inflate(R.layout.fragment_friends, container, false);
+        ImageView testImage = root.findViewById(R.id.testFriendsImage);
+
         return root;
     }
 }

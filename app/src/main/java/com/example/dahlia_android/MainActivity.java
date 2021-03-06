@@ -66,9 +66,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goFriends(MenuItem item) {
-        FragmentTransaction frag = getSupportFragmentManager().beginTransaction();
-
-        frag.replace(this.getTaskId(), FragmentManager.findFragment((View) item));
-        frag.commit();
     }
 }

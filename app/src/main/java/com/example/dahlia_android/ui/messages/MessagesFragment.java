@@ -23,7 +23,7 @@ public class MessagesFragment extends Fragment {
         messagesViewModel =
                 new ViewModelProvider(this).get(MessagesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_messages, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        final TextView textView = root.findViewById(R.id.test_messages_text);
         messagesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
