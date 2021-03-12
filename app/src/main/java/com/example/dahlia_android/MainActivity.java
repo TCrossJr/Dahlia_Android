@@ -1,13 +1,16 @@
 package com.example.dahlia_android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.EditText;
 
 import com.example.dahlia_android.ui.friends.FriendsFragment;
 import com.example.dahlia_android.ui.groups.GroupsFragment;
 import com.example.dahlia_android.ui.home.HomeFragment;
+import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.MessagesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +26,10 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import static android.content.Intent.EXTRA_EMAIL;
+import static android.content.Intent.EXTRA_USER;
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -129,5 +136,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goSettings(MenuItem item) {
+    }
+
+    public void goLogin(MenuItem item) {
+        item.setChecked(true);
+        Intent intent = new Intent(this, LoginActivity.class);
+        /* TODO: REMOVE/MOVE?
+        EditText userEmail = findViewById(R.id.username);
+        EditText userPW = findViewById(R.id.password);
+        String email = userEmail.getText().toString();
+        String pw = userEmail.getText().toString();
+        intent.putExtra("uem", (CharSequence) userEmail);
+        intent.putExtra("upw", (CharSequence) userEmail);*/
+        startActivity(intent);
     }
 }

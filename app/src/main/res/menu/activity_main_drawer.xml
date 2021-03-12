@@ -41,5 +41,10 @@
             android:icon="@drawable/settings_icon"
             android:title="@string/action_settings"
             android:onClick="goSettings"/>
+        <item
+            android:id="@+id/nav_login_test"
+            android:icon="@android:drawable/ic_lock_lock"
+            android:title="@string/action_login"
+            android:onClick="goLogin"/>
     </group>
 </menu>
