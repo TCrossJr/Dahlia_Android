@@ -16,6 +16,23 @@
     <string name="menu_friends">Friends</string>
     <string name="create_post">Create Post</string>
     <string name="post_profile_image_description">User Profile Image</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="action_login">Login</string>
+    <string name="action_signup">Sign Up</string>
+    <string name="prompt_first_name">First Name</string>
+    <string name="prompt_last_name">Last Name</string>
+    <string name="prompt_agency">Au Pair Agency</string>
+    <string name="prompt_age">Age</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password_confirm">Confirm Password</string>
 
     <!--TESTS-->
     <string name="test_post_word">TEST.(ch=12)</string>
@@ -34,21 +51,4 @@
     <string name="test_friend_display_name">Bob Barker</string>
     <string name="test_group_name">New England Au Pair Group</string>
     <string name="test_friends_imageview_desc">Test Friends ImageView</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="action_login">Login</string>
-    <string name="action_signup">Sign Up</string>
-    <string name="prompt_first_name">First Name</string>
-    <string name="prompt_last_name">Last Name</string>
-    <string name="prompt_agency">Au Pair Agency</string>
-    <string name="prompt_age">Age</string>
-    <string name="prompt_username">Username</string>
-    <string name="prompt_password_confirm">Confirm Password</string>
 </resources>
