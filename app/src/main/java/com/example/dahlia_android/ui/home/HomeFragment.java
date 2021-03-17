@@ -9,9 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 
 public class HomeFragment extends Fragment {
@@ -33,6 +35,17 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        rView = root.findViewById(R.id.feed_recycler_view);
+        layoutManager = new LinearLayoutManager(getActivity());
+        feed_adapter = new HomeFeedAdapter(MainActivity.test_feed);
+        feed_adapter.notifyDataSetChanged();
+
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
+        rView.addItemDecoration(divider);
+        rView.setLayoutManager(layoutManager);
+        rView.scrollToPosition(0);
+        rView.setAdapter(feed_adapter);
 
         return root;
     }

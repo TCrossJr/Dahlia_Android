@@ -44,7 +44,7 @@
                 android:text="@string/test_post_long" />
 
             <ImageView
-                android:id="@+id/post_image"
+                android:id="@+id/post_media"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/dahlia_logo_yellow_center_png" />
@@ -108,7 +108,7 @@
                 android:id="@+id/post_date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="20s" />
+                android:text="@string/test_post_date_sec" />
         </LinearLayout>
 
     </LinearLayout>

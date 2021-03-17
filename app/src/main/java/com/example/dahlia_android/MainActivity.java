@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.dahlia_android.ui.friends.FriendsFragment;
 import com.example.dahlia_android.ui.groups.GroupsFragment;
+import com.example.dahlia_android.ui.home.HomeFeed;
 import com.example.dahlia_android.ui.home.HomeFragment;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.MessagesFragment;
@@ -34,6 +35,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static HomeFeed test_feed; // TODO: Change or RMV
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override

@@ -1,11 +1,21 @@
 package com.example.dahlia_android.ui.home;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dahlia_android.R;
+import com.example.dahlia_android.ui.friends.Friend;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHolder> {
@@ -19,12 +29,34 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_post, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Post post = home_feed.getSinglePost(position);
 
+        holder.setProfileImageURL(post.getProfileImageURL());
+        holder.setPostDate(post.getPostDate());
+        holder.setPostText(post.getPostText());
+        holder.setPostMedia(post.getMediaURL());
+        holder.setPostLikedBy(post.getPostLikedBy());
+        holder.frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Handle when user clicks post... Post(View)Fragment???
+                /*
+                TownDetailsFragment.currentTown = new Town(town);
+                Intent intent = new Intent(v.getContext(),TownDetailsFragment.class);
+                ContextCompat.startActivity(v.getContext(),intent, null);
+                 */
+
+            }
+        });
+
+//        holder.setReplies(post.getReplies());
+//        holder.setLikes(post.getLikes());
     }
 
     @Override
@@ -34,22 +66,57 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private FrameLayout frameLayout;
-//        private TextView townName;
-//        private TextView countyName;
+        private ImageView profileImageURL;
+        private TextView postDate;
+        private TextView postLikedBy;
+        private TextView postText;
+        private ImageView postMedia;
+//        private Button replies;
+//        private Button likes;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-//            frameLayout = view.findViewById(R.id.town_frame);
-//            townName = view.findViewById(R.id.list_item_town);
-//            countyName = view.findViewById(R.id.list_item_county);
+            frameLayout = view.findViewById(R.id.post_frame);
+
+            profileImageURL = view.findViewById(R.id.post_profile_image);
+            postDate = view.findViewById(R.id.post_date);
+            postText = view.findViewById(R.id.post_text);
+            postMedia = view.findViewById(R.id.post_media);
+            postLikedBy = view.findViewById(R.id.post_liked);
+//            replies = view.findViewById(R.id.post_button_reply);
+//            likes = view.findViewById(R.id.post_button_like);
         }
 
-//        public void setTownName(String town) {
-//            this.townName.setText(town);
-//        }
-//
-//        public void setCountyName(String county) {
-//            this.countyName.setText(county);
-//        }
+        public void setProfileImageURL(String profileImageURL) {
+            // set profile image from post here
+//            this.profileImageURL. = profileImageURL;
+        }
+
+        public void setPostDate(String postDate) {
+            this.postDate.setText(postDate);
+        }
+
+        public void setPostLikedBy(List<Friend> postLikedBy) {
+//            Add likedBy List into Strings displayed on post
+//            this.postLikedBy = postLikedBy;
+        }
+
+        public void setPostText(String postText) {
+            this.postText.setText(postText);
+        }
+
+        public void setPostMedia(String postMedia) {
+            // set image media here
+//            this.postMedia = postMedia;
+        }
+/*
+        public void setReplies(Button replies) {
+            this.replies = replies;
+        }
+
+        public void setLikes(Button likes) {
+            this.likes.setText(likes);
+        }
+*/
     }
 }
