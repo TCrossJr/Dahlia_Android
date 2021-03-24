@@ -1,5 +1,6 @@
 package com.example.dahlia_android.ui.home;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.friends.Friend;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,7 +23,9 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
     private static final String TAG = "HomeFeedAdapter";
     private static HomeFeed home_feed;
 
-    public HomeFeedAdapter(HomeFeed feed) { home_feed = feed; }
+    public HomeFeedAdapter(HomeFeed feed) {
+        home_feed = feed;
+    }
 
 
     @NonNull
@@ -35,25 +37,26 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Post post = home_feed.getSinglePost(position);
+        Log.d(TAG, "Post->" + position + "<-position");
+        Post post = home_feed.getPost(position);
 
-        holder.setProfileImageURL(post.getProfileImageURL());
-        holder.setPostDate(post.getPostDate());
+//        holder.setProfileImageURL(post.getProfileImageURL());
+//        holder.setPostDate(post.getPostDate());
         holder.setPostText(post.getPostText());
-        holder.setPostMedia(post.getMediaURL());
-        holder.setPostLikedBy(post.getPostLikedBy());
-        holder.frameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Handle when user clicks post... Post(View)Fragment???
+//        holder.setPostMedia(post.getMediaURL());
+//        holder.setPostLikedBy(post.getPostLikedBy());
+//        holder.frameLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                 TODO: Handle when user clicks post... Post(View)Fragment???
                 /*
                 TownDetailsFragment.currentTown = new Town(town);
                 Intent intent = new Intent(v.getContext(),TownDetailsFragment.class);
                 ContextCompat.startActivity(v.getContext(),intent, null);
                  */
 
-            }
-        });
+//            }
+//        });
 
 //        holder.setReplies(post.getReplies());
 //        holder.setLikes(post.getLikes());
@@ -61,7 +64,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return home_feed.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,25 +74,24 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
         private TextView postLikedBy;
         private TextView postText;
         private ImageView postMedia;
-//        private Button replies;
-//        private Button likes;
+        private Button replies;
+        private Button likes;
 
         public ViewHolder(@NonNull View view) {
             super(view);
             frameLayout = view.findViewById(R.id.post_frame);
 
-            profileImageURL = view.findViewById(R.id.post_profile_image);
-            postDate = view.findViewById(R.id.post_date);
+//            profileImageURL = view.findViewById(R.id.post_profile_image);
+//            postDate = view.findViewById(R.id.post_date);
             postText = view.findViewById(R.id.post_text);
-            postMedia = view.findViewById(R.id.post_media);
-            postLikedBy = view.findViewById(R.id.post_liked);
+//            postMedia = view.findViewById(R.id.post_media);
+//            postLikedBy = view.findViewById(R.id.post_liked);
 //            replies = view.findViewById(R.id.post_button_reply);
 //            likes = view.findViewById(R.id.post_button_like);
         }
 
         public void setProfileImageURL(String profileImageURL) {
             // set profile image from post here
-//            this.profileImageURL. = profileImageURL;
         }
 
         public void setPostDate(String postDate) {

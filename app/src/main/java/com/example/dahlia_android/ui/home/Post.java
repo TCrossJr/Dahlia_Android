@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Post {
 
-    private String profileImageURL;
-    private String postDate;
+    private String profileImageURL; //TODO: Change to Image or ImageView???
+    private String postDate; // TODO: Change to Date
     private String postText;
-    private String mediaURL;
+    private String mediaURL; //TODO: Change to Image or ImageView???
     private List<Friend> postLikedBy; //TODO: Change to List<User>???
     private int replies;
     private int likes;
@@ -29,7 +29,7 @@ public class Post {
     public Post() {
         this.profileImageURL = "";
         this.postDate = "";
-        this.postText = "";
+        this.postText = "Test";
         this.mediaURL = "";
         this.postLikedBy = new ArrayList<>();
         this.replies = 0;

@@ -9,9 +9,12 @@ import android.view.Menu;
 import android.widget.EditText;
 
 import com.example.dahlia_android.ui.friends.FriendsFragment;
+import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.groups.GroupsFragment;
 import com.example.dahlia_android.ui.home.HomeFeed;
+import com.example.dahlia_android.ui.home.HomeFeedActivity;
 import com.example.dahlia_android.ui.home.HomeFragment;
+import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.MessagesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,7 +38,8 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static HomeFeed test_feed; // TODO: Change or RMV
+    public static HomeFeed _feed; // TODO: Change or RMV
+    public static FriendsList _friendsList;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -63,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        BottomNavigationView btm = findViewById(R.id.navigation);
+        BottomNavigationView btm = findViewById(R.id.navigation); // TODO: Fix navigation DrawerLayout and BottomNavigation not interacting well...
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -74,6 +79,19 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(btm, navController);
+        initTestData(); // TODO: RMV???
+    }
+
+    private void initTestData() {
+        _feed = new HomeFeed();
+
+        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
+        _feed.addPost(new Post());
+        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
+        _feed.addPost(new Post());
+        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
+        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
+        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
     }
 
     @Override

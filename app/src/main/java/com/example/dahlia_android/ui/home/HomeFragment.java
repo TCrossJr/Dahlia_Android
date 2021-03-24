@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,11 +35,15 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
+//        homeViewModel =
+//                new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ImageView testImg = root.findViewById(R.id.imageView2);
 
         rView = root.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        feed_adapter = new HomeFeedAdapter(MainActivity.test_feed);
+        feed_adapter = new HomeFeedAdapter(MainActivity._feed);
         feed_adapter.notifyDataSetChanged();
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
