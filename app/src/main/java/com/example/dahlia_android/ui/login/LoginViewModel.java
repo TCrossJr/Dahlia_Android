@@ -14,7 +14,7 @@ import com.example.dahlia_android.R;
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
+    private MutableLiveData<com.example.dahlia_android.ui.login.LoginResult> loginResult = new MutableLiveData<>();
     private LoginRepository loginRepository;
 
     LoginViewModel(LoginRepository loginRepository) {
@@ -25,19 +25,19 @@ public class LoginViewModel extends ViewModel {
         return loginFormState;
     }
 
-    LiveData<LoginResult> getLoginResult() {
+    LiveData<com.example.dahlia_android.ui.login.LoginResult> getLoginResult() {
         return loginResult;
     }
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        Result<LoggedInUser> loginResult = loginRepository.login(username, password);
 
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getUserEmail())));
+        if (loginResult instanceof Result.Success) {
+            LoggedInUser data = ((Result.Success<LoggedInUser>) loginResult).getData();
+            this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(new LoggedInUserView(data.getUserEmail())));
         } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
+            this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(R.string.login_failed));
         }
     }
 

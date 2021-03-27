@@ -31,13 +31,15 @@ public class LoginDataSource {
             //make object, save to keystore
 
             /*-------------------------------------------------------------------*/
-            // WORKS!!!! with HttpLoggingInterceptor TODO: Need to deal with hard-coded POST using CustomInterceptor
+             // WORKS!!!! with HttpLoggingInterceptor TODO: Need to deal with hard-coded POST using LoginInterceptor
             OkHttpClient.Builder client = new OkHttpClient().newBuilder();
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(); //TODO: can remove this interceptor when done testing
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             client.addInterceptor(loggingInterceptor);
             OkHttpClient newClient = client.build();
 
+            // .url("http://127.0.0.1:8000/rest-auth/signin/")
+            // .url("http://10.0.2.2:8000/rest-auth/signin/")
             MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
             RequestBody body = RequestBody.create("email=t05401btv@gmail.com&password=testUserpw1",mediaType);
             Request request = new Request.Builder()

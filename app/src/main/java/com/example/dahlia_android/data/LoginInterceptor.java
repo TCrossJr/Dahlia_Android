@@ -11,7 +11,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /** TODO: Not currently used, plan to implement soon*/
-public class CustomInterceptor implements Interceptor {
+public class LoginInterceptor implements Interceptor {
 
     private String credentials;
 
@@ -19,7 +19,7 @@ public class CustomInterceptor implements Interceptor {
         return credentials;
     }
 
-    public CustomInterceptor(String username, String password) {
+    public LoginInterceptor(String username, String password) {
         this.credentials = Credentials.basic(username, password);
     }
 

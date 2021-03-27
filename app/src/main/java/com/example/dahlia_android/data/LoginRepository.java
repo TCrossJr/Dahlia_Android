@@ -45,10 +45,10 @@ public class LoginRepository {
 
     public Result<LoggedInUser> login(String username, String password) {
         // handle login
-        Result<LoggedInUser> result = dataSource.login(username, password);
-        if (result instanceof Result.Success) {
-            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
+        Result<LoggedInUser> loginResult = dataSource.login(username, password);
+        if (loginResult instanceof Result.Success) {
+            setLoggedInUser(((Result.Success<LoggedInUser>) loginResult).getData());
         }
-        return result;
+        return loginResult;
     }
 }
