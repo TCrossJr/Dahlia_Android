@@ -19,7 +19,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -54,4 +54,5 @@
     <string name="test_activitymain">ActivityMain</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="signup_failed">Sign Up Failed</string>
+    <string name="action_register">Register</string>
 </resources>

@@ -4,12 +4,16 @@ import com.example.dahlia_android.data.model.LoggedInUser;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
@@ -33,6 +37,11 @@ public class LoginDataSource {
             /*-------------------------------------------------------------------*/
              // WORKS!!!! with HttpLoggingInterceptor TODO: Need to deal with hard-coded POST using LoginInterceptor
             OkHttpClient.Builder client = new OkHttpClient().newBuilder();
+//            client  .callTimeout(5000,SECONDS)
+//                    .connectTimeout(20, SECONDS)
+//                    .readTimeout(20,SECONDS)
+//                    .writeTimeout(20,SECONDS);
+
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(); //TODO: can remove this interceptor when done testing
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             client.addInterceptor(loggingInterceptor);
