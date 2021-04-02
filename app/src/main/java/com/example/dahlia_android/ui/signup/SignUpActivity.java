@@ -108,8 +108,6 @@ public class SignUpActivity extends AppCompatActivity {
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         password1EditText.addTextChangedListener(afterTextChangedListener);
         password2EditText.addTextChangedListener(afterTextChangedListener);
-        // TODO: Might need to add or change this to Age
-//        password2EditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
         agencyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override

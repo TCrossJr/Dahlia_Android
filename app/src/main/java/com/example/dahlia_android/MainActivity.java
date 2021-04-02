@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO: RMV when switch to Async
+        // TODO: RMV when switch to Async or Https
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
             StrictMode.ThreadPolicy policy = new
@@ -79,9 +79,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(btm, navController);
-        initTestData(); // TODO: RMV???
+        initTestData(); // TODO: RMV
     }
 
+    // TODO: RMV
     private void initTestData() {
         _feed = new HomeFeed();
 
@@ -171,13 +172,6 @@ public class MainActivity extends AppCompatActivity {
     public void goLogin(MenuItem item) {
         item.setChecked(true);
         Intent intent = new Intent(this, LoginActivity.class);
-        /* TODO: REMOVE/MOVE?
-        EditText userEmail = findViewById(R.id.username);
-        EditText userPW = findViewById(R.id.password);
-        String email = userEmail.getText().toString();
-        String pw = userEmail.getText().toString();
-        intent.putExtra("uem", (CharSequence) userEmail);
-        intent.putExtra("upw", (CharSequence) userEmail);*/
         startActivity(intent);
     }
 }

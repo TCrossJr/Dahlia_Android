@@ -5,15 +5,12 @@ import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
-/** TODO: Not currently used, plan to implement soon*/
 public interface APIServiceInterface {
     // WORKS
     @GET("csrf/")
@@ -31,13 +28,7 @@ public interface APIServiceInterface {
                                   @Field("last_name") String lastName,
                                   @Field("agency") String agency );
 
-    @POST("rest-auth/signin/")
-    Call<LoggedInUser> getUserCredentials0(@Header("Authorization") String authHeader);
-
-    @POST("rest-auth/signin/")
-    Call<LoggedInUser> getUserCredentials1(String authToken);
-    // Unauthorized url-encoded
-
+    // WORKS
     @FormUrlEncoded
     @POST("/rest-auth/signin/")
     Call<LoggedInUser> getUserCredentials(
@@ -45,5 +36,4 @@ public interface APIServiceInterface {
             @Field("email") String email,
             @Field("password") String password
     );
-    //    Call<LoggedInUser> getUserCredentials(@Field("email") String email, @Field("password") String password );
 }
