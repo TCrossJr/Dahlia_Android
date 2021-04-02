@@ -29,13 +29,13 @@ public class SignUpViewModel extends ViewModel {
         return signUpResult;
     }
 
-    public void signUp(String username, String password) {
+    public void signUp(String username, String userEmail, String password1, String password2, String firstName, String lastName, String agency) {
         // can be launched in a separate asynchronous job
-        SignUpResult<SignedUpUser> result = signUpRepository.signup(username, password);
+        SignUpResult<SignedUpUser> result = signUpRepository.signup(username, userEmail, password1, password2, firstName, lastName, agency);
 
         if (result instanceof SignUpResult.Success) {
             SignedUpUser data = ((SignUpResult.Success<SignedUpUser>) result).getData();
-            this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(new SignedUpUserView(data.getDisplayName())));
+            this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(new SignedUpUserView(data.getUserName())));
         } else {
             this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(R.string.signup_failed));
         }

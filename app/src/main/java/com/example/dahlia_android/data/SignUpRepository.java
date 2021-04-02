@@ -44,9 +44,9 @@ public class SignUpRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public SignUpResult<SignedUpUser> signup(String username, String password) {
-        // handle login
-        SignUpResult<SignedUpUser> result = dataSource.signup(username, password);
+    public SignUpResult<SignedUpUser> signup(String userName, String userEmail, String password1, String password2, String firstName, String lastName, String agency) {
+        // handle signup
+        SignUpResult<SignedUpUser> result = dataSource.signup(userName, userEmail, password1, password2, firstName, lastName, agency);
         if (result instanceof SignUpResult.Success) {
             setSignedUpUser(((SignUpResult.Success<SignedUpUser>) result).getData());
         }

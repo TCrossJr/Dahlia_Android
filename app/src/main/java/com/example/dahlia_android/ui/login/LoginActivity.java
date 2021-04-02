@@ -125,8 +125,8 @@ public class LoginActivity extends AppCompatActivity {
         testUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                loginViewModel.login("t05401btv@gmail.com",
+                        "testUserpw1");
             }
         });
     }
@@ -143,6 +143,11 @@ public class LoginActivity extends AppCompatActivity {
 
     public void goSignUp(View view) {
         Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void goLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

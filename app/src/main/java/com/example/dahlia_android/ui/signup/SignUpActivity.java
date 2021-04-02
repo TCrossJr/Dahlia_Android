@@ -41,10 +41,13 @@ public class SignUpActivity extends AppCompatActivity {
         final EditText userEmailEditText = findViewById(R.id.user_email);
         final EditText password1EditText = findViewById(R.id.password1);
         final EditText password2EditText = findViewById(R.id.password2);
-
+        final EditText firstNameEditText = findViewById(R.id.first_name);
+        final EditText lastNameEditText = findViewById(R.id.last_name);
+        final EditText agencyEditText = findViewById(R.id.agency);
 
 
         final Button signUpButton = findViewById(R.id.signup);
+        final Button testSignUp = findViewById(R.id.test_signup);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         signUpViewModel.getSignUpFormState().observe(this, new Observer<SignUpFormState>() {
@@ -72,14 +75,14 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 loadingProgressBar.setVisibility(View.GONE);
                 if (signUpResult.getError() != null) {
-                    showLoginFailed(signUpResult.getError());
+                    showSignUpFailed(signUpResult.getError());
                 }
                 if (signUpResult.getSuccess() != null) {
                     updateUiWithUser(signUpResult.getSuccess());
                 }
                 setResult(Activity.RESULT_OK);
 
-                //Complete and destroy login activity once successful
+                //Complete and destroy signup activity once successful
                 finish();
             }
         });
@@ -106,13 +109,19 @@ public class SignUpActivity extends AppCompatActivity {
         password1EditText.addTextChangedListener(afterTextChangedListener);
         password2EditText.addTextChangedListener(afterTextChangedListener);
         // TODO: Might need to add or change this to Age
-        password2EditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//        password2EditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        agencyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     signUpViewModel.signUp(usernameEditText.getText().toString(),
-                            password1EditText.getText().toString());
+                            userEmailEditText.getText().toString(),
+                            password1EditText.getText().toString(),
+                            password2EditText.getText().toString(),
+                            firstNameEditText.getText().toString(),
+                            lastNameEditText.getText().toString(),
+                            agencyEditText.getText().toString());
                 }
                 return false;
             }
@@ -123,7 +132,25 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 signUpViewModel.signUp(usernameEditText.getText().toString(),
-                        password1EditText.getText().toString());
+                        userEmailEditText.getText().toString(),
+                        password1EditText.getText().toString(),
+                        password2EditText.getText().toString(),
+                        firstNameEditText.getText().toString(),
+                        lastNameEditText.getText().toString(),
+                        agencyEditText.getText().toString());
+            }
+        });
+        // TODO: For Testing RMV
+        testSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usernameEditText.setText("TestUser");
+                userEmailEditText.setText("t30@test.com");
+                password1EditText.setText("testUserpw1");
+                password2EditText.setText("testUserpw1");
+                firstNameEditText.setText("Tim");
+                lastNameEditText.setText("Cross");
+                agencyEditText.setText("Au Pair");
             }
         });
     }
@@ -134,7 +161,7 @@ public class SignUpActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
-    private void showLoginFailed(@StringRes Integer errorString) {
+    private void showSignUpFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
