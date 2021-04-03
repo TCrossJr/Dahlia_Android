@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         ImageView testImg = root.findViewById(R.id.imageView2);
+/*
 
         rView = root.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -51,6 +52,7 @@ public class HomeFragment extends Fragment {
         rView.setLayoutManager(layoutManager);
         rView.scrollToPosition(0);
         rView.setAdapter(feed_adapter);
+*/
 
         return root;
     }

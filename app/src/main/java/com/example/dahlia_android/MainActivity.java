@@ -38,8 +38,6 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static HomeFeed _feed; // TODO: Change or RMV
-    public static FriendsList _friendsList;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -71,28 +69,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+        // TODO: CHANGE to setOpenableLayoput(Openable)
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby)
+                R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby, R.id.nav_login_test)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(btm, navController);
-        initTestData(); // TODO: RMV
-    }
-
-    // TODO: RMV
-    private void initTestData() {
-        _feed = new HomeFeed();
-
-        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
-        _feed.addPost(new Post());
-        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
-        _feed.addPost(new Post());
-        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
-        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
-        _feed.addPost(new Post("url.media.location", "3/16/2021","Test post to check feed.","mediaUrl.locaction",5,10));
     }
 
     @Override
@@ -107,71 +92,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public void goHome(MenuItem item) {
-        item.setChecked(true);
-        FragmentManager managerHome = getSupportFragmentManager();
-        if(managerHome != null) {
-            FragmentTransaction transaction = managerHome.beginTransaction();
-            if( transaction != null ) {
-                transaction.replace(R.id.drawer_layout,new HomeFragment());
-                transaction.commit();
-            }
-        }
-    }
-
-    public void goFriends(MenuItem item) {
-        item.setChecked(true);
-        FragmentManager managerFriends = getSupportFragmentManager();
-        if (managerFriends != null ) {
-            FragmentTransaction transaction = managerFriends.beginTransaction();
-            if( transaction != null ) {
-                transaction.replace(R.id.drawer_layout,new FriendsFragment());
-                transaction.commit();
-            }
-        }
-    }
-
-    public void goGroups(MenuItem item) {
-        item.setChecked(true);
-        FragmentManager managerGroups = getSupportFragmentManager();
-        if (managerGroups != null ) {
-            FragmentTransaction transaction = managerGroups.beginTransaction();
-            if( transaction != null ) {
-                transaction.replace(R.id.drawer_layout,new GroupsFragment());
-                transaction.commit();
-            }
-        }
-    }
-
-    public void goMessages(MenuItem item) {
-        item.setChecked(true);
-        FragmentManager managerMessages = getSupportFragmentManager();
-        if (managerMessages != null ) {
-            FragmentTransaction transaction = managerMessages.beginTransaction();
-            if( transaction != null ) {
-                transaction.replace(R.id.drawer_layout,new MessagesFragment());
-                transaction.commit();
-            }
-        }
-    }
-
-    public void goAuPairNearby(MenuItem item) {
-    }
-
-    public void goRSSFeed(MenuItem item) {
-    }
-
-    public void goAbout(MenuItem item) {
-    }
-
-    public void goSettings(MenuItem item) {
-    }
-
-    public void goLogin(MenuItem item) {
-//        item.setChecked(true);
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
     }
 }

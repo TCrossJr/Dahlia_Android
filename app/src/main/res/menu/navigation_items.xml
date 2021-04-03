@@ -3,21 +3,17 @@
     <item android:id="@+id/nav_home"
         android:title="@string/menu_home"
         android:icon="@drawable/home_icon"
-        android:enabled="true"
-        android:onClick="goHome"/>
+        android:enabled="true" />
     <item android:id="@+id/nav_friends"
         android:title="@string/menu_friends"
         android:icon="@drawable/friends_icon"
-        android:enabled="true"
-        android:onClick="goFriends"/>
+        android:enabled="true" />
     <item android:id="@+id/nav_groups"
         android:title="@string/menu_groups"
         android:icon="@android:drawable/stat_notify_chat"
-        android:enabled="true"
-        android:onClick="goGroups"/>
+        android:enabled="true" />
     <item android:id="@+id/nav_messages"
         android:title="@string/menu_messages"
         android:icon="@android:drawable/ic_dialog_email"
-        android:enabled="true"
-        android:onClick="goMessages"/>
+        android:enabled="true" />
 </menu>
