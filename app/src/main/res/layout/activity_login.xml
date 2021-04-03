@@ -65,14 +65,15 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/action_register"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="goSignUp"
+        android:text="@string/action_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        android:clickable="true"
-        android:onClick="goSignUp"
-        android:focusable="true" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <Button
         android:id="@+id/test_user"

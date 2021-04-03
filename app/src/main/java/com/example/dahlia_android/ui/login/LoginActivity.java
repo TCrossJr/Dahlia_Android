@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
+        final Button testUser = findViewById(R.id.test_user);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -119,6 +120,14 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+        // TODO: RMV
+        testUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usernameEditText.setText("t05401btv@gmail.com");
+                passwordEditText.setText("testUserpw1");
+            }
+        });
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
@@ -128,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_LONG).show();
     }
 
     public void goSignUp(View view) {

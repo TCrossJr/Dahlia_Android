@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goLogin(MenuItem item) {
-        item.setChecked(true);
+//        item.setChecked(true);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }

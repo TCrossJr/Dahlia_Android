@@ -19,6 +19,7 @@
         android:id="@+id/imageView2"
         android:layout_width="190dp"
         android:layout_height="160dp"
+        android:layout_marginBottom="100dp"
         android:src="@drawable/dahlia_logo_yellow_center_png"
         app:layout_constraintBottom_toBottomOf="@+id/feed_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
