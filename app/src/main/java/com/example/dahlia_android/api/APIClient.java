@@ -1,4 +1,4 @@
-package com.example.dahlia_android.data;
+package com.example.dahlia_android.api;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -6,12 +6,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
-//    private static final String BASE_URL = "http://10.0.2.2:8000/";   // Emulator
-    private static final String BASE_URL = "http://127.0.0.1:8000/";  // Android Device Wifi
+    private static final String BASE_URL = "http://10.0.2.2:8000/";   // Emulator
+//    private static final String BASE_URL = "http://127.0.0.1:8000/";  // Android Device Wifi
 
     private static Retrofit retrofit2 = null;
 
-    static Retrofit getClient() {
+    public static Retrofit getClient() {
         if( retrofit2 == null ) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(); //TODO: can remove this interceptor when done testing
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

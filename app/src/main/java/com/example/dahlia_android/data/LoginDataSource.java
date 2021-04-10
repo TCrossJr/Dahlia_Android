@@ -1,5 +1,7 @@
 package com.example.dahlia_android.data;
 
+import com.example.dahlia_android.api.APIClient;
+import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.LoggedInUser;
 
 import java.io.IOException;

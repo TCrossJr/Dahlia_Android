@@ -1,4 +1,4 @@
-package com.example.dahlia_android.data;
+package com.example.dahlia_android.api;
 
 import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.data.model.SignedUpUser;
@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 public interface APIServiceInterface {
     // WORKS
     @GET("csrf/")
-    Call<UserToken> getIntitalToken();
+    Call<UserToken> getInitialToken();
 
     // WORKS
     @FormUrlEncoded

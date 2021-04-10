@@ -1,5 +1,7 @@
 package com.example.dahlia_android.data;
 
+import com.example.dahlia_android.api.APIClient;
+import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 
@@ -21,7 +23,7 @@ public class SignUpDataSource {
 
             // get_token
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-            Response<UserToken> tokenResponse = apiInterface.getIntitalToken().execute();
+            Response<UserToken> tokenResponse = apiInterface.getInitialToken().execute();
             UserToken userToken = tokenResponse.body();
 
             // post user signup

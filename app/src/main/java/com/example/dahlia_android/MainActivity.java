@@ -93,4 +93,14 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void goLogin(MenuItem item) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void goLogout(MenuItem item) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
