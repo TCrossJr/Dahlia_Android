@@ -30,7 +30,7 @@
 
         <LinearLayout
             android:id="@+id/group_layout_names"
-            android:layout_width="wrap_content"
+            android:layout_width="207dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="4dp">
@@ -41,6 +41,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/test_group_name" />
 
+            <TextView
+                android:id="@+id/group_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/test_group_description"
+                android:textSize="12sp" />
+
         </LinearLayout>
 
         <Space
@@ -50,10 +57,11 @@
 
         <Button
             android:id="@+id/group_message"
-            android:layout_width="70dp"
+            android:layout_width="55dp"
             android:layout_height="55dp"
             app:icon="@android:drawable/stat_notify_chat"
-            app:iconGravity="textStart" />
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
 
         <Space
             android:layout_width="10dp"
@@ -62,10 +70,11 @@
 
         <Button
             android:id="@+id/group_more_options"
-            android:layout_width="45dp"
+            android:layout_width="55dp"
             android:layout_height="55dp"
             app:icon="@drawable/more_options_2x_icon"
-            app:iconGravity="textEnd"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
             app:iconTint="#FFFFFF" />
 
         <Space

@@ -39,6 +39,7 @@
     <string name="prompt_welcome">"Welcome !"</string>
 
     <!--TESTS-->
+    <string name="test_activitymain">ActivityMain</string>
     <string name="test_post_word">TEST.(ch=12)</string>
     <string name="test_post_short">This is a test message that is Short length.(ch=51)</string>
     <string name="test_post_medium">This is a test message that is Medium length. The message needs to be a certain length to check if it displays correctly.(ch=129)</string>
@@ -53,9 +54,9 @@
     <string name="test_post_date_date_long">Nov 2018</string>
     <string name="test_friend_username">-@BobBarker</string>
     <string name="test_friend_display_name">Bob Barker</string>
-    <string name="test_group_name">New England Au Pair Group</string>
-    <string name="test_friends_imageview_desc">Test Friends ImageView</string>
-    <string name="test_activitymain">ActivityMain</string>
+    <string name="test_friend_imageview_desc">Test Friends ImageView</string>
     <string name="test_message_text_short">Hey! What are you up too???</string>
     <string name="test_message_text_medium">Hey whats up, this is a test message to see how the Messages look.</string>
+    <string name="test_group_name">New England Au Pair Group</string>
+    <string name="test_group_description">Group of Au Pair members in New England</string>
 </resources>
