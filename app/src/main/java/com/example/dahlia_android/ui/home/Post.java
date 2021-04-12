@@ -1,6 +1,6 @@
 package com.example.dahlia_android.ui.home;
 
-import com.example.dahlia_android.ui.friends.Friend;
+import com.example.dahlia_android.ui.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Post {
     private String postDate; // TODO: Change to Date
     private String postText;
     private String mediaURL; //TODO: Change to Image or ImageView???
-    private List<Friend> postLikedBy; //TODO: Change to List<User>???
+    private List<User> postLikedBy; //TODO: Change to List<User>???
     private int replies;
     private int likes;
 
@@ -68,11 +68,11 @@ public class Post {
         this.mediaURL = mediaURL;
     }
 
-    public List<Friend> getPostLikedBy() {
+    public List<User> getPostLikedBy() {
         return postLikedBy;
     }
 
-    public void setPostLikedBy(List<Friend> postLikedBy) {
+    public void setPostLikedBy(List<User> postLikedBy) {
         this.postLikedBy = postLikedBy;
     }
 

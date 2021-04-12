@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment {
 //                new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        ImageView testImg = root.findViewById(R.id.imageView2);
 /*
 
         rView = root.findViewById(R.id.feed_recycler_view);

@@ -13,6 +13,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dahlia_android.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MessagesFragment extends Fragment {
 
@@ -23,11 +25,12 @@ public class MessagesFragment extends Fragment {
         messagesViewModel =
                 new ViewModelProvider(this).get(MessagesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_messages, container, false);
-        final TextView textView = root.findViewById(R.id.test_messages_text);
-        messagesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        FloatingActionButton messageFab = root.findViewById(R.id.message_fab);
+        messageFab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onClick(View view) {
+                Snackbar.make(view, "Starting message...", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
         return root;

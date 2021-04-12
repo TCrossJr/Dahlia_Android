@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.home.HomeFeedAdapter;
+import com.example.dahlia_android.ui.user.User;
 
 public class FriendsFragment extends Fragment {
 
@@ -39,8 +40,8 @@ public class FriendsFragment extends Fragment {
         friendsViewModel =
                 new ViewModelProvider(this).get(FriendsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_friends, container, false);
-/*
-        // TODO: Change to FriendsActivity
+        // TODO: Change to FriendsActivity???
+
         rView = root.findViewById(R.id.friendslist_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
         friends_adapter = new FriendsListAdapter(MainActivity._friendsList); //TODO: Change or move to Data class somehow from MainActivity
@@ -51,7 +52,6 @@ public class FriendsFragment extends Fragment {
         rView.setLayoutManager(layoutManager);
         rView.scrollToPosition(0);
         rView.setAdapter(friends_adapter);
-*/
         return root;
     }
 }

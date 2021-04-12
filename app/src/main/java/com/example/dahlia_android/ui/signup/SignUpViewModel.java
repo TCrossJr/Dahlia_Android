@@ -43,9 +43,9 @@ public class SignUpViewModel extends ViewModel {
 
     public void signUpDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {
-            signUpFormState.setValue(new SignUpFormState(R.string.invalid_username, null));
+            signUpFormState.setValue(new SignUpFormState(R.string.prompt_invalid_username, null));
         } else if (!isPasswordValid(password)) {
-            signUpFormState.setValue(new SignUpFormState(null, R.string.invalid_password));
+            signUpFormState.setValue(new SignUpFormState(null, R.string.prompt_invalid_password));
         } else {
             signUpFormState.setValue(new SignUpFormState(true));
         }

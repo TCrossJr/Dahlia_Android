@@ -37,15 +37,15 @@ public class LoginViewModel extends ViewModel {
             LoggedInUser data = ((Result.Success<LoggedInUser>) loginResult).getData();
             this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(new LoggedInUserView(data.getUserEmail())));
         } else {
-            this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(R.string.login_failed));
+            this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(R.string.prompt_login_failed));
         }
     }
 
     public void loginDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
+            loginFormState.setValue(new LoginFormState(R.string.prompt_invalid_username, null));
         } else if (!isPasswordValid(password)) {
-            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
+            loginFormState.setValue(new LoginFormState(null, R.string.prompt_invalid_password));
         } else {
             loginFormState.setValue(new LoginFormState(true));
         }

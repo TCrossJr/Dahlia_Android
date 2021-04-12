@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.home.Post;
-
-import java.util.List;
+import com.example.dahlia_android.ui.user.User;
 
 
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.ViewHolder> {
@@ -27,7 +24,6 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         friends_list = friendsList;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,11 +33,11 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d(TAG, "Post->" + position + "<-position");
-        Friend friend = friends_list.getFriend(position);
+        Log.d(TAG, "Friend->" + position + "<-position");
+        User user = friends_list.getFriend(position);
 
-        holder.setFriendsDisplayName(friend.getFriendDisplayName());
-        holder.setFriendsUsername(friend.getFriendDisplayName());
+        holder.setFriendsDisplayName(user.getDisplayName());
+        holder.setFriendsUsername(user.getDisplayName());
         holder.frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,8 +63,8 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         private final ImageView friendProfileImageURL;
         private final TextView friendDisplayName;
         private final TextView friendUsername;
-        private final Button friendMessage;
-        private final Button friendMoreOptions;
+//        private final Button friendMessage;
+//        private final Button friendMoreOptions;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -77,8 +73,8 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             friendProfileImageURL = view.findViewById(R.id.friend_profile_image);
             friendDisplayName = view.findViewById(R.id.friend_display_name);
             friendUsername = view.findViewById(R.id.friend_username);
-            friendMessage = view.findViewById(R.id.friend_message);
-            friendMoreOptions = view.findViewById(R.id.friend_more_options);
+//            friendMessage = view.findViewById(R.id.friend_message);
+//            friendMoreOptions = view.findViewById(R.id.friend_more_options);
         }
 
         public void setFriendsDisplayName(String friendDisplayName) {

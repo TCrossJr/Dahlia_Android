@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.friends.Friend;
+import com.example.dahlia_android.ui.user.User;
 
 import java.util.List;
 
@@ -98,7 +98,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
             this.postDate.setText(postDate);
         }
 
-        public void setPostLikedBy(List<Friend> postLikedBy) {
+        public void setPostLikedBy(List<User> postLikedBy) {
 //            Add likedBy List into Strings displayed on post
 //            this.postLikedBy = postLikedBy;
         }

@@ -17,6 +17,7 @@ import com.example.dahlia_android.ui.home.HomeFragment;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.MessagesFragment;
+import com.example.dahlia_android.ui.user.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,6 +39,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static FriendsList _friendsList;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -55,21 +57,14 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         BottomNavigationView btm = findViewById(R.id.navigation); // TODO: Fix navigation DrawerLayout and BottomNavigation not interacting well...
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        // TODO: CHANGE to setOpenableLayoput(Openable)
+        // TODO: CHANGE to setOpenableLayout(Openable)
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby, R.id.nav_login_test)
                 .setDrawerLayout(drawer)
@@ -78,6 +73,37 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(btm, navController);
+        testFriends();
+    }
+
+    private void testFriends() {
+        FriendsList friends = new FriendsList();
+
+        friends.add( new User(null, "TestDisplayName1", "TestUserName1"));
+        friends.add( new User(null, "TestDisplayName2", "TestUserName2"));
+        friends.add( new User(null, "TestDisplayName3", "TestUserName3"));
+        friends.add( new User(null, "TestDisplayName4", "TestUserName4"));
+        friends.add( new User(null, "TestDisplayName5", "TestUserName5"));
+        friends.add( new User(null, "TestDisplayName6", "TestUserName6"));
+        friends.add( new User(null, "TestDisplayName7", "TestUserName7"));
+        friends.add( new User(null, "TestDisplayName8", "TestUserName8"));
+        friends.add( new User(null, "TestDisplayName9", "TestUserName9"));
+        friends.add( new User(null, "TestDisplayName10", "TestUserName10"));
+        friends.add( new User(null, "TestDisplayName11", "TestUserName11"));
+        friends.add( new User(null, "TestDisplayName12", "TestUserName12"));
+        friends.add( new User(null, "TestDisplayName13", "TestUserName13"));
+        friends.add( new User(null, "TestDisplayName14", "TestUserName14"));
+        friends.add( new User(null, "TestDisplayName15", "TestUserName15"));
+        friends.add( new User(null, "TestDisplayName16", "TestUserName16"));
+        friends.add( new User(null, "TestDisplayName17", "TestUserName17"));
+        friends.add( new User(null, "TestDisplayName18", "TestUserName18"));
+        friends.add( new User(null, "TestDisplayName19", "TestUserName19"));
+        friends.add( new User(null, "TestDisplayName20", "TestUserName20"));
+
+
+
+
+        _friendsList = friends;
     }
 
     @Override

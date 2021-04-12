@@ -154,7 +154,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(SignedUpUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
+        String welcome = getString(R.string.prompt_welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
