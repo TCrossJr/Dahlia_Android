@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    protected HomeFeedAdapter feed_adapter;
+    protected HomeFeedListAdapter feed_adapter;
     protected LinearLayoutManager layoutManager;
 
     private RecyclerView rView;
@@ -35,15 +35,10 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-//        homeViewModel =
-//                new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-/*
-
         rView = root.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        feed_adapter = new HomeFeedAdapter(MainActivity._feed);
+        feed_adapter = new HomeFeedListAdapter(MainActivity._homefeed);
         feed_adapter.notifyDataSetChanged();
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
@@ -51,8 +46,6 @@ public class HomeFragment extends Fragment {
         rView.setLayoutManager(layoutManager);
         rView.scrollToPosition(0);
         rView.setAdapter(feed_adapter);
-*/
-
         return root;
     }
 }

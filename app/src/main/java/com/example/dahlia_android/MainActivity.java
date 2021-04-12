@@ -9,6 +9,8 @@ import android.view.Menu;
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.groups.Groups;
+import com.example.dahlia_android.ui.home.Feed;
+import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     // TODO: MOVE to data classes(ViewModels/Repositories)
+    public static Feed _homefeed;
     public static FriendsList _friendsList;
     public static Messages _messageList;
     public static Groups _groupsList;
@@ -68,6 +71,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testRecyclerViews() {
+        // Tmp Testing Posts Feed
+        Feed feed = new Feed();
+        feed.add(new Post("This is the First Post", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
+        feed.add(new Post("This is the Last Post", "45s"));
+        _homefeed = feed;
+
         // Tmp Testing Groups
         Groups groups = new Groups();
         groups.add(new Group("TestGroupName1", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));

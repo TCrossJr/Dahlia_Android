@@ -1,5 +1,6 @@
 package com.example.dahlia_android.ui.home;
 
+import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.user.User;
 
 import java.util.ArrayList;
@@ -7,33 +8,44 @@ import java.util.List;
 
 public class Post {
 
+    private User postCreator;
     private String profileImageURL; //TODO: Change to Image or ImageView???
-    private String postDate; // TODO: Change to Date
+    private String postDate; // TODO: Change to Date???
     private String postText;
     private String mediaURL; //TODO: Change to Image or ImageView???
-    private List<User> postLikedBy; //TODO: Change to List<User>???
-    private int replies;
+    private Group postLikedBy;
+    private Feed replies;
     private int likes;
 
-    public Post(String profileImageURL, String postDate, String postText,
-                String mediaURL, int replies, int likes) {
+    public Post(User postCreator, String profileImageURL, String postDate, String postText,
+                String mediaURL, Group group, Feed replies, int likes) {
+        this.postCreator = postCreator;
         this.profileImageURL = profileImageURL;
         this.postDate = postDate;
         this.postText = postText;
         this.mediaURL = mediaURL;
-        this.postLikedBy = new ArrayList<>();
+        this.postLikedBy = group;
         this.replies = replies;
         this.likes = likes;
     }
 
-    public Post() {
+    // TODO: RMV or Change
+    public Post(String text, String date) {
         this.profileImageURL = "";
-        this.postDate = "";
-        this.postText = "Test";
+        this.postDate = date;
+        this.postText = text;
         this.mediaURL = "";
-        this.postLikedBy = new ArrayList<>();
-        this.replies = 0;
+        this.postLikedBy = null;
+        this.replies = null;
         this.likes = 0;
+    }
+
+    public User getPostCreator() {
+        return postCreator;
+    }
+
+    public void setPostCreator(User postCreator) {
+        this.postCreator = postCreator;
     }
 
     public String getProfileImageURL() {
@@ -68,19 +80,19 @@ public class Post {
         this.mediaURL = mediaURL;
     }
 
-    public List<User> getPostLikedBy() {
+    public Group getPostLikedBy() {
         return postLikedBy;
     }
 
-    public void setPostLikedBy(List<User> postLikedBy) {
+    public void setPostLikedBy(Group postLikedBy) {
         this.postLikedBy = postLikedBy;
     }
 
-    public int getReplies() {
+    public Feed getReplies() {
         return replies;
     }
 
-    public void setReplies(int replies) {
+    public void setReplies(Feed replies) {
         this.replies = replies;
     }
 
