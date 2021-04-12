@@ -4,27 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.EditText;
 
-import com.example.dahlia_android.ui.friends.FriendsFragment;
 import com.example.dahlia_android.ui.friends.FriendsList;
-import com.example.dahlia_android.ui.groups.GroupsFragment;
-import com.example.dahlia_android.ui.home.HomeFeed;
-import com.example.dahlia_android.ui.home.HomeFeedActivity;
-import com.example.dahlia_android.ui.home.HomeFragment;
-import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginActivity;
-import com.example.dahlia_android.ui.messages.MessagesFragment;
+import com.example.dahlia_android.ui.messages.Message;
+import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,13 +22,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import static android.content.Intent.EXTRA_EMAIL;
-import static android.content.Intent.EXTRA_USER;
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
 public class MainActivity extends AppCompatActivity {
 
     public static FriendsList _friendsList;
+    public static Messages _messageList;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -73,12 +59,36 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(btm, navController);
-        testFriends();
+        testRecyclerViews();
     }
 
-    private void testFriends() {
-        FriendsList friends = new FriendsList();
+    private void testRecyclerViews() {
+        // Tmp Testing
+        Messages messages = new Messages();
+        messages.add(new Message(null,"","TestDisplayName1", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName2", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName3", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName4", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName5", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName6", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName7", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName8", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName9", "4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName10","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName11","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName12","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName13","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName14","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName15","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName16","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName17","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName18","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName19","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        messages.add(new Message(null,"","TestDisplayName20","4/11/21", "Hey what's up, this is a test message to see how the Messages look.", null));
+        _messageList = messages;
 
+        // Tmp Test Friends
+        FriendsList friends = new FriendsList();
         friends.add( new User(null, "TestDisplayName1", "TestUserName1"));
         friends.add( new User(null, "TestDisplayName2", "TestUserName2"));
         friends.add( new User(null, "TestDisplayName3", "TestUserName3"));
@@ -99,10 +109,6 @@ public class MainActivity extends AppCompatActivity {
         friends.add( new User(null, "TestDisplayName18", "TestUserName18"));
         friends.add( new User(null, "TestDisplayName19", "TestUserName19"));
         friends.add( new User(null, "TestDisplayName20", "TestUserName20"));
-
-
-
-
         _friendsList = friends;
     }
 

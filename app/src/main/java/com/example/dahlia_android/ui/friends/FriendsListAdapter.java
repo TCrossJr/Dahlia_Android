@@ -18,7 +18,7 @@ import com.example.dahlia_android.ui.user.User;
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.ViewHolder> {
 
     private static final String TAG = "FriendsAdapter";
-    private static FriendsList friends_list;
+    private static FriendsList friends_list; // TODO: Put in FriendsViewModel and use LiveData + Repository
 
     public FriendsListAdapter(FriendsList friendsList) {
         friends_list = friendsList;
@@ -37,19 +37,19 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         User user = friends_list.getFriend(position);
 
         holder.setFriendsDisplayName(user.getDisplayName());
-        holder.setFriendsUsername(user.getDisplayName());
-        holder.frameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                 TODO: Handle when user clicks post... Post(View)Fragment???
-                /*
-                TownDetailsFragment.currentTown = new Town(town);
-                Intent intent = new Intent(v.getContext(),TownDetailsFragment.class);
-                ContextCompat.startActivity(v.getContext(),intent, null);
-                 */
-
-            }
-        });
+        holder.setFriendsDescription(user.getDisplayName());
+//        holder.frameLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                 TODO: Handle when user clicks post... Post(View)Fragment???
+//                /*
+//                TownDetailsFragment.currentTown = new Town(town);
+//                Intent intent = new Intent(v.getContext(),TownDetailsFragment.class);
+//                ContextCompat.startActivity(v.getContext(),intent, null);
+//                 */
+//
+//            }
+//        });
 
     }
 
@@ -62,27 +62,31 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         private final FrameLayout frameLayout;
         private final ImageView friendProfileImageURL;
         private final TextView friendDisplayName;
-        private final TextView friendUsername;
+        private final TextView friendDescription;
 //        private final Button friendMessage;
 //        private final Button friendMoreOptions;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            frameLayout = view.findViewById(R.id.group_frame);
+            frameLayout = view.findViewById(R.id.friend_frame);
 
             friendProfileImageURL = view.findViewById(R.id.friend_profile_image);
             friendDisplayName = view.findViewById(R.id.friend_display_name);
-            friendUsername = view.findViewById(R.id.friend_username);
+            friendDescription = view.findViewById(R.id.friend_description);
 //            friendMessage = view.findViewById(R.id.friend_message);
 //            friendMoreOptions = view.findViewById(R.id.friend_more_options);
+        }
+
+        public void setFriendsProfileThumbnail(String imageURL) {
+            // TODO: Implement setting profile thumbnail of friend on friendslist. Might need to change param
         }
 
         public void setFriendsDisplayName(String friendDisplayName) {
             this.friendDisplayName.setText(friendDisplayName);
         }
 
-        public void setFriendsUsername(String friendsUsername) {
-            this.friendUsername.setText(friendsUsername);
+        public void setFriendsDescription(String friendsDescription) {
+            this.friendDescription.setText(friendsDescription);
         }
     }
 }
