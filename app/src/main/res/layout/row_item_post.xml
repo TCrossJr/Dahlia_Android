@@ -48,13 +48,13 @@
             <ImageView
                 android:id="@+id/post_media"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/dahlia_logo_yellow_center_png" />
+                android:layout_height="wrap_content" />
 
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_marginTop="8dp"
                 android:background="?android:attr/listDivider" />
 
             <LinearLayout

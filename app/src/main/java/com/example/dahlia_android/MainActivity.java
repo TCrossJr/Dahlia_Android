@@ -98,25 +98,25 @@ public class MainActivity extends AppCompatActivity {
         // Tmp Testing Groups
         Groups groups = new Groups();
         groups.add(new Group("TestGroupName1", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName2", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName3", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
+        groups.add(new Group("TestGroupName2", "This is a test message that is Short length.(ch=51)"));
+        groups.add(new Group("TestGroupName3", "TEST.(ch=12)"));
         groups.add(new Group("TestGroupName4", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName5", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName6", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
+        groups.add(new Group("TestGroupName5", "This is a test message that is Short length.(ch=51)"));
+        groups.add(new Group("TestGroupName6", "TEST.(ch=12)"));
         groups.add(new Group("TestGroupName7", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName8", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName9", "This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
+        groups.add(new Group("TestGroupName8", "This is a test message that is Short length.(ch=51)"));
+        groups.add(new Group("TestGroupName9", "TEST.(ch=12)"));
         groups.add(new Group("TestGroupName10","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName11","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName12","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
+        groups.add(new Group("TestGroupName11","This is a test message that is Short length.(ch=51)"));
+        groups.add(new Group("TestGroupName12","TEST.(ch=12)"));
         groups.add(new Group("TestGroupName13","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName14","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName15","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
+        groups.add(new Group("TestGroupName14","This is a test message that is Short length.(ch=51)"));
+        groups.add(new Group("TestGroupName15","TEST.(ch=12)"));
         groups.add(new Group("TestGroupName16","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName17","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName18","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
+        groups.add(new Group("TestGroupName17","This is a test message that is Short length.(ch=51)"));
+        groups.add(new Group("TestGroupName18","TEST.(ch=12)"));
         groups.add(new Group("TestGroupName19","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
-        groups.add(new Group("TestGroupName20","This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)"));
+        groups.add(new Group("TestGroupName20","This is a test message that is Short length.(ch=51)"));
         _groupsList = groups;
 
         // Tmp Testing Messages
@@ -145,26 +145,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Tmp Test Friends
         FriendsList friends = new FriendsList();
-        friends.add( new User(null, "TestDisplayName1",  "TestUserName1"));
-        friends.add( new User(null, "TestDisplayName2",  "TestUserName2"));
-        friends.add( new User(null, "TestDisplayName3",  "TestUserName3"));
-        friends.add( new User(null, "TestDisplayName4",  "TestUserName4"));
-        friends.add( new User(null, "TestDisplayName5",  "TestUserName5"));
-        friends.add( new User(null, "TestDisplayName6",  "TestUserName6"));
-        friends.add( new User(null, "TestDisplayName7",  "TestUserName7"));
-        friends.add( new User(null, "TestDisplayName8",  "TestUserName8"));
-        friends.add( new User(null, "TestDisplayName9",  "TestUserName9"));
-        friends.add( new User(null, "TestDisplayName10", "TestUserName10"));
-        friends.add( new User(null, "TestDisplayName11", "TestUserName11"));
-        friends.add( new User(null, "TestDisplayName12", "TestUserName12"));
-        friends.add( new User(null, "TestDisplayName13", "TestUserName13"));
-        friends.add( new User(null, "TestDisplayName14", "TestUserName14"));
-        friends.add( new User(null, "TestDisplayName15", "TestUserName15"));
-        friends.add( new User(null, "TestDisplayName16", "TestUserName16"));
-        friends.add( new User(null, "TestDisplayName17", "TestUserName17"));
-        friends.add( new User(null, "TestDisplayName18", "TestUserName18"));
-        friends.add( new User(null, "TestDisplayName19", "TestUserName19"));
-        friends.add( new User(null, "TestDisplayName20", "TestUserName20"));
+        friends.add( new User(null, "@TestDisplayName1",  "TestUserName1"));
+        friends.add( new User(null, "@TestDisplayName2",  "TestUserName2"));
+        friends.add( new User(null, "@TestDisplayName3",  "TestUserName3"));
+        friends.add( new User(null, "@TestDisplayName4",  "TestUserName4"));
+        friends.add( new User(null, "@TestDisplayName5",  "TestUserName5"));
+        friends.add( new User(null, "@TestDisplayName6",  "TestUserName6"));
+        friends.add( new User(null, "@TestDisplayName7",  "TestUserName7"));
+        friends.add( new User(null, "@TestDisplayName8",  "TestUserName8"));
+        friends.add( new User(null, "@TestDisplayName9",  "TestUserName9"));
+        friends.add( new User(null, "@TestDisplayName10", "TestUserName10"));
+        friends.add( new User(null, "@TestDisplayName11", "TestUserName11"));
+        friends.add( new User(null, "@TestDisplayName12", "TestUserName12"));
+        friends.add( new User(null, "@TestDisplayName13", "TestUserName13"));
+        friends.add( new User(null, "@TestDisplayName14", "TestUserName14"));
+        friends.add( new User(null, "@TestDisplayName15", "TestUserName15"));
+        friends.add( new User(null, "@TestDisplayName16", "TestUserName16"));
+        friends.add( new User(null, "@TestDisplayName17", "TestUserName17"));
+        friends.add( new User(null, "@TestDisplayName18", "TestUserName18"));
+        friends.add( new User(null, "@TestDisplayName19", "TestUserName19"));
+        friends.add( new User(null, "@TestDisplayName20", "TestUserName20"));
         _friendsList = friends;
     }
 

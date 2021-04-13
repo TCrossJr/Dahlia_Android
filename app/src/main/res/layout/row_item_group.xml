@@ -9,78 +9,61 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
-    <LinearLayout
-        android:id="@+id/group_layout_whole"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/group_profile_image"
-            android:layout_width="58dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/post_profile_image_description"
-            android:padding="4dp"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0" />
-
-        <LinearLayout
-            android:id="@+id/group_layout_names"
-            android:layout_width="207dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:id="@+id/group_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/test_group_name" />
-
-            <TextView
-                android:id="@+id/group_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/test_group_description"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/group_message"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            app:icon="@android:drawable/stat_notify_chat"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+            android:contentDescription="@string/post_profile_image_description"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/group_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:srcCompat="@drawable/dahlia_logo_yellow_center_png" />
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0" />
+        <TextView
+            android:id="@+id/group_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_group_name"
+            app:layout_constraintBottom_toTopOf="@+id/group_description"
+            app:layout_constraintEnd_toStartOf="@id/group_more_options"
+            app:layout_constraintStart_toEndOf="@+id/group_profile_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" />
+
+        <TextView
+            android:id="@+id/group_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@string/test_post_long"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/group_description"
+            app:layout_constraintEnd_toStartOf="@id/group_more_options"
+            app:layout_constraintStart_toEndOf="@+id/group_profile_image"
+            app:layout_constraintTop_toBottomOf="@id/group_name" />
 
         <Button
             android:id="@+id/group_more_options"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical|end"
             app:icon="@drawable/more_options_2x_icon"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
-            app:iconTint="#FFFFFF" />
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/group_description"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
 </FrameLayout>

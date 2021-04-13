@@ -1,5 +1,7 @@
 package com.example.dahlia_android.ui.groups;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,7 @@ public class GroupsListAdapter extends RecyclerView.Adapter<GroupsListAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "Group->" + position + "<-position");
         Group group = groups_list.getGroup(position);
+        holder.setGroupThumbnail(""); // TODO: RMV
         holder.setGroupName(group.getGroupName());
         holder.setGroupDescription(group.getGroupDescription());
 //        holder.frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +65,6 @@ public class GroupsListAdapter extends RecyclerView.Adapter<GroupsListAdapter.Vi
         private final ImageView groupProfileImageURL;
         private final TextView groupName;
         private final TextView groupDescription;
-        private final Button groupMessage;
         private final Button groupMoreOptions;
 
         public ViewHolder(@NonNull View view) {
@@ -71,14 +73,7 @@ public class GroupsListAdapter extends RecyclerView.Adapter<GroupsListAdapter.Vi
             groupProfileImageURL = view.findViewById(R.id.group_profile_image);
             groupName = view.findViewById(R.id.group_name);
             groupDescription = view.findViewById(R.id.group_description);
-            groupMessage = view.findViewById(R.id.group_message);
             groupMoreOptions = view.findViewById(R.id.group_more_options);
-            groupMessage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // TODO: Implement send group chat message
-                }
-            });
             groupMoreOptions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -89,6 +84,7 @@ public class GroupsListAdapter extends RecyclerView.Adapter<GroupsListAdapter.Vi
 
         public void setGroupThumbnail(String imageURL) {
             // TODO: Implement setting profile thumbnail of group. Might need to change param
+            groupProfileImageURL.setImageResource(R.drawable.dahlia_logo_yellow_center_png);
         }
 
         public void setGroupName(String groupName) {
