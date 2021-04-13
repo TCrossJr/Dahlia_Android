@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     // TODO: MOVE to data classes(ViewModels/Repositories)
-    public static Feed _homefeed;
-    public static FriendsList _friendsList;
-    public static Messages _messageList;
-    public static Groups _groupsList;
+    public static Feed _homefeed; // TODO: MOVE/RMV
+    public static FriendsList _friendsList; // TODO: MOVE/RMV
+    public static Messages _messageList; // TODO: MOVE/RMV
+    public static Groups _groupsList; // TODO: MOVE/RMV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
