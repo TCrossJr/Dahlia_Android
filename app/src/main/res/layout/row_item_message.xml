@@ -4,83 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/message_frame"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="75dp"
     android:onClick="selectFriend"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/message_profile_image"
-            android:layout_width="46dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/post_profile_image_description"
-            android:padding="4dp"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0" />
-
-        <LinearLayout
-            android:id="@+id/message_layout_names"
-            android:layout_width="232dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:id="@+id/message_user_from"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/test_friend_display_name" />
-
-            <TextView
-                android:id="@+id/message_text"
-                android:layout_width="238dp"
-                android:layout_height="wrap_content"
-                android:text="@string/test_message_text_medium" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/message_reply"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            app:icon="@drawable/reply_icon"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+            android:contentDescription="@string/post_profile_image_description"
+            android:padding="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0
-" />
+        <TextView
+            android:id="@+id/message_user_from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_friend_display_name"
+            app:layout_constraintBottom_toTopOf="@+id/message_text"
+            app:layout_constraintEnd_toStartOf="@+id/message_more_options"
+            app:layout_constraintStart_toEndOf="@id/message_profile_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/message_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_message_text_medium"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/message_more_options"
+            app:layout_constraintStart_toEndOf="@id/message_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/message_user_from" />
 
         <Button
             android:id="@+id/message_more_options"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_marginEnd="16dp"
             app:icon="@drawable/more_options_2x_icon"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
-            app:iconTint="#FFFFFF" />
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/message_text"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0
-" />
-
-    </LinearLayout>
 </FrameLayout>

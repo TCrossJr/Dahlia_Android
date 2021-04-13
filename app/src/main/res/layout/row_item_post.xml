@@ -72,7 +72,6 @@
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:contentDescription="@string/description_reply"
             app:icon="@drawable/reply_icon"
             app:iconGravity="textStart"
@@ -82,25 +81,8 @@
             app:layout_constraintEnd_toStartOf="@+id/post_button_like"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/post_profile_image"
             app:layout_constraintTop_toBottomOf="@+id/post_media" />
-
-        <Button
-            android:id="@+id/post_button_more_options"
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="@string/description_more_options"
-            app:icon="@drawable/more_options_1x_icon"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconTint="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/post_button_like"
-            tools:src="@drawable/more_options_1x_icon" />
 
         <Button
             android:id="@+id/post_button_like"
@@ -115,9 +97,24 @@
             app:iconTint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/post_button_more_options"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_button_reply"
+            app:layout_constraintTop_toBottomOf="@+id/post_media"
             tools:src="@drawable/like_border_icon" />
+
+        <Button
+            android:id="@+id/post_button_more_options"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/description_more_options"
+            app:icon="@drawable/more_options_1x_icon"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/post_button_like"
+            app:layout_constraintTop_toBottomOf="@+id/post_media"
+            tools:src="@drawable/more_options_1x_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

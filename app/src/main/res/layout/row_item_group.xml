@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/group_frame"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="75dp"
     android:onClick="addGroup"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">

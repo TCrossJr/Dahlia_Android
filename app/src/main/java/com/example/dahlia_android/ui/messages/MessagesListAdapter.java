@@ -35,6 +35,7 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "Message->" + position + "<-position");
         Message msg = _messages.getMessage(position);
+        holder.setMessageProfileImageURL(""); // TODO: CHANGE/RMV
         holder.setMessagesDisplayName(msg.getMessageDisplayName());
         holder.setMessageText(msg.getMessageText());
         holder.frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +61,6 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
         private final ImageView messageProfileImageURL;
         private final TextView messageDisplayName;
         private final TextView messageText;
-        private Button messageReply;
         private Button messageMoreOptions;
 
         public ViewHolder(@NonNull View view) {
@@ -69,20 +69,17 @@ public class MessagesListAdapter extends RecyclerView.Adapter<MessagesListAdapte
             messageProfileImageURL = view.findViewById(R.id.message_profile_image);
             messageDisplayName = view.findViewById(R.id.message_user_from);
             messageText = view.findViewById(R.id.message_text);
-            messageReply = view.findViewById(R.id.message_reply);
             messageMoreOptions = view.findViewById(R.id.message_more_options);
-            messageReply.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // TODO: Reply to a message button
-                }
-            });
             messageMoreOptions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO: More options button
                 }
             });
+        }
+
+        public void setMessageProfileImageURL(String imageURL) {
+            messageProfileImageURL.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
         }
 
         public void setMessagesDisplayName(String displayName) {
