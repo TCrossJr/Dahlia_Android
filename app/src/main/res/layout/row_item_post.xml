@@ -10,109 +10,115 @@
     android:paddingBottom="10dp">
 
 
-    <LinearLayout
-        android:id="@+id/post_layout_whole"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/post_profile_image"
-            android:layout_width="58dp"
-            android:layout_height="match_parent"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:contentDescription="@string/post_profile_image_description"
             android:padding="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <LinearLayout
-            android:id="@+id/post_layout_body"
-            android:layout_width="318dp"
+        <TextView
+            android:id="@+id/post_liked"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:text="@string/test_user_liked"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/post_text"
+            app:layout_constraintEnd_toStartOf="@id/post_date"
+            app:layout_constraintStart_toEndOf="@+id/post_profile_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/post_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="@string/test_post_long"
+            app:layout_constraintBottom_toTopOf="@id/post_media"
+            app:layout_constraintEnd_toStartOf="@id/post_date"
+            app:layout_constraintStart_toEndOf="@+id/post_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/post_liked" />
+
+        <TextView
+            android:id="@+id/post_date"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginEnd="8dp"
+            android:text="@string/test_post_date_sec"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/post_liked"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center|top"
-                android:text="@string/test_user_liked"
-                android:textSize="12sp" />
+        <ImageView
+            android:id="@+id/post_media"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_media"
+            app:layout_constraintBottom_toTopOf="@+id/post_button_reply"
+            app:layout_constraintEnd_toStartOf="@+id/post_date"
+            app:layout_constraintStart_toEndOf="@+id/post_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/post_text"
+            tools:srcCompat="@drawable/dahlia_logo_yellow_center_png" />
 
-            <TextView
-                android:id="@+id/post_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/test_post_long" />
+        <Button
+            android:id="@+id/post_button_reply"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/description_reply"
+            app:icon="@drawable/reply_icon"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/post_button_like"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_media" />
 
-            <ImageView
-                android:id="@+id/post_media"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/post_button_more_options"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/description_more_options"
+            app:icon="@drawable/more_options_1x_icon"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/post_button_like"
+            tools:src="@drawable/more_options_1x_icon" />
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:background="?android:attr/listDivider" />
+        <Button
+            android:id="@+id/post_button_like"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/description_like"
+            app:icon="@drawable/like_border_icon"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/post_button_more_options"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/post_button_reply"
+            tools:src="@drawable/like_border_icon" />
 
-            <LinearLayout
-                android:id="@+id/post_layout_buttons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <Space
-                    android:layout_width="41dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0" />
-
-                <ImageButton
-                    android:id="@+id/post_button_reply"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/reply_icon" />
-
-                <Space
-                    android:layout_width="13dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0" />
-
-                <ImageButton
-                    android:id="@+id/post_button_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:src="@drawable/like_border_icon" />
-
-                <Space
-                    android:layout_width="13dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0" />
-
-                <ImageButton
-                    android:id="@+id/post_button_more_options"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:src="@drawable/more_options_1x_icon" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/post_date"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/test_post_date_sec" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

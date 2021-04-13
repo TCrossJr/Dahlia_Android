@@ -19,11 +19,6 @@
     <string name="post_profile_image_description">User Profile Image</string>
     <string name="title_activity_login">Sign In</string>
     <string name="title_activity_sign_up">Sign Up</string>
-    <string name="action_login">Login</string>
-    <string name="action_register">Register</string>
-    <string name="action_sign_in">Sign In</string>
-    <string name="action_sign_in_short">Sign In</string>
-    <string name="action_signup">Sign Up</string>
     <string name="login_remember">Remember me</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
@@ -37,6 +32,10 @@
     <string name="prompt_invalid_username">Not a valid username</string>
     <string name="prompt_invalid_password">Password must be >5 characters</string>
     <string name="prompt_welcome">"Welcome !"</string>
+    <string name="description_more_options">More options</string>
+    <string name="description_media">Media</string>
+    <string name="description_reply">Reply</string>
+    <string name="description_like">Like</string>
 
     <!--TESTS-->
     <string name="test_activitymain">ActivityMain</string>
