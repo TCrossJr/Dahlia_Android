@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:contentDescription="@string/message_fab_desc"
+        android:contentDescription="@string/description_message_fab"
         android:foregroundGravity="bottom"
         app:layout_constraintBottom_toBottomOf="@+id/messages_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"

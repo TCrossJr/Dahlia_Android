@@ -35,6 +35,9 @@ public class SignUpViewModel extends ViewModel {
 
         if (result instanceof SignUpResult.Success) {
             SignedUpUser data = ((SignUpResult.Success<SignedUpUser>) result).getData();
+            if( data == null ) {
+                this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(R.string.prompt_signup_same_user));
+            }
             this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(new SignedUpUserView(data.getUserName())));
         } else {
             this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(R.string.prompt_signup_failed));

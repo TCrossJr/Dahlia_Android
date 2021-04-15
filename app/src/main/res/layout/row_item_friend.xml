@@ -19,7 +19,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
-            android:contentDescription="@string/post_profile_image_description"
+            android:contentDescription="@string/description_profile_image"
             android:padding="4dp"
             app:layout_constraintEnd_toStartOf="@id/friend_display_name"
             app:layout_constraintStart_toStartOf="parent"

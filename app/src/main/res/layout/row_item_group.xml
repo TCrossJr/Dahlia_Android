@@ -17,7 +17,7 @@
             android:id="@+id/group_profile_image"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:contentDescription="@string/post_profile_image_description"
+            android:contentDescription="@string/description_profile_image"
             android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/group_description"

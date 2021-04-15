@@ -23,6 +23,9 @@
             </intent-filter>-->
         </activity>
         <activity
+            android:name=".ui.user.UserProfileActivity"
+            android:label="@string/profile_title" />
+        <activity
             android:name=".ui.signup.SignUpActivity"
             android:label="@string/title_activity_sign_up"
             android:noHistory="true"

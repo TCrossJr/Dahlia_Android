@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/profile_banner"
+            android:layout_width="414dp"
+            android:layout_height="132dp"
+            android:contentDescription="@string/description_banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/dahlia_logo_yellow_center_png" />
+
+        <ImageView
+            android:id="@+id/profile_thumbnail"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="297dp"
+            android:contentDescription="@string/description_profile_image"
+            app:layout_constraintEnd_toEndOf="@+id/profile_banner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/profile_banner"
+            app:layout_constraintTop_toTopOf="@+id/profile_banner"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/profile_displayname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/test_friend_display_name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/profile_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/profile_thumbnail" />
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_friend_username"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/profile_displayname"
+            app:layout_constraintTop_toBottomOf="@+id/profile_displayname" />
+
+        <TextView
+            android:id="@+id/profile_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_profile_location"
+            app:layout_constraintStart_toStartOf="@+id/profile_username"
+            app:layout_constraintTop_toBottomOf="@+id/profile_username" />
+
+        <TextView
+            android:id="@+id/profile_date_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_profile_date_created"
+            app:layout_constraintStart_toStartOf="@+id/profile_location"
+            app:layout_constraintTop_toBottomOf="@+id/profile_location" />
+
+        <TextView
+            android:id="@+id/profile_follower_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@string/test_profile_followers"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/profile_followers_text"
+            app:layout_constraintStart_toStartOf="@+id/profile_date_created"
+            app:layout_constraintTop_toBottomOf="@+id/profile_date_created" />
+
+        <TextView
+            android:id="@+id/profile_followers_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="@string/profile_followers"
+            app:layout_constraintEnd_toStartOf="@+id/profile_following_count"
+            app:layout_constraintStart_toEndOf="@+id/profile_follower_count"
+            app:layout_constraintTop_toBottomOf="@+id/profile_date_created" />
+
+        <TextView
+            android:id="@+id/profile_following_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_profile_followers"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/profile_following_text"
+            app:layout_constraintStart_toEndOf="@+id/profile_followers_text"
+            app:layout_constraintTop_toBottomOf="@+id/profile_date_created" />
+
+        <TextView
+            android:id="@+id/profile_following_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/profile_following"
+            app:layout_constraintStart_toEndOf="@+id/profile_following_count"
+            app:layout_constraintTop_toBottomOf="@+id/profile_date_created" />
+
+        <Button
+            android:id="@+id/profile_message"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical|end"
+            app:icon="@android:drawable/ic_dialog_email"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/profile_more_options"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/profile_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/profile_banner" />
+
+        <Button
+            android:id="@+id/profile_more_options"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical|end"
+            app:icon="@drawable/more_options_2x_icon"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/profile_add_friend"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/profile_message"
+            app:layout_constraintTop_toBottomOf="@+id/profile_banner" />
+
+        <Button
+            android:id="@+id/profile_add_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/profile_add_friend"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/profile_more_options"
+            app:layout_constraintTop_toBottomOf="@+id/profile_banner" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

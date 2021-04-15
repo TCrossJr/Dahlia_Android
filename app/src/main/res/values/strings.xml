@@ -4,7 +4,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">[USER Name HERE]</string>
     <string name="nav_header_subtitle">[Login/Logout Link HERE]</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="description_nav_header">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
@@ -14,9 +14,12 @@
     <string name="menu_rss_feed">RSS Feed</string>
     <string name="menu_about">About</string>
     <string name="menu_friends">Friends</string>
-    <string name="message_fab_desc">Create Message</string>
-    <string name="post_fab_desc">Create Post</string>
-    <string name="post_profile_image_description">User Profile Image</string>
+    <string name="menu_user_profile">User Profile</string>
+    <string name="menu_remove_friend">Remove Friend</string>
+    <string name="menu_invite_group">Invite To Group</string>
+    <string name="description_message_fab">Create Message</string>
+    <string name="description_post_fab">Create Post</string>
+    <string name="description_profile_image">User Profile Image</string>
     <string name="title_activity_login">Sign In</string>
     <string name="title_activity_sign_up">Sign Up</string>
     <string name="login_remember">Remember me</string>
@@ -27,6 +30,9 @@
     <string name="signup_first_name">First Name</string>
     <string name="signup_last_name">Last Name</string>
     <string name="signup_agency">Au Pair Agency</string>
+    <string name="profile_followers">Followers</string>
+    <string name="profile_following">Following</string>
+    <string name="prompt_signup_same_user">User with this email already exists.</string>
     <string name="prompt_signup_failed">Sign Up Failed</string>
     <string name="prompt_login_failed">"Login failed"</string>
     <string name="prompt_invalid_username">Not a valid username</string>
@@ -36,6 +42,7 @@
     <string name="description_media">Media</string>
     <string name="description_reply">Reply</string>
     <string name="description_like">Like</string>
+    <string name="search_title">Search</string>
 
     <!--TESTS-->
     <string name="test_activitymain">ActivityMain</string>
@@ -58,5 +65,10 @@
     <string name="test_message_text_medium">Hey whats up, this is a test message to see how the Messages look.</string>
     <string name="test_group_name">New England Au Pair Group</string>
     <string name="test_group_description">Group of Au Pair members in New England</string>
-    <string name="search_title">Search</string>
+    <string name="test_profile_location">Williston, VT</string>
+    <string name="test_profile_date_created">Created April 14, 2021</string>
+    <string name="test_profile_followers">0</string>
+    <string name="profile_add_friend">Add Friend</string>
+    <string name="description_banner">Banner Image</string>
+    <string name="profile_title">Profile</string>
 </resources>

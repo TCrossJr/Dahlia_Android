@@ -58,7 +58,7 @@ public class HomeFeedListAdapter extends RecyclerView.Adapter<HomeFeedListAdapte
         return _home_feed.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final FrameLayout frameLayout;
         private final ImageView postProfileImageURL;
         private final TextView postText;

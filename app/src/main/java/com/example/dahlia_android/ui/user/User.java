@@ -1,24 +1,22 @@
 package com.example.dahlia_android.ui.user;
 
-import com.example.dahlia_android.ui.user.UserProfile;
-
 public class User {
 
     private UserProfile userProfile;
-    private String user_displayName; // TODO: RMV Being used right now in FriendsListAdapter
-    private String user_userName;
+    private UserProfileCombinedList profileCombined;
+    private String username;
+    private String displayname;
 
-    public User(UserProfile userProfile, String user_displayName, String user_userName) {
+    public User(UserProfile userProfile, UserProfileCombinedList userProfileCombinedList ) {
         this.userProfile = userProfile;
-        this.user_displayName = user_displayName;
-        this.user_userName = user_userName;
+        this.profileCombined = userProfileCombinedList;
     }
 
-    public String getUserName() {
-        return user_userName;
+    public UserProfile getUserProfile() {
+        return userProfile;
     }
 
-    public String getDisplayName() {
-        return user_displayName;
+    public UserProfileCombinedList getProfileCombined() {
+        return profileCombined;
     }
 }
