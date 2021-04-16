@@ -36,11 +36,6 @@ public class MainAdapter extends RecyclerView.Adapter {
     private ArrayList<Object> dataList;
 //    public static UserProfile currentProfile;
 
-    public MainAdapter(AdapterTypeList list) {
-        this.adapterList = list;
-        this.dataList = new ArrayList<>(0);
-    }
-
     public MainAdapter(ArrayList<Object> list) {
         this.adapterList = null;
         this.dataList = list;
@@ -81,7 +76,7 @@ public class MainAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if( adapterList.get(position) instanceof UserProfile )
+        if( dataList.get(position) instanceof UserProfile )
             return AdapterType.PROFILE_TYPE;
         else if( dataList.get(position) instanceof Post )
             return AdapterType.POST_TYPE;
@@ -131,7 +126,6 @@ public class MainAdapter extends RecyclerView.Adapter {
         if( holder instanceof ProfileViewHolder ) {
             Log.d(TAG, "MAIN_Profile_Item->" + position + "<-position");
             UserProfile profile = (UserProfile) dataList.get(position);
-
             ((ProfileViewHolder) holder).setUserProfileThumbnail("");
             ((ProfileViewHolder) holder).setProfileDisplayName(profile.getDisplayName());
             ((ProfileViewHolder) holder).setProfileUsername(profile.getUsername());
@@ -161,7 +155,6 @@ public class MainAdapter extends RecyclerView.Adapter {
         else if( holder instanceof FriendViewHolder ) {
             Log.d(TAG, "Friend->" + position + "<-position");
             User user = (User) dataList.get(position);
-
             ((FriendViewHolder) holder).setFriendsProfileThumbnail(""); // TODO: RMV/CHANGE
             ((FriendViewHolder) holder).setFriendsDisplayName(user);
             ((FriendViewHolder) holder).setFriendsDescription(user);
@@ -306,7 +299,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
 
         public void setUserProfileThumbnail(String imageURL) {
-            // TODO: Implement setting profile thumbnail of friend on friendslist. Might need to change param
+            // TODO: Implement setting profile thumbnail of User on Profile. Might need to change param
             profileThumbnailURL.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
         }
 
@@ -332,7 +325,6 @@ public class MainAdapter extends RecyclerView.Adapter {
         public PostViewHolder(@NonNull View view) {
             super(view);
             frameLayout = view.findViewById(R.id.post_frame);
-
             postProfileImageURL = view.findViewById(R.id.post_profile_image);
             postText = view.findViewById(R.id.post_text);
             postDate = view.findViewById(R.id.post_date);
