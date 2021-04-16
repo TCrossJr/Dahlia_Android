@@ -10,15 +10,11 @@ public class AdapterTypeList extends ArrayList{
         adapterTypeList = new ArrayList<>(0);
     }
 
-    public ArrayList<AdapterType> getProfileCombined() {
+    public ArrayList<AdapterType> getAdapterTypeList() {
         return adapterTypeList;
     }
 
-    public AdapterType getObjectByPosition(int position) {
-        return (AdapterType) this.adapterTypeList.get(position);
-    }
-
-    public void setProfileCombined(ArrayList<AdapterType> adapterTypeList) {
+    public void setAdapterTypeList(ArrayList<AdapterType> adapterTypeList) {
         this.adapterTypeList = adapterTypeList;
     }
 }

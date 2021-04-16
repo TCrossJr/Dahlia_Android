@@ -15,15 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
+import com.example.dahlia_android.ui.recyclerview.AdapterTypeList;
+import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 
 public class FriendsFragment extends Fragment {
 
     private FriendsViewModel friendsViewModel;
 
-    protected FriendsListAdapter friends_adapter;
+    protected MainAdapter friends_adapter;
     protected LinearLayoutManager layoutManager;
 
     private RecyclerView rView;
+    private AdapterTypeList adapterTypeList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class FriendsFragment extends Fragment {
         // TODO: Change to FriendsActivity???
         rView = root.findViewById(R.id.friendslist_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        friends_adapter = new FriendsListAdapter(MainActivity._friendsList); //TODO: Change or move to Data class somehow from MainActivity
+        friends_adapter = new MainAdapter(MainActivity._friendsList, adapterTypeList ); //TODO: Change or move to Data class somehow from MainActivity
         friends_adapter.notifyDataSetChanged();
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);

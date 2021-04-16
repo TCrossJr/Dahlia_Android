@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,12 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
+import com.example.dahlia_android.ui.recyclerview.AdapterTypeList;
+import com.example.dahlia_android.ui.recyclerview.MainAdapter;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    protected HomeFeedListAdapter feed_adapter;
+    protected MainAdapter feed_adapter;
+    protected AdapterTypeList adapterTypeList;
     protected LinearLayoutManager layoutManager;
 
     private RecyclerView rView;
@@ -38,9 +42,8 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         rView = root.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        feed_adapter = new HomeFeedListAdapter(MainActivity._homefeed);
+        feed_adapter = new MainAdapter((ArrayList<Object>) MainActivity._homefeed, adapterTypeList);
         feed_adapter.notifyDataSetChanged();
-
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);
