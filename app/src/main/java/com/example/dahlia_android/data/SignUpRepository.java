@@ -1,5 +1,7 @@
 package com.example.dahlia_android.data;
 
+import android.content.SharedPreferences;
+
 import com.example.dahlia_android.data.model.SignedUpUser;
 
 /**

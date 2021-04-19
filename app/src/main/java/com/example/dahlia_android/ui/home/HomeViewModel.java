@@ -1,7 +1,6 @@
 package com.example.dahlia_android.ui.home;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import android.view.View;
 import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import android.content.SharedPreferences;
 import android.util.Patterns;
 
 import com.example.dahlia_android.R;
@@ -16,6 +17,7 @@ public class SignUpViewModel extends ViewModel {
     private MutableLiveData<SignUpFormState> signUpFormState = new MutableLiveData<>();
     private MutableLiveData<com.example.dahlia_android.ui.signup.SignUpResult> signUpResult = new MutableLiveData<com.example.dahlia_android.ui.signup.SignUpResult>();
     private SignUpRepository signUpRepository;
+    private SignedUpUser _user;
 
     SignUpViewModel(SignUpRepository signUpRepository) {
         this.signUpRepository = signUpRepository;
@@ -29,6 +31,10 @@ public class SignUpViewModel extends ViewModel {
         return signUpResult;
     }
 
+    public SignedUpUser getUser() {
+        return this._user;
+    }
+
     public void signUp(String username, String userEmail, String password1, String password2, String firstName, String lastName, String agency) {
         // can be launched in a separate asynchronous job
         SignUpResult<SignedUpUser> result = signUpRepository.signup(username, userEmail, password1, password2, firstName, lastName, agency);
@@ -38,6 +44,8 @@ public class SignUpViewModel extends ViewModel {
             if( data == null ) {
                 this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(R.string.prompt_signup_same_user));
             }
+            this._user = data;
+//            _user = new SignedUpUser(data);
             this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(new SignedUpUserView(data.getUserName())));
         } else {
             this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(R.string.prompt_signup_failed));

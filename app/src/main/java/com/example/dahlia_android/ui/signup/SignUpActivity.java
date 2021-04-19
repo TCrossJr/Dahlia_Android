@@ -5,7 +5,10 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -24,10 +28,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dahlia_android.R;
+import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.ui.login.LoginActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private static final String TAG = "SignUpActivity";
     private SignUpViewModel signUpViewModel;
 
     @Override
@@ -136,6 +142,7 @@ public class SignUpActivity extends AppCompatActivity {
                         firstNameEditText.getText().toString(),
                         lastNameEditText.getText().toString(),
                         agencyEditText.getText().toString());
+                storeCredentials(signUpViewModel.getUser());
             }
         });
         // TODO: For Testing RMV
@@ -143,7 +150,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 usernameEditText.setText("TestUser");
-                userEmailEditText.setText("t30@test.com");
+                userEmailEditText.setText("t76@test.com");
                 password1EditText.setText("testUserpw1");
                 password2EditText.setText("testUserpw1");
                 firstNameEditText.setText("Tim");
@@ -151,6 +158,30 @@ public class SignUpActivity extends AppCompatActivity {
                 agencyEditText.setText("Au Pair");
             }
         });
+    }
+
+    private void storeCredentials(SignedUpUser user) {
+        if( user != null ) {
+            String token = user.getNewUserToken();
+            SharedPreferences preferences = getSharedPreferences("userToken",MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("userToken", token );
+            editor.apply();
+            Log.d(TAG, "storeCredentials: Stored");
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Error storing credentials. Try Logging into App.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
     private void updateUiWithUser(SignedUpUserView model) {

@@ -17,9 +17,6 @@
     <string name="menu_user_profile">User Profile</string>
     <string name="menu_remove_friend">Remove Friend</string>
     <string name="menu_invite_group">Invite To Group</string>
-    <string name="description_message_fab">Create Message</string>
-    <string name="description_post_fab">Create Post</string>
-    <string name="description_profile_image">User Profile Image</string>
     <string name="title_activity_login">Sign In</string>
     <string name="title_activity_sign_up">Sign Up</string>
     <string name="login_remember">Remember me</string>
@@ -30,6 +27,8 @@
     <string name="signup_first_name">First Name</string>
     <string name="signup_last_name">Last Name</string>
     <string name="signup_agency">Au Pair Agency</string>
+    <string name="profile_title">Profile</string>
+    <string name="profile_add_friend">Add Friend</string>
     <string name="profile_followers">Followers</string>
     <string name="profile_following">Following</string>
     <string name="prompt_signup_same_user">User with this email already exists.</string>
@@ -37,11 +36,15 @@
     <string name="prompt_login_failed">"Login failed"</string>
     <string name="prompt_invalid_username">Not a valid username</string>
     <string name="prompt_invalid_password">Password must be >5 characters</string>
-    <string name="prompt_welcome">"Welcome !"</string>
+    <string name="prompt_welcome">"Welcome "</string>
     <string name="description_more_options">More options</string>
     <string name="description_media">Media</string>
     <string name="description_reply">Reply</string>
     <string name="description_like">Like</string>
+    <string name="description_message_fab">Create Message</string>
+    <string name="description_post_fab">Create Post</string>
+    <string name="description_banner">Banner Image</string>
+    <string name="description_profile_image">User Profile Image</string>
     <string name="search_title">Search</string>
 
     <!--TESTS-->
@@ -68,7 +71,4 @@
     <string name="test_profile_location">Williston, VT</string>
     <string name="test_profile_date_created">Created April 14, 2021</string>
     <string name="test_profile_followers">0</string>
-    <string name="profile_add_friend">Add Friend</string>
-    <string name="description_banner">Banner Image</string>
-    <string name="profile_title">Profile</string>
 </resources>

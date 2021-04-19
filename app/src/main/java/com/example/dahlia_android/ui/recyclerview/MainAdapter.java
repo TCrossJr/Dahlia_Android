@@ -26,6 +26,7 @@ import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
 import com.example.dahlia_android.ui.user.UserProfileActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -205,7 +206,8 @@ public class MainAdapter extends RecyclerView.Adapter {
             return 0;
     }
 
-    public static class ProfileViewHolder extends RecyclerView.ViewHolder {
+    // TODO : Finish Serializable here????
+    public static class ProfileViewHolder extends RecyclerView.ViewHolder implements Serializable {
         private final FrameLayout frameLayout;
         private final ImageView profileBannerURL;
         private final ImageView profileThumbnailURL;
@@ -249,7 +251,7 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            // TODO: implement item clicks
+                            // TODO: implement item clicks and change IDs in cases
                             switch (item.getItemId()) {
                                 case R.id.nav_messages:
                                     // TODO: Go to MSG
@@ -262,7 +264,6 @@ public class MainAdapter extends RecyclerView.Adapter {
                                     // TODO: Go to Users profile
                                     break;
                                 case R.id.nav_remove_friend:
-                                    // TODO: Prompt user if they want to remove friend
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -312,7 +313,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public static class PostViewHolder extends RecyclerView.ViewHolder {
+    public static class PostViewHolder extends RecyclerView.ViewHolder implements Serializable {
         private final FrameLayout frameLayout;
         private final ImageView postProfileImageURL;
         private final TextView postText;

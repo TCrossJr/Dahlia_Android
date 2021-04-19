@@ -8,8 +8,8 @@ import com.example.dahlia_android.data.SignUpDataSource;
 import com.example.dahlia_android.data.SignUpRepository;
 
 /**
- * ViewModel provider factory to instantiate LoginViewModel.
- * Required given LoginViewModel has a non-empty constructor
+ * ViewModel provider factory to instantiate SignUpViewModel.
+ * Required given SignUpViewModel has a non-empty constructor
  */
 public class SignUpViewModelFactory implements ViewModelProvider.Factory {
 

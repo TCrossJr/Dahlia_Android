@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,6 +19,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
-        final Button testUser = findViewById(R.id.test_user);
+        final CheckBox rememberOption = findViewById(R.id.remember);
+        final Button testUser = findViewById(R.id.test_user); // TODO: RMV
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -115,11 +120,39 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
+                Boolean remember = preferences.getBoolean("remember", false ) ;
+                if( remember ) {
+                    String userName = preferences.getString("username", "");
+                    usernameEditText.setText(userName);
+                    String creds = preferences.getString("creds", "");
+                    passwordEditText.setText(creds);
+                }
+
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
         });
+
+        rememberOption.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if( buttonView.isChecked() ) {
+                    SharedPreferences preferences = getSharedPreferences("remember", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "yes" );
+                    editor.apply();
+                }
+                else if( !buttonView.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("remember", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "no" );
+                    editor.apply();
+                }
+            }
+        });
+
         // TODO: RMV
         testUser.setOnClickListener(new View.OnClickListener() {
             @Override

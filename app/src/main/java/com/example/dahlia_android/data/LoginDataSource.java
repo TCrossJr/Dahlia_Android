@@ -20,14 +20,14 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(final String username, final String password) {
 
         try {
-            // handle loggedInUser authentication
+            /* handle loggedInUser authentication */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 
             //@Post username and pw
             String credentials = Credentials.basic(username, password);
             Response<LoggedInUser> getUser = apiInterface.getUserCredentials(
                     credentials, username, password).execute();
-            LoggedInUser user = getUser.body(); //make object, TODO: save to keystore
+            LoggedInUser user = getUser.body();
 
             return new Result.Success<>(user);
         } catch (Exception e) {

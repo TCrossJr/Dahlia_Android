@@ -32,6 +32,7 @@ public class UserProfileActivity extends AppCompatActivity {
         rView = findViewById(R.id.profile_combined_recycler);
         layoutManager = new LinearLayoutManager(this);
         profile_adapter = new MainAdapter(MainActivity._user_profile, adapterTypeList); //TODO: Change or move to Data class somehow from MainActivity
+//        profile_adapter = new MainAdapter(MainActivity._messageList, adapterTypeList); //TODO: Change or move to Data class somehow from MainActivity
         profile_adapter.notifyDataSetChanged();
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
         rView.addItemDecoration(divider);

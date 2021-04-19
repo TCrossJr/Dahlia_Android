@@ -1,12 +1,30 @@
 package com.example.dahlia_android.data;
 
+import android.content.SharedPreferences;
+import android.preference.Preference;
+import android.util.Log;
+
+import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 
+import java.io.CharArrayWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.util.Enumeration;
 
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -14,24 +32,25 @@ import retrofit2.Response;
  */
 public class SignUpDataSource {
 
+    private static final String TAG = "SignUpDataSource";
     private APIServiceInterface apiInterface;
 
     public SignUpResult<SignedUpUser> signup(String username, String userEmail, String password1, String password2, String firstName, String lastName, String agency) {
 
         try {
-            // handle signUpUser authentication
-
+            /* handle signUpUser authentication */
             // get_token
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
             Response<UserToken> tokenResponse = apiInterface.getInitialToken().execute();
             UserToken userToken = tokenResponse.body();
+            Log.d(TAG, "signup: " + tokenResponse.body().toString() );
 
             // post user signup
-            // TODO: Maybe add post to a Call instead of a Response to do Async not on main thread
             Response<SignedUpUser> signUpUser = apiInterface.signUserUp(
                     userToken.getToken(), username, userEmail,
                     password1, password2, firstName, lastName, agency).execute();
             SignedUpUser newUser = signUpUser.body();
+            Log.d(TAG, "signup: " + signUpUser.body().toString() );
 
             return new SignUpResult.Success<>(newUser);
         } catch (Exception e) {
