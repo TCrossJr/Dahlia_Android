@@ -1,5 +1,7 @@
 package com.example.dahlia_android.data;
 
+import android.util.Log;
+
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.LoggedInUser;
@@ -14,6 +16,7 @@ import retrofit2.Response;
  */
 public class LoginDataSource {
 
+    private static final String TAG = "LoginDataSource";
     private APIServiceInterface apiInterface;
 
     // TODO: The app is using cleartext enabled right now because https:// not implemented yet on server
@@ -36,6 +39,13 @@ public class LoginDataSource {
     }
 
     public void logout() {
-        // TODO: revoke authentication
+        try {
+            // TODO: token is empty right now. Need to retrieve
+            apiInterface = APIClient.getClient().create(APIServiceInterface.class);
+            Response<String> logout = apiInterface.logout("").execute();
+            Log.d(TAG, "logout: Signed Out" + logout.body());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

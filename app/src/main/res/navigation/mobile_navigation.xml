@@ -33,4 +33,14 @@
         android:name="com.example.dahlia_android.ui.nearby.AuPairNearByFragment"
         android:label="Au Pair Nearby"
         tools:layout="@layout/au_pair_nearby_fragment" />
+    <fragment
+        android:id="@+id/nav_welcome"
+        android:name="com.example.dahlia_android.ui.user.WelcomeProfileFragment"
+        android:label="welcome_profile_fragment"
+        tools:layout="@layout/welcome_profile_fragment" />
+    <activity
+        android:id="@+id/nav_login"
+        android:name="com.example.dahlia_android.ui.login.LoginActivity"
+        android:label="activity_signup"
+        tools:layout="@layout/activity_signup" />
 </navigation>

@@ -9,6 +9,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_messages">Messages</string>
+    <string name="menu_message">Message</string>
     <string name="menu_groups">Groups</string>
     <string name="menu_aupair_nearby">Au Pair Nearby</string>
     <string name="menu_rss_feed">RSS Feed</string>
@@ -16,7 +17,13 @@
     <string name="menu_friends">Friends</string>
     <string name="menu_user_profile">User Profile</string>
     <string name="menu_remove_friend">Remove Friend</string>
+    <string name="menu_remove_group">Remove Group</string>
     <string name="menu_invite_group">Invite To Group</string>
+    <string name="menu_reply">Reply To Post</string>
+    <string name="menu_like">Like Post</string>
+    <string name="menu_block_user">Block User</string>
+    <string name="menu_remove_message">Remove Message</string>
+    <string name="menu_remove_post">Remove Post</string>
     <string name="title_activity_login">Sign In</string>
     <string name="title_activity_sign_up">Sign Up</string>
     <string name="login_remember">Remember me</string>
@@ -71,4 +78,5 @@
     <string name="test_profile_location">Williston, VT</string>
     <string name="test_profile_date_created">Created April 14, 2021</string>
     <string name="test_profile_followers">0</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

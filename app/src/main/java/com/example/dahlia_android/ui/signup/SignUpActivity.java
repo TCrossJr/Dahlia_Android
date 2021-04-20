@@ -5,8 +5,6 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -142,7 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
                         firstNameEditText.getText().toString(),
                         lastNameEditText.getText().toString(),
                         agencyEditText.getText().toString());
-                storeCredentials(signUpViewModel.getUser());
+                setupProfile(signUpViewModel.getUser());
             }
         });
         // TODO: For Testing RMV
@@ -160,7 +158,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void storeCredentials(SignedUpUser user) {
+    private void setupProfile(SignedUpUser user) {
         if( user != null ) {
             String token = user.getNewUserToken();
             SharedPreferences preferences = getSharedPreferences("userToken",MODE_PRIVATE);
@@ -170,17 +168,7 @@ public class SignUpActivity extends AppCompatActivity {
             Log.d(TAG, "storeCredentials: Stored");
         }
         else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Error storing credentials. Try Logging into App.")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            Log.d(TAG, "storeCredentials: Failed");
         }
     }
 

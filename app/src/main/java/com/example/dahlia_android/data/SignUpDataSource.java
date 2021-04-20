@@ -9,6 +9,7 @@ import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
+import com.example.dahlia_android.ui.user.UserProfile;
 
 import java.io.CharArrayWriter;
 import java.io.FileInputStream;
@@ -43,15 +44,14 @@ public class SignUpDataSource {
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
             Response<UserToken> tokenResponse = apiInterface.getInitialToken().execute();
             UserToken userToken = tokenResponse.body();
-            Log.d(TAG, "signup: " + tokenResponse.body().toString() );
+            Log.d(TAG, "signup: " + userToken.toString() );
 
             // post user signup
             Response<SignedUpUser> signUpUser = apiInterface.signUserUp(
                     userToken.getToken(), username, userEmail,
                     password1, password2, firstName, lastName, agency).execute();
             SignedUpUser newUser = signUpUser.body();
-            Log.d(TAG, "signup: " + signUpUser.body().toString() );
-
+            Log.d(TAG, "signup: " + newUser.toString() );
             return new SignUpResult.Success<>(newUser);
         } catch (Exception e) {
             return new SignUpResult.Error(new IOException("Error Signing in", e));
@@ -59,6 +59,13 @@ public class SignUpDataSource {
     }
 
     public void logout() {
-        // TODO: revoke authentication
+        try {
+            // TODO: token is empty right now. Need to retrieve
+            apiInterface = APIClient.getClient().create(APIServiceInterface.class);
+            Response<String> logout = apiInterface.logout("").execute();
+            Log.d(TAG, "logout: Signed Out" + logout.body());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

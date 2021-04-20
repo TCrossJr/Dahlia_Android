@@ -3,7 +3,7 @@ package com.example.dahlia_android.ui.user;
 public class User {
 
     private UserProfile userProfile;
-    private UserProfileCombinedList profileCombined;
+    private UserProfileCombinedList profileCombined; // TODO: Change/RMV
     private String username;
     private String displayname;
 

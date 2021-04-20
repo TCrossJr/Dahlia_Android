@@ -1,5 +1,6 @@
 package com.example.dahlia_android.ui.messages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,8 @@ public class MessagesFragment extends Fragment {
                 // TODO: Implement fab createNewBlankMsg
                 Snackbar.make(view, "Starting message...", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intent = new Intent(getContext(), CreateMessageActivity.class);
+                startActivity(intent);
             }
         });
         rView = root.findViewById(R.id.messages_recycler_view);

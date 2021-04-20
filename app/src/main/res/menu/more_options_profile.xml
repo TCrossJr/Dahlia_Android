@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_messages"
+        android:title="@string/menu_message"
+        android:enabled="true" />
+    <item android:id="@+id/nav_invite_to_group"
+        android:title="@string/menu_invite_group"
+        android:enabled="true" />
+    <item android:id="@+id/nav_block_user"
+        android:title="@string/menu_block_user"
+        android:enabled="true" />
+</menu>

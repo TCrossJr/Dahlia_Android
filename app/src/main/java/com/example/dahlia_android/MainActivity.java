@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        BottomNavigationView btm = findViewById(R.id.navigation); // TODO: Fix navigation DrawerLayout and BottomNavigation not interacting well...
+        BottomNavigationView btm = findViewById(R.id.navigation);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -186,29 +186,30 @@ public class MainActivity extends AppCompatActivity {
 
         // Tmp Test Friends2
         FriendsList friends2 = new FriendsList();
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname1","username1","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName1",  "TestUserName1"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname2","username2","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName2",  "TestUserName2"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname3","username3","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName3",  "TestUserName3"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname4","username4","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName4",  "TestUserName4"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname5","username5","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName5",  "TestUserName5"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname6","username6","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName6",  "TestUserName6"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname7","username7","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName7",  "TestUserName7"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname8","username8","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName8",  "TestUserName8"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname9","username9","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName9",  "TestUserName9"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname10","username10","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName10", "TestUserName10"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname11","username11","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName11", "TestUserName11"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname12","username12","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName12", "TestUserName12"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname13","username13","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName13", "TestUserName13"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname14","username14","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName14", "TestUserName14"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname15","username15","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName15", "TestUserName15"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname16","username16","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName16", "TestUserName16"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname17","username17","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName17", "TestUserName17"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname18","username18","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName18", "TestUserName18"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname19","username19","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName19", "TestUserName19"));
-        friends2.add( new User(new UserProfile("banner","thumbnail","displayname20","username20","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName20", "TestUserName20"));
+        friends2.add( new User(new UserProfile("username1","displayname1","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName1",  "TestUserName1"));
+        friends2.add( new User(new UserProfile("username2","displayname2","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName2",  "TestUserName2"));
+        friends2.add( new User(new UserProfile("username3","displayname3","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName3",  "TestUserName3"));
+        friends2.add( new User(new UserProfile("username4","displayname4","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName4",  "TestUserName4"));
+        friends2.add( new User(new UserProfile("username5","displayname5","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName5",  "TestUserName5"));
+        friends2.add( new User(new UserProfile("username6","displayname6","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName6",  "TestUserName6"));
+        friends2.add( new User(new UserProfile("username7","displayname7","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName7",  "TestUserName7"));
+        friends2.add( new User(new UserProfile("username8","displayname8","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName8",  "TestUserName8"));
+        friends2.add( new User(new UserProfile("username9","displayname9","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName9",  "TestUserName9"));
+        friends2.add( new User(new UserProfile("username10","displayname10","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName10", "TestUserName10"));
+        friends2.add( new User(new UserProfile("username11","displayname11","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName11", "TestUserName11"));
+        friends2.add( new User(new UserProfile("username12","displayname12","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName12", "TestUserName12"));
+        friends2.add( new User(new UserProfile("username13","displayname13","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName13", "TestUserName13"));
+        friends2.add( new User(new UserProfile("username14","displayname14","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName14", "TestUserName14"));
+        friends2.add( new User(new UserProfile("username15","displayname15","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName15", "TestUserName15"));
+        friends2.add( new User(new UserProfile("username16","displayname16","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName16", "TestUserName16"));
+        friends2.add( new User(new UserProfile("username17","displayname17","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName17", "TestUserName17"));
+        friends2.add( new User(new UserProfile("username18","displayname18","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName18", "TestUserName18"));
+        friends2.add( new User(new UserProfile("username19","displayname19","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName19", "TestUserName19"));
+        friends2.add( new User(new UserProfile("username20","displayname20","dob","town","state","zipcode","description",_homefeed,_friendsList,_groupsList,_messageList),null));//, "@TestDisplayName20", "TestUserName20"));
         _friendsList = friends2;
-
-        UserProfile profile = new UserProfile("banner","thumbnail","displayname0","username0","location","description","date","agency","dob","town","state","zipcode",_homefeed,_friendsList,_groupsList,_messageList);
+        UserProfile profile = new UserProfile(  "username0", "displayname0",
+                "dob...","town...","state...",  "zipcode...",
+                "description...", _homefeed, _friendsList, _groupsList, _messageList);
         UserProfileCombinedList feeds = new UserProfileCombinedList();
         feeds.add(profile);
         feeds.addAll(_homefeed);

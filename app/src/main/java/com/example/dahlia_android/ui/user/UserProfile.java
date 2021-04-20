@@ -12,36 +12,35 @@ public class UserProfile {
     private String displayName;
     private String username; // email
     private String location;
-    private String description;
     private String date_created;
-    private int followingCount;
-    private int followerCount;
-    private String agency;
     private String date_of_birth;
     private String town;
     private String state;
     private String zip_code;
+    private String description;
+    private int followingCount;
+    private int followerCount;
     private Feed feed;
     private FriendsList friends;
     private Groups groups;
     private Messages messages;
     //private AuPairNearBy nearby; // if notEnabled then isEmpty
 
-    public UserProfile(String bannerURL, String thumbnailURL, String displayName, String username, String location, String description, String date_created, String agency, String date_of_birth, String town, String state, String zip_code, Feed feed, FriendsList friends, Groups groups, Messages messages) {
+
+    public UserProfile(String bannerURL, String thumbnailURL, String displayName, String username, String location, String date_created, String date_of_birth, String town, String state, String zipCode, String description, int followingCount, int followerCount, Feed feed, FriendsList friends, Groups groups, Messages messages) {
         this.bannerURL = bannerURL;
         this.thumbnailURL = thumbnailURL;
         this.displayName = displayName;
         this.username = username;
         this.location = location;
-        this.description = description;
         this.date_created = date_created;
-        this.followerCount = 0;
-        this.followingCount = 0;
-        this.agency = agency;
         this.date_of_birth = date_of_birth;
         this.town = town;
         this.state = state;
-        this.zip_code = zip_code;
+        this.zip_code = zipCode;
+        this.description = description;
+        this.followingCount = followingCount;
+        this.followerCount = followerCount;
         this.feed = feed;
         this.friends = friends;
         this.groups = groups;
@@ -54,15 +53,14 @@ public class UserProfile {
         this.displayName = profile.displayName;
         this.username = profile.username;
         this.location = profile.location;
-        this.description = profile.description;
         this.date_created = profile.date_created;
         this.followingCount = profile.followingCount;
         this.followerCount = profile.followerCount;
-        this.agency = profile.agency;
         this.date_of_birth = profile.date_of_birth;
         this.town = profile.town;
         this.state = profile.state;
         this.zip_code = profile.zip_code;
+        this.description = profile.description;
         this.feed = profile.feed;
         this.friends = profile.friends;
         this.groups = profile.groups;
@@ -75,19 +73,44 @@ public class UserProfile {
         this.displayName = profile.displayName;
         this.username = profile.username;
         this.location = profile.location;
-        this.description = profile.description;
         this.date_created = profile.date_created;
         this.followingCount = profile.followingCount;
         this.followerCount = profile.followerCount;
-        this.agency = profile.agency;
         this.date_of_birth = profile.date_of_birth;
         this.town = profile.town;
         this.state = profile.state;
         this.zip_code = profile.zip_code;
+        this.description = profile.description;
         this.feed = profile.feed;
         this.friends = profile.friends;
         this.groups = profile.groups;
         this.messages = profile.messages;
+    }
+
+    public UserProfile(String date_of_birth, String town, String state, String zipCode, String description) {
+        this.date_of_birth = date_of_birth;
+        this.town = town;
+        this.state = state;
+        this.zip_code = zipCode;
+        this.description = description;
+        this.feed = new Feed();
+        this.friends = new FriendsList();
+        this.groups = new Groups();
+        this.messages = new Messages();
+    }
+
+    public UserProfile(String username, String displayName, String date_of_birth, String town, String state, String zipCode, String description, Feed feed, FriendsList friends, Groups groups, Messages messages) {
+        this.username = username;
+        this.displayName = displayName;
+        this.date_of_birth = date_of_birth;
+        this.town = town;
+        this.state = state;
+        this.zip_code = zipCode;
+        this.description =description;
+        this.feed = feed;
+        this.friends = friends;
+        this.groups = groups;
+        this.messages = messages;
     }
 
     public String getBannerURL() {
@@ -160,14 +183,6 @@ public class UserProfile {
 
     public void setFollowerCount(int followerCount) {
         this.followerCount = followerCount;
-    }
-
-    public String getAgency() {
-        return agency;
-    }
-
-    public void setAgency(String agency) {
-        this.agency = agency;
     }
 
     public String getDate_of_birth() {
