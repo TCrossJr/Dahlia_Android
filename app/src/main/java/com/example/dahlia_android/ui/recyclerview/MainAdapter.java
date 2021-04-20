@@ -246,31 +246,27 @@ public class MainAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     PopupMenu menu = new PopupMenu(v.getContext(), profileMoreOptions);
-                    menu.getMenuInflater().inflate(R.menu.more_options_friends, menu.getMenu());
+                    menu.getMenuInflater().inflate(R.menu.more_options_profile, menu.getMenu());
                     menu.show();
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            // TODO: implement item clicks and change IDs in cases
                             switch (item.getItemId()) {
-                                case R.id.nav_messages:
-                                    // TODO: Go to MSG. Change from nav_messages. Should create a message to user being viewed
+                                case R.id.menu_message_profile:
+                                    // TODO: Go to MSG. Should create a message to user being currently viewed
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.nav_user_profile:
-                                    // TODO: Go to Users profile/ Unnecessary??? Already on profile
-                                    break;
-                                case R.id.nav_invite_to_group:
+                                case R.id.menu_invite_to_group_friends:
                                     // TODO: Invite to group
                                     break;
-                                case R.id.nav_block_user:
+                                case R.id.menu_block_user_profile:
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             switch(which) {
                                                 case DialogInterface.BUTTON_POSITIVE:
                                                     // Yes Remove Friend
-                                                    //TODO: Implement remove friend
+                                                    //TODO: Implement block user/friend
                                                     break;
                                                 case DialogInterface.BUTTON_NEGATIVE:
                                                     // No Don't
@@ -348,7 +344,52 @@ public class MainAdapter extends RecyclerView.Adapter {
             postMoreOptions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: Implement Post more options button
+                    PopupMenu menu = new PopupMenu(v.getContext(), postMoreOptions);
+                    menu.getMenuInflater().inflate(R.menu.more_options_post, menu.getMenu());
+                    menu.show();
+                    menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.menu_reply_post:
+                                    // TODO: reply to Post
+//                                    Intent intent = new Intent(item.getMenuInfo(),)
+                                    break;
+                                case R.id.menu_like_post:
+                                    // TODO: like Post
+                                    break;
+                                case R.id.menu_user_profile_post:
+                                    // TODO: Go to profile of Post user
+                                    break;
+                                case R.id.menu_invite_to_group_post:
+                                    // TODO: Invite Post user to Group
+                                    break;
+                                case R.id.remove_post:
+                                    // TODO: Prompt user if they want to remove post
+                                    DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch(which) {
+                                                case DialogInterface.BUTTON_POSITIVE:
+                                                    // Yes, Remove Post
+                                                    //TODO: Implement remove Post
+                                                    break;
+                                                case DialogInterface.BUTTON_NEGATIVE:
+                                                    // No Don't
+                                                    dialog.cancel();
+                                                    break;
+
+                                            }
+                                        }
+                                    };
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                                    builder.setMessage("Are you sure you want to delete post?")
+                                            .setPositiveButton("Yes", dialog)
+                                            .setNegativeButton("No", dialog).show();
+                            }
+                            return true;
+                        }
+                    });
                 }
             });
         }
@@ -402,19 +443,18 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            // TODO: implement item clicks
                             switch (item.getItemId()) {
-                                case R.id.nav_messages:
+                                case R.id.menu_message_friends:
                                     // TODO: Go to MSG
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.nav_user_profile:
+                                case R.id.menu_user_profile_friends:
                                     // TODO: Go to Users profile
                                     break;
-                                case R.id.nav_invite_to_group:
+                                case R.id.menu_invite_to_group_friends:
                                     // TODO: Go to Users profile
                                     break;
-                                case R.id.nav_block_user:
+                                case R.id.remove_friend:
                                     // TODO: Prompt user if they want to remove friend
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
@@ -484,24 +524,22 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            // TODO: Finish item clicks
                             switch (item.getItemId()) {
-                                case R.id.nav_messages:
+                                case R.id.menu_message_groups:
                                     // TODO: Go to MSG // Change to Create Message
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.nav_invite_to_group:
+                                case R.id.menu_invite_to_group_groups:
                                     // TODO: Go to Users profile
                                     break;
-/*                                case R.id.groups_remove_group:
-                                    // TODO: Prompt user if they want to remove friend
+                                case R.id.leave_group:
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             switch(which) {
                                                 case DialogInterface.BUTTON_POSITIVE:
-                                                    // Yes Remove Friend
-                                                    //TODO: Implement remove friend
+                                                    // Yes Remove Group
+                                                    //TODO: Implement leave group
                                                     break;
                                                 case DialogInterface.BUTTON_NEGATIVE:
                                                     // No Don't
@@ -512,9 +550,9 @@ public class MainAdapter extends RecyclerView.Adapter {
                                         }
                                     };
                                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                                    builder.setMessage("Are you sure you want to remove friend?")
+                                    builder.setMessage("Are you sure you want to leave group?")
                                             .setPositiveButton("Yes", dialog)
-                                            .setNegativeButton("No", dialog).show();*/
+                                            .setNegativeButton("No", dialog).show();
                             }
                             return true;
                         }
@@ -561,24 +599,22 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            // TODO: Finish item clicks
                             switch (item.getItemId()) {
                                 case R.id.menu_reply_message:
                                     // TODO: Go to MSG // Change to Create Message
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.nav_invite_to_group:
+                                case R.id.menu_invite_to_group_messages:
                                     // TODO: Go to Users profile
                                     break;
-/*                                case R.id.groups_remove_group:
-                                    // TODO: Prompt user if they want to remove friend
+                                case R.id.remove_message:
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             switch(which) {
                                                 case DialogInterface.BUTTON_POSITIVE:
-                                                    // Yes Remove Friend
-                                                    //TODO: Implement remove friend
+                                                    // Yes, Remove Message
+                                                    //TODO: Implement remove message
                                                     break;
                                                 case DialogInterface.BUTTON_NEGATIVE:
                                                     // No Don't
@@ -589,9 +625,9 @@ public class MainAdapter extends RecyclerView.Adapter {
                                         }
                                     };
                                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                                    builder.setMessage("Are you sure you want to remove friend?")
+                                    builder.setMessage("Are you sure you want to delete message?")
                                             .setPositiveButton("Yes", dialog)
-                                            .setNegativeButton("No", dialog).show();*/
+                                            .setNegativeButton("No", dialog).show();
                             }
                             return true;
                         }

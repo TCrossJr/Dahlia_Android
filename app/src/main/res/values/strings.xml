@@ -17,7 +17,7 @@
     <string name="menu_friends">Friends</string>
     <string name="menu_user_profile">User Profile</string>
     <string name="menu_remove_friend">Remove Friend</string>
-    <string name="menu_remove_group">Remove Group</string>
+    <string name="menu_leave_group">Leave Group</string>
     <string name="menu_invite_group">Invite To Group</string>
     <string name="menu_reply">Reply To Post</string>
     <string name="menu_like">Like Post</string>

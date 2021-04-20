@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_messages"
+    <item android:id="@+id/menu_message_friends"
         android:title="@string/menu_message"
         android:enabled="true" />
-    <item android:id="@+id/menu_user_profile"
+    <item android:id="@+id/menu_user_profile_friends"
         android:title="@string/menu_user_profile"
         android:enabled="true" />
-    <item android:id="@+id/menu_invite_to_group"
+    <item android:id="@+id/menu_invite_to_group_friends"
         android:title="@string/menu_invite_group"
         android:enabled="true" />
-    <item android:id="@+id/menu_remove_friend"
+    <item android:id="@+id/remove_friend"
         android:title="@string/menu_remove_friend"
         android:enabled="true" />
 </menu>
