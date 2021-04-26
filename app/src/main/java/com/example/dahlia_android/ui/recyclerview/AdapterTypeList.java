@@ -7,7 +7,7 @@ public class AdapterTypeList extends ArrayList{
     private ArrayList<AdapterType> adapterTypeList;
 
     public AdapterTypeList() {
-        adapterTypeList = new ArrayList<>(0);
+        this.adapterTypeList = new ArrayList<>(0);
     }
 
     public ArrayList<AdapterType> getAdapterTypeList() {

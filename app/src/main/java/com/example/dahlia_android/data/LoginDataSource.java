@@ -5,10 +5,12 @@ import android.util.Log;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.LoggedInUser;
+import com.example.dahlia_android.ui.user.User;
 
 import java.io.IOException;
 
 import okhttp3.Credentials;
+import retrofit2.Call;
 import retrofit2.Response;
 
 /**
@@ -20,19 +22,28 @@ public class LoginDataSource {
     private APIServiceInterface apiInterface;
 
     // TODO: The app is using cleartext enabled right now because https:// not implemented yet on server
-    public Result<LoggedInUser> login(final String username, final String password) {
+    public Result<User> login(final String username, final String password) {
 
         try {
             /* handle loggedInUser authentication */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 
-            //@Post username and pw
+            //@Post username and pw, get token
             String credentials = Credentials.basic(username, password);
-            Response<LoggedInUser> getUser = apiInterface.getUserCredentials(
-                    credentials, username, password).execute();
-            LoggedInUser user = getUser.body();
+            Call<LoggedInUser> callUser = apiInterface.getUserCredentials(
+                    credentials, username, password);
+            Response<LoggedInUser> responseLogged = callUser.execute();
+            LoggedInUser user = responseLogged.body();
 
-            return new Result.Success<>(user);
+            String token = user.getUserToken();
+
+            //Load User // TODO: MOVE TO DataSource???
+            Call<User> load = apiInterface.loadUser(token,user.getUserId());
+            Response<User> response = load.execute();
+            User loadedUser = response.body();
+            Log.d(TAG, "loadUser: User loaded." + response.body());
+
+            return new Result.Success<>(loadedUser);
         } catch (Exception e) {
             return new Result.Error(new IOException("Error logging in", e));
         }

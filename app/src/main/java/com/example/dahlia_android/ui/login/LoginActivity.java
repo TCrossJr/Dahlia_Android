@@ -1,18 +1,9 @@
 package com.example.dahlia_android.ui.login;
 
 import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -20,16 +11,19 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.login.LoginViewModel;
-import com.example.dahlia_android.ui.login.LoginViewModelFactory;
 import com.example.dahlia_android.ui.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -109,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                // TODO: Think I need to add storing preferences here also. This gets called if Enter is pressed if complete
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     loginViewModel.login(usernameEditText.getText().toString(),
                             passwordEditText.getText().toString());
@@ -157,15 +152,17 @@ public class LoginActivity extends AppCompatActivity {
         testUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usernameEditText.setText("t05401btv@gmail.com");
-                passwordEditText.setText("testUserpw1");
+                usernameEditText.setText("tac11170@vtc.edu");
+                passwordEditText.setText("testAdminpw1");
             }
         });
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
+        // set header username
+/*        TextView username = findViewById(R.id.userName);
+        username.setText(model.getDisplayName());*/
         String welcome = getString(R.string.prompt_welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience, start Welcome Screen???
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 

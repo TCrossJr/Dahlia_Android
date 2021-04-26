@@ -3,9 +3,9 @@ package com.example.dahlia_android.api;
 import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
+import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
-
-import java.util.concurrent.Executor;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -14,12 +14,17 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface APIServiceInterface {
+
     // WORKS
+    /** Token */
     @GET("csrf/")
     Call<UserToken> getInitialToken();
 
+
+    /** SignUp, SignIn, and SignOut */
     // WORKS
     @FormUrlEncoded
     @POST("rest-auth/signup/")
@@ -41,14 +46,25 @@ public interface APIServiceInterface {
             @Field("password") String password
     );
 
-    //
+    // TODO: Finish logout, need to add token. works on postman, might already work on android
+    @GET("/rest-auth/signout/")
+    Call<String> logout(@Header("Authorization") String token);
+
+
+    /** User */
+    //WORKS
+    @GET("/rest-auth/get_user/{userID}")
+    Call<User> loadUser(
+            @Header("Authorization") String token,
+            @Path("userID") int userID );
+
+    //WIP
     @FormUrlEncoded
     @GET("/rest-auth/create_profile/")
     Response<UserProfile> createProfile2(
-            @Header("Authorization") String token
-    );
+            @Header("Authorization") String token);
 
-    //
+    //WIP
     @FormUrlEncoded
     @GET("/rest-auth/create_profile/")
     Call<UserProfile> createProfile(
@@ -60,7 +76,11 @@ public interface APIServiceInterface {
             @Field("description") String description
     );
 
-    // TODO: Finish logout, need to send token on postman, might already work on android
-    @GET("/rest-auth/signout/")
-    Call<String> logout(@Header("Authorization") String token);
+
+    /** Friends */
+    //WORKS
+    @GET("/friends/friends_list/{userID}")
+    Call<FriendsList> getFriends(
+            @Header("Authorization") String token,
+            @Path("userID") int userID );
 }

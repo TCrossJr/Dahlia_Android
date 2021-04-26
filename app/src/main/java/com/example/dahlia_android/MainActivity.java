@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     // TODO: MOVE to data classes(ViewModels/Repositories)
-    public static UserProfileCombinedList _user_profile; // TODO: MOVE/RMV
-    public static Feed _homefeed; // TODO: MOVE/RMV
-    public static FriendsList _friendsList; // TODO: MOVE/RMV
-    public static Messages _messageList; // TODO: MOVE/RMV
-    public static Groups _groupsList; // TODO: MOVE/RMV
+    public static UserProfileCombinedList _user_profile = new UserProfileCombinedList(); // TODO: MOVE/RMV
+    public static Feed _homeFeed = new Feed(); // TODO: MOVE/RMV
+    public static FriendsList _friendsList= new FriendsList(); // TODO: MOVE/RMV
+    public static Messages _messageList = new Messages(); // TODO: MOVE/RMV
+    public static Groups _groupsList = new Groups(); // TODO: MOVE/RMV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        // TODO: CHANGE to setOpenableLayout(Openable)
+        // TODO: CHANGE to setOpenableLayout(Openable) and remove login_test
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby, R.id.nav_login_test)
                 .setDrawerLayout(drawer)
@@ -76,11 +76,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(btm, navController);
-        loadUserProfile();
-        testRecyclerViews();
+        loadUser();
+//        testRecyclerViews();
     }
 
-    private void loadUserProfile() {
+    // TODO: MOVE/CHANGE???
+    private void loadUser() {
         SharedPreferences preferences = getSharedPreferences("userObject", MODE_PRIVATE);
         String userJsonString = preferences.getString("user", "" );
         User user = new GsonBuilder().create().fromJson(userJsonString, User.class);
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
         feed.add(new Post("This is a test message that is Long length. The message needs to be a certain length to check if it displays correctly. The message needs to be slightly longer(ch=167)", "45s"));
         feed.add(new Post("This is the Last Post", "45s"));
-        _homefeed = feed;
+        _homeFeed = feed;
 
         // Tmp Testing Groups
         Groups groups = new Groups();
@@ -212,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 "description...");
         UserProfileCombinedList feeds = new UserProfileCombinedList();
         feeds.add(profile);
-        feeds.addAll(_homefeed);
+        feeds.addAll(_homeFeed);
         feeds.addAll(_messageList);
         feeds.addAll(_groupsList);
         feeds.addAll(_friendsList);
@@ -248,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToProfile(View view, User usr) {
         Intent intent = new Intent(this, UserProfileActivity.class);
-        intent.putExtra("ThisUser", (Serializable) usr); // TODO: FIX doesn't pass User object
+        intent.putExtra("ThisUser", (Serializable) usr); // TODO: FIX/CHANGE doesn't pass User object
         startActivity(intent);
     }
 }

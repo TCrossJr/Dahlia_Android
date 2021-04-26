@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.content.SharedPreferences;
 import android.util.Patterns;
 
 import com.example.dahlia_android.R;
@@ -45,7 +44,6 @@ public class SignUpViewModel extends ViewModel {
                 this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(R.string.prompt_signup_same_user));
             }
             this._user = data;
-//            _user = new SignedUpUser(data);
             this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(new SignedUpUserView(data.getUserName())));
         } else {
             this.signUpResult.setValue(new com.example.dahlia_android.ui.signup.SignUpResult(R.string.prompt_signup_failed));

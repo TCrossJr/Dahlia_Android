@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class LoggedInUser {
 
     @SerializedName("user_id")
-    private String userId;
+    private int userId;
 
     @SerializedName("email")
     private String userEmail;
@@ -16,7 +16,8 @@ public class LoggedInUser {
     @SerializedName("token")
     private String userToken;
 
-    public LoggedInUser(String userId, String userEmail, String userToken) {
+    // TODO: Check if these constructors are needed with SerializedClass
+    public LoggedInUser(int userId, String userEmail, String userToken) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userToken = userToken;
@@ -28,7 +29,7 @@ public class LoggedInUser {
         this.userToken = user.userToken;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -38,17 +39,5 @@ public class LoggedInUser {
 
     public String getUserToken() {
         return userToken;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public void setUserToken(String userToken) {
-        this.userToken = userToken;
     }
 }
