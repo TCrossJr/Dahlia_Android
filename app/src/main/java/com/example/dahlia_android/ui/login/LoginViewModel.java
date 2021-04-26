@@ -1,15 +1,15 @@
 package com.example.dahlia_android.ui.login;
 
+import android.util.Patterns;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
+import com.example.dahlia_android.R;
 import com.example.dahlia_android.data.LoginRepository;
 import com.example.dahlia_android.data.Result;
-import com.example.dahlia_android.data.model.LoggedInUser;
-import com.example.dahlia_android.R;
+import com.example.dahlia_android.ui.user.User;
 
 public class LoginViewModel extends ViewModel {
 
@@ -31,11 +31,11 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> loginResult = loginRepository.login(username, password);
+        Result<User> loginResult = loginRepository.login(username, password);
 
         if (loginResult instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) loginResult).getData();
-            this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(new LoggedInUserView(data.getUserEmail())));
+            User data = ((Result.Success<User>) loginResult).getData();
+            this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(new LoggedInUserView(data.getEmail())));
         } else {
             this.loginResult.setValue(new com.example.dahlia_android.ui.login.LoginResult(R.string.prompt_login_failed));
         }

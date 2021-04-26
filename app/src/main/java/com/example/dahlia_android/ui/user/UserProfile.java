@@ -8,7 +8,7 @@ public class UserProfile {
     private String thumbnailURL;
     private String displayName;
     private String username; // email
-    private String location;
+    @SerializedName("date_created")
     private String date_created;
 
     @SerializedName("date_of_birth")
@@ -27,12 +27,11 @@ public class UserProfile {
     private String description;
 
 
-    public UserProfile(String bannerURL, String thumbnailURL, String displayName, String username, String location, String date_created, String date_of_birth, String town, String state, String zipCode, String description) {
+    public UserProfile(String bannerURL, String thumbnailURL, String displayName, String username, String date_created, String date_of_birth, String town, String state, String zipCode, String description) {
         this.bannerURL = bannerURL;
         this.thumbnailURL = thumbnailURL;
         this.displayName = displayName;
         this.username = username;
-        this.location = location;
         this.date_created = date_created;
         this.date_of_birth = date_of_birth;
         this.town = town;
@@ -46,7 +45,6 @@ public class UserProfile {
         this.thumbnailURL = profile.thumbnailURL;
         this.displayName = profile.displayName;
         this.username = profile.username;
-        this.location = profile.location;
         this.date_created = profile.date_created;
         this.date_of_birth = profile.date_of_birth;
         this.town = profile.town;
@@ -59,7 +57,6 @@ public class UserProfile {
         this.bannerURL = "bannerURL";
         this.displayName = displayName;
         this.username = username;
-        this.location = "location";
         this.date_created = "date_created";
         this.date_of_birth = "date_of_birth";
         this.town = "town";
@@ -117,14 +114,6 @@ public class UserProfile {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getDescription() {

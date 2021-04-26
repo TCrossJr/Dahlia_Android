@@ -26,7 +26,7 @@ public class MessagesFragment extends Fragment {
     private RecyclerView rView;
     private LinearLayoutManager layoutManager;
     private MainAdapter messages_adapter;
-    private AdapterTypeList adapterTypeList;
+    private AdapterTypeList adapterTypeList = new AdapterTypeList();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class MessagesFragment extends Fragment {
         });
         rView = root.findViewById(R.id.messages_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        messages_adapter = new MainAdapter(MainActivity._messageList, adapterTypeList); //TODO: Change or move to Data class somehow from MainActivity
+        messages_adapter = new MainAdapter(MainActivity._messageList); //TODO: Move to ViewModel/DataSource/DataRepository
         messages_adapter.notifyDataSetChanged();
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());

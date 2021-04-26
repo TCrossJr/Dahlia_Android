@@ -37,7 +37,7 @@
         android:id="@+id/nav_welcome"
         android:name="com.example.dahlia_android.ui.user.WelcomeProfileFragment"
         android:label="welcome_profile_fragment"
-        tools:layout="@layout/welcome_profile_fragment" />
+        tools:layout="@layout/fragment_welcome_profile" />
     <activity
         android:id="@+id/nav_login"
         android:name="com.example.dahlia_android.ui.login.LoginActivity"

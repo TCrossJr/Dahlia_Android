@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.recyclerview.AdapterTypeList;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 
 public class GroupsFragment extends Fragment {
@@ -23,7 +22,6 @@ public class GroupsFragment extends Fragment {
     private RecyclerView rView;
     private LinearLayoutManager layoutManager;
     private MainAdapter groups_adapter;
-    private AdapterTypeList adapterListType;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class GroupsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_groups, container, false);
         rView = root.findViewById(R.id.groups_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        groups_adapter = new MainAdapter(MainActivity._groupsList, adapterListType); //TODO: Change or move to Data class somehow from MainActivity
+        groups_adapter = new MainAdapter(MainActivity._groupsList); //TODO: Move to ViewModel/DataSource/DataRepository
         groups_adapter.notifyDataSetChanged();
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());

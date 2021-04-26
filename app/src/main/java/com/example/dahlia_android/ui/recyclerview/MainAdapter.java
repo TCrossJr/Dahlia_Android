@@ -33,22 +33,15 @@ import java.util.ArrayList;
 public class MainAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = "MainAdapter";
-    public static AdapterTypeList adapterList;
     private ArrayList<Object> dataList;
-//    public static UserProfile currentProfile;
+    public static AdapterTypeList adapterList;
 
-    public MainAdapter(ArrayList<Object> list) {
-        this.adapterList = null;
-        this.dataList = list;
-    }
-
-    public MainAdapter(ArrayList<Object> dataList, AdapterTypeList adapterTypeList) {
-        this.adapterList =  adapterTypeList;
+    public MainAdapter(ArrayList<Object> dataList) {
         this.dataList = dataList;
-        convertAdapterType(dataList);
+        this.adapterList =  convertAdapterType(dataList);
     }
 
-    private void convertAdapterType(ArrayList<Object> typeList) {
+    private AdapterTypeList convertAdapterType(ArrayList<Object> typeList) {
         AdapterTypeList list = new AdapterTypeList();
         for( int i = 0; i < typeList.size(); i++ ) {
             Object obj = typeList.get(i);
@@ -68,7 +61,7 @@ public class MainAdapter extends RecyclerView.Adapter {
                 list.add(AdapterType.MESSAGE_TYPE);
             }
         }
-        adapterList = list;
+        return list;
     }
 
     public void setDataList(ArrayList<Object> dataList) {

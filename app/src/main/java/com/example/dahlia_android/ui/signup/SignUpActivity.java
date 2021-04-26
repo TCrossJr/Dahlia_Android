@@ -269,7 +269,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void updateUiWithUser(SignedUpUserView model) {
         String welcome = getString(R.string.prompt_welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
+        // TODO : initiate successful logged in experience -> Set nav_header_main username to users name
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 

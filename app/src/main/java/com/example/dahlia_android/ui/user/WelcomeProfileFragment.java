@@ -25,7 +25,7 @@ public class WelcomeProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.welcome_profile_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_welcome_profile, container, false);
     }
 
     @Override

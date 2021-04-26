@@ -3,7 +3,6 @@ package com.example.dahlia_android.ui.friends;
 import com.example.dahlia_android.ui.user.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FriendsList extends ArrayList{
 
@@ -13,7 +12,23 @@ public class FriendsList extends ArrayList{
         friendsList = new ArrayList<>();
     }
 
-    public List<User> getFriendsList() {
+    public FriendsList(FriendsList friends) {
+        friendsList = friends;
+    }
+
+    public FriendsList(ArrayList<User> friends) {
+        friendsList = convertArrayList(friends);
+    }
+
+    private FriendsList convertArrayList(ArrayList<User> friendsList) {
+        FriendsList friends = new FriendsList();
+        for ( User user : friendsList) {
+            friends.add(user);
+        }
+        return friends;
+    }
+
+    public ArrayList<User> getFriendsList() {
         return friendsList;
     }
 
