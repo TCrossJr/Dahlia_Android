@@ -16,7 +16,7 @@ public class LoggedInUser {
     @SerializedName("token")
     private String userToken;
 
-    // TODO: Check if these constructors are needed with SerializedClass
+    // TODO: Check if these constructors are needed with SerializedClass being used
     public LoggedInUser(int userId, String userEmail, String userToken) {
         this.userId = userId;
         this.userEmail = userEmail;

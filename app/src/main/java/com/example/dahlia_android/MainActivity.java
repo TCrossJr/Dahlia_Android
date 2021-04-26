@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 //        testRecyclerViews();
     }
 
-    // TODO: MOVE/CHANGE???
+    // TODO: Move to ViewModel/DataSource/DataRepository
     private void loadUser() {
         SharedPreferences preferences = getSharedPreferences("userObject", MODE_PRIVATE);
         String userJsonString = preferences.getString("user", "" );
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToProfile(View view, User usr) {
         Intent intent = new Intent(this, UserProfileActivity.class);
-        intent.putExtra("ThisUser", (Serializable) usr); // TODO: FIX/CHANGE doesn't pass User object
+        intent.putExtra("ThisUser", (Serializable) usr); // TODO: FIX/CHANGE/RMV doesn't pass User object
         startActivity(intent);
     }
 }

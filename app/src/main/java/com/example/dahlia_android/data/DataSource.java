@@ -1,23 +1,18 @@
 package com.example.dahlia_android.data;
 
-import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.dahlia_android.ApplicationUser;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.user.User;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -44,16 +39,17 @@ public class DataSource {
             FriendsList rawFriendsList = (FriendsList) response.body();
 
             // convert and reconvert to correct type(FriendsList)
-            String json = new Gson().toJson(rawFriendsList);
+            Gson gson = new Gson();
+            String json = gson.toJson(rawFriendsList);
             Type friendsType = new TypeToken<ArrayList<User>>(){}.getType();
-            ArrayList<User> friends = new Gson().fromJson(json, friendsType);
+            ArrayList<User> friends = gson.fromJson(json, friendsType);
             FriendsList newFriends = new FriendsList();
             for ( User user : friends) {
                 newFriends.add(user);
             }
 
             // store friends
-            ApplicationUser.setFriendsList(newFriends); // TODO: change to ViewModel, DataSource, and DataRepository
+//            ApplicationUser.setFriendsList(newFriends); // TODO: change to ViewModel, DataSource, and DataRepository
             Log.d(TAG, "loadFriends: Friends stored." + newFriends.toString());
 
             return new Result.Success<>(newFriends);

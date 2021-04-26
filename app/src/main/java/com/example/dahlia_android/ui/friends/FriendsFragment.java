@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dahlia_android.ApplicationUser;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 
@@ -56,14 +55,10 @@ public class FriendsFragment extends Fragment {
                     updateUiWithFriends(friendsResult.getSuccess());
                 }
                 getActivity().setResult(Activity.RESULT_OK);
-
-                // TODO: I don't think this is what we want??
-                //Complete and destroy friends activity once successful
-//                finish();
             }
         });
 
-        friends_adapter = new MainAdapter(ApplicationUser.getFriendsList());
+        friends_adapter = new MainAdapter(friendsViewModel.getFriends());
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);
@@ -74,7 +69,7 @@ public class FriendsFragment extends Fragment {
     }
 
     private void updateUiWithFriends(FriendsView model) {
-        friends_adapter = new MainAdapter(ApplicationUser.getFriendsList());
+        friends_adapter = new MainAdapter(friendsViewModel.getFriends());
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);

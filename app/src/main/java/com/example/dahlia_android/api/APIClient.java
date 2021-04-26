@@ -16,7 +16,7 @@ public class APIClient {
     public static Retrofit getClient() {
         if( retrofit2 == null ) {
 
-            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(); //TODO: can remove this interceptor when done testing
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 /*            CookieJar cookieJar = new CookieJar() {
                 @Override

@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                // TODO: Think I need to add storing preferences here also. This gets called if Enter is pressed if complete
+                // TODO: Think I need to add storing preferences(or change to ViewModel, DataSource, and DataRepository) here also. This gets called if Enter is pressed if complete
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     loginViewModel.login(usernameEditText.getText().toString(),
                             passwordEditText.getText().toString());

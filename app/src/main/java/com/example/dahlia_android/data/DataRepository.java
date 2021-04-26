@@ -13,7 +13,7 @@ public class DataRepository {
 
     private DataSource dataSource;
 
-    private User user = null; // TODO:// RMV???
+    private User user = null; // TODO:// RMV??? Might use for loadUser(User currently stored on LoginDataSource and MainActivity/SharedPreferences)
     private FriendsList friends_list = null;
 
     // private constructor : singleton access
