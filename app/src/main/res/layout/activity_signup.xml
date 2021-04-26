@@ -113,7 +113,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/agency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -127,8 +127,18 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_name" />
+        app:layout_constraintTop_toBottomOf="@+id/last_name" />-->
 
+    <Spinner
+        android:id="@+id/agencyS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_name"/>
 
     <Button
         android:id="@+id/signup"
@@ -144,7 +154,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/agency"
+        app:layout_constraintTop_toBottomOf="@+id/agencyS"
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
@@ -172,8 +182,8 @@
         android:layout_marginBottom="64dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/agency"
-        app:layout_constraintStart_toStartOf="@+id/agency"
+        app:layout_constraintEnd_toEndOf="@+id/agencyS"
+        app:layout_constraintStart_toStartOf="@+id/agencyS"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
