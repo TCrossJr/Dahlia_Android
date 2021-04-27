@@ -30,7 +30,7 @@ public class DataSource {
         try {
             /* handle loading friendsList */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-            // TODO: hardcoded token
+            // TODO: hardcoded token and userID
             String token = "4c82f31197fb2300a90b13de623c8d335854037a";
 
             //Load Friends
@@ -48,10 +48,7 @@ public class DataSource {
                 newFriends.add(user);
             }
 
-            // store friends
-//            ApplicationUser.setFriendsList(newFriends); // TODO: change to ViewModel, DataSource, and DataRepository
             Log.d(TAG, "loadFriends: Friends stored." + newFriends.toString());
-
             return new Result.Success<>(newFriends);
         } catch (Exception e) {
             e.printStackTrace();

@@ -7,6 +7,7 @@ import com.example.dahlia_android.ui.user.User;
 import java.util.ArrayList;
 
 public class Group {
+    private int group_ID;
     private User group_creator;
     private FriendsList group_admins;
     private FriendsList group_moderators;
@@ -40,6 +41,10 @@ public class Group {
         this.group_description = group_description;
         this.group_members = null;
         this.group_chat = null;
+    }
+
+    public int getGroupID() {
+        return this.group_ID;
     }
 
     public User getGroup_creator() {

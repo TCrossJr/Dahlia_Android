@@ -4,6 +4,7 @@ import com.example.dahlia_android.ui.groups.Group;
 
 public class Message {
 
+    private int messageID;
     private Group messengers;
     private String messengerProfileImageURL;
     private String messageDisplayName;  // TODO: RMV???
@@ -11,13 +12,18 @@ public class Message {
     private String messageText;
     private Messages replies;
 
-    public Message(Group messengers, String messengerProfileImageURL, String messageDisplayName, String messageDate, String messageText, Messages replies) {
+    public Message(int messageID, Group messengers, String messengerProfileImageURL, String messageDisplayName, String messageDate, String messageText, Messages replies) {
+        this.messageID = messageID;
         this.messengers = messengers;
         this.messengerProfileImageURL = messengerProfileImageURL;
         this.messageDisplayName = messageDisplayName;
         this.messageDate = messageDate;
         this.messageText = messageText;
         this.replies = replies;
+    }
+
+    public int getMessageID() {
+        return messageID;
     }
 
     public Group getMessengers() {

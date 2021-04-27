@@ -38,7 +38,7 @@ public class LoginDataSource {
             String token = user.getUserToken();
 
             //Load User // // TODO: change to ViewModel, DataSource, and DataRepository
-            Call<User> load = apiInterface.loadUser(token,user.getUserId());
+            Call<User> load = apiInterface.getUser(token,user.getUserId());
             Response<User> response = load.execute();
             User loadedUser = response.body();
             Log.d(TAG, "loadUser: User loaded." + response.body());
