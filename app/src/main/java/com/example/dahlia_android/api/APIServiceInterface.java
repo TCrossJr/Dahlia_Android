@@ -18,7 +18,6 @@ import retrofit2.http.Path;
 
 public interface APIServiceInterface {
 
-    // WORKS
     /** Token */
     @GET("csrf/")
     Call<UserToken> getInitialToken();
@@ -54,7 +53,7 @@ public interface APIServiceInterface {
     /** User */
     //WORKS
     @GET("/rest-auth/get_user/{userID}")
-    Call<User> loadUser(
+    Call<User> getUser(
             @Header("Authorization") String token,
             @Path("userID") int userID );
 
@@ -83,4 +82,56 @@ public interface APIServiceInterface {
     Call<FriendsList> getFriends(
             @Header("Authorization") String token,
             @Path("userID") int userID );
+
+    //WIP
+    @POST("/friends/remove_friend/{friendID}")
+    Call<Void> removeFriend2(
+            @Header("Authorization") String token,
+            @Path("friendID") int friendID);
+
+
+    // Works but removeFriends2 is preferred method using session authentication and retrieving userID
+    @POST("/friends/remove_friend/{friendID}/{userID}")
+    Call<Void> removeFriend(
+            @Header("Authorization") String token,
+            @Path("friendID") int friendID,
+            @Path("userID") int userID);
+
+
+    /** Messages */
+    //
+    @POST("/messages/remove_message/{messageID}")
+    Call<Void> removeMessage(
+            @Header("Authorization") String token,
+            @Path("messageID") int messageID);
+
+
+    /** Posts */
+    // TODO: removeFriends2 is preferred method using session authentication and retrieving userID
+    @POST("/posts/remove_post/{postID}")
+    Call<Void> removePost2(
+            @Header("Authorization") String token,
+            @Path("postID") int postID);
+
+    //
+    @POST("/posts/remove_post/{postID}/{userID}")
+    Call<Void> removePost(
+            @Header("Authorization") String token,
+            @Path("postID") int postID,
+            @Path("userID") int userID);
+
+
+    /** Groups */
+    // Remove User from Group
+    @POST("/groups/remove_group_user/{groupID}/{userID}")
+    Call<Void> removeGroupUser(
+            @Header("Authorization") String token,
+            @Path("groupID") int groupID,
+            @Path("userID") int userID);
+
+    // TODO: need to check if they're group creator
+    @POST("/groups/remove_group/{groupID}")
+    Call<Void> removeGroup(
+            @Header("Authorization") String token,
+            @Path("groupID") int groupID);
 }

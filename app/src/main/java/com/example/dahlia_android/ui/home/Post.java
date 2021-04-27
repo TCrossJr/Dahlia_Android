@@ -3,12 +3,10 @@ package com.example.dahlia_android.ui.home;
 import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.user.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Post {
 
-    private User postCreator;
+    private int postID;
+    private User postCreator; // TODO: RMV???
     private String profileImageURL; //TODO: Change to Image or ImageView???
     private String postDate; // TODO: Change to Date???
     private String postText;
@@ -17,8 +15,9 @@ public class Post {
     private Feed replies;
     private int likes;
 
-    public Post(User postCreator, String profileImageURL, String postDate, String postText,
+    public Post(int postID, User postCreator, String profileImageURL, String postDate, String postText,
                 String mediaURL, Group group, Feed replies, int likes) {
+        this.postID = postID;
         this.postCreator = postCreator;
         this.profileImageURL = profileImageURL;
         this.postDate = postDate;
@@ -38,6 +37,10 @@ public class Post {
         this.postLikedBy = null;
         this.replies = null;
         this.likes = 0;
+    }
+
+    public int getPostID() {
+        return postID;
     }
 
     public User getPostCreator() {

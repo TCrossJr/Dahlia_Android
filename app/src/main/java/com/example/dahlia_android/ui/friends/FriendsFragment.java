@@ -59,6 +59,7 @@ public class FriendsFragment extends Fragment {
         });
 
         friends_adapter = new MainAdapter(friendsViewModel.getFriends());
+        friends_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);
@@ -70,6 +71,7 @@ public class FriendsFragment extends Fragment {
 
     private void updateUiWithFriends(FriendsView model) {
         friends_adapter = new MainAdapter(friendsViewModel.getFriends());
+        friends_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);
