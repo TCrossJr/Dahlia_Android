@@ -22,15 +22,14 @@ import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 public class FriendsFragment extends Fragment {
 
     private FriendsViewModel friendsViewModel;
-
-    protected MainAdapter friends_adapter;
-    protected LinearLayoutManager layoutManager;
-
     private RecyclerView rView;
+    protected LinearLayoutManager layoutManager;
+    protected MainAdapter friends_adapter;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -57,15 +56,6 @@ public class FriendsFragment extends Fragment {
                 getActivity().setResult(Activity.RESULT_OK);
             }
         });
-
-        friends_adapter = new MainAdapter(friendsViewModel.getFriends());
-        friends_adapter.onAttachedToRecyclerView(rView);
-        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
-        rView.addItemDecoration(divider);
-        rView.setLayoutManager(layoutManager);
-        rView.scrollToPosition(0);
-        friends_adapter.notifyDataSetChanged();
-        rView.setAdapter(friends_adapter);
         return root;
     }
 
@@ -81,6 +71,7 @@ public class FriendsFragment extends Fragment {
     }
 
     private void showFriendsFailed(@StringRes Integer error) {
+        // TODO: Change how to display(or not) error
         Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 }

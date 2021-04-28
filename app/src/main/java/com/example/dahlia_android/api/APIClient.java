@@ -1,5 +1,7 @@
 package com.example.dahlia_android.api;
 
+import com.google.gson.Gson;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -35,9 +37,12 @@ public class APIClient {
                     .addInterceptor(loggingInterceptor)
                     .build();
 
+            Gson gson = new Gson().newBuilder().setLenient().create();
+
             retrofit2 = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+//                    .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
         }

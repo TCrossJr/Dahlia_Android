@@ -4,8 +4,12 @@ import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.messages.Conversations;
+import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -99,11 +103,49 @@ public interface APIServiceInterface {
 
 
     /** Messages */
+    // Actual way we need to do it
+    @POST("/messages/send_message/")
+    Call<Void> sendMessage2(
+            @Header("Authorization") String token,
+            @Field("friendID") int friendID,
+            @Field("message") String message,
+            @Field("media") String mediaURL);
+
     //
-    @POST("/messages/remove_message/{messageID}")
+    @POST("/messages/send_message/{userID}/{friendID}")
+    Call<Void> sendMessage(
+            @Header("Authorization") String token,
+            @Path("userID") int userID,
+            @Path("friendID") int friendID,
+            @Field("message") String message,
+            @Field("media") String mediaURL);
+
+    //
+    @GET("/messages/get_messages/{userID}")
+    Call<ArrayList<Messages>> getMessages(
+            @Header("Authorization") String token,
+            @Path("userID") int userID);
+
+    //
+    @FormUrlEncoded
+    @GET("/messages/get_messages/")
+    Call<Conversations> getMessages2(
+            @Header("Authorization") String token,
+            @Field(value="userID", encoded = true) int userID);
+
+    //
+    @POST("/messages/remove_message/")
     Call<Void> removeMessage(
             @Header("Authorization") String token,
-            @Path("messageID") int messageID);
+            @Field("messageID") int messageID);
+
+
+    //
+    @POST("/messages/remove_messages/")
+    Call<Void> removeMessages(
+            @Header("Authorization") String token,
+            @Field("userID") int userID,
+            @Field("friendID") int friendID);
 
 
     /** Posts */

@@ -22,7 +22,6 @@ public class FriendsViewModel extends ViewModel {
 
         if(friendsResult instanceof Result.Success) {
             FriendsList data = ((Result.Success<FriendsList>) friendsResult).getData();
-//            this.friendsResult.setValue(new FriendsResult(new FriendsView((ArrayList<User>) friendsList)));
             this.friendsResult.setValue(new FriendsResult(new FriendsView((data.getFriendsList()))));
         } else {
             this.friendsResult.setValue(new FriendsResult(R.string.prompt_friendslist_failed));

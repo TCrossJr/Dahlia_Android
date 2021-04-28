@@ -1,6 +1,8 @@
 package com.example.dahlia_android.data;
 
 import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.messages.Conversations;
+import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 
 /**
@@ -15,6 +17,7 @@ public class DataRepository {
 
     private User user = null; // TODO:// RMV??? Might use for loadUser(User currently stored on LoginDataSource and MainActivity/SharedPreferences)
     private FriendsList friends_list = null;
+    private Conversations conversations = null;
 
     // private constructor : singleton access
     private DataRepository(DataSource dataSource) {
@@ -41,8 +44,12 @@ public class DataRepository {
         return friends_list;
     }
 
-    private void setFriends(FriendsList friends) {
-        this.friends_list = friends;
+    public Conversations getConversations() {
+        return conversations;
+    }
+
+    private void setFriends(FriendsList data) {
+        this.friends_list = data;
     }
 
     public Result<FriendsList> loadFriends() {
@@ -52,5 +59,16 @@ public class DataRepository {
             setFriends(((Result.Success<FriendsList>) friendsListResult).getData());
         }
         return friendsListResult;
+    }
+
+    private void setMessages(Conversations data) { this.conversations = data; }
+
+    public Result<Conversations> loadConversations() {
+        // handle loading messages
+        Result<Conversations> conversationsResult = dataSource.loadMessages();
+        if (conversationsResult instanceof Result.Success) {
+            setMessages(((Result.Success<Conversations>) conversationsResult).getData());
+        }
+        return conversationsResult;
     }
 }
