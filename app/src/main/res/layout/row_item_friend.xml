@@ -5,7 +5,7 @@
     android:id="@+id/friend_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:onClick="selectFriend"
+    android:onClick="goToProfile"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 

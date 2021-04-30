@@ -2,6 +2,7 @@ package com.example.dahlia_android.data;
 
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.messages.Conversations;
+import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 
 /**
@@ -80,5 +81,9 @@ public class DataRepository {
             setMessages(((Result.Success<Conversations>) conversationsResult).getData());
         }
         return conversationsResult;
+    }
+
+    public Messages getConversation(int position) {
+        return (Messages) conversations.get(position);
     }
 }

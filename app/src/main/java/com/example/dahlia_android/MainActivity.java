@@ -14,6 +14,7 @@ import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginActivity;
+import com.example.dahlia_android.ui.messages.ConversationActivity;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
@@ -113,6 +114,17 @@ public class MainActivity extends AppCompatActivity {
     public void goToProfile(View view, User usr) {
         Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("ThisUser", (Serializable) usr); // TODO: FIX/CHANGE/RMV doesn't pass User object
+        startActivity(intent);
+    }
+
+    public void goToProfile(View view) {
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToConversation(View view) {
+        Intent intent = new Intent(this, ConversationActivity.class);
+//        intent.putExtra("adapterPosition", getAdapterPosition());
         startActivity(intent);
     }
 }

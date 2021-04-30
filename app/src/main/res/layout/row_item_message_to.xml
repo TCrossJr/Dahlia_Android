@@ -2,55 +2,45 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/conversation_frame_from"
+    android:id="@+id/conversation_frame_to"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:layout_marginEnd="50dp">
+    android:onClick="goToConversation">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/conversation_friend_profile_image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:contentDescription="@string/description_profile_image"
-            android:padding="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/conversation_date_from"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.258"
-            tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="50dp" >
 
         <TextView
-            android:id="@+id/conversation_date_from"
+            android:id="@+id/conversation_date_to"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/test_message_date"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/conversation_text_friend"
+            app:layout_constraintBottom_toTopOf="@+id/conversation_text_user"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/conversation_friend_profile_image"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/conversation_text_friend"
+            android:id="@+id/conversation_text_user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="end"
             android:text="@string/test_post_long"
+            android:textAlignment="textStart"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/conversation_friend_profile_image"
-            app:layout_constraintTop_toBottomOf="@id/conversation_date_from"/>
+            app:layout_constraintTop_toBottomOf="@id/conversation_date_to"
+            tools:ignore="RtlCompat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

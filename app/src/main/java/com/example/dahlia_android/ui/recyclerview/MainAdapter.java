@@ -167,7 +167,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             return new MessageFromViewHolder(view);
         }
         else if( viewType == AdapterType.TAB_BUTTONS_TYPE ) {
-            // TODO: Change to Buttons type RecyclerView item, create row layout
+            // TODO: Change to Buttons type RecyclerView item, create row layout. Not used currently
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_messages, parent, false);
             return new MessagesViewHolder(view);
         }
@@ -280,6 +280,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             Log.d(TAG, "MessageFrom->" + position + "<-position");
             Message msg = (Message) dataList.get(position);
             ((MessageFromViewHolder) holder).setMessageFromObject(msg, rvService);
+            ((MessageFromViewHolder) holder).setMessageFromFriendProfileImageURL(""); // TODO: Implement
             ((MessageFromViewHolder) holder).setMessageFromDate(msg.getMessageDate());
             ((MessageFromViewHolder) holder).setMessageFromFriendText(msg.getMessageText());
             // TODO: Change to long press
@@ -301,7 +302,6 @@ public class MainAdapter extends RecyclerView.Adapter {
             return 0;
     }
 
-    // TODO : Finish Serializable here????
     public static class ProfileViewHolder extends RecyclerView.ViewHolder {
         private final FrameLayout frameLayout;
         private final ImageView profileBannerURL;
@@ -549,6 +549,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             friendDescription = view.findViewById(R.id.friend_description);
             friendMessage = view.findViewById(R.id.friend_message);
             friendMoreOptions = view.findViewById(R.id.friend_more_options);
+
             friendMessage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -754,6 +755,15 @@ public class MainAdapter extends RecyclerView.Adapter {
             messageDisplayName = view.findViewById(R.id.message_user_from);
             messageText = view.findViewById(R.id.message_text);
             messageMoreOptions = view.findViewById(R.id.message_more_options);
+
+/*            frameLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), ConversationActivity.class);
+                    intent.putExtra("adapterPosition", getAdapterPosition());
+                    v.getContext().startActivity(intent);
+                }
+            });*/
             messageMoreOptions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
