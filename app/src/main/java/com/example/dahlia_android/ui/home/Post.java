@@ -2,25 +2,26 @@ package com.example.dahlia_android.ui.home;
 
 import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.user.User;
+import com.google.gson.annotations.SerializedName;
 
 public class Post {
 
-    private int postID;
-    private User postCreator; // TODO: RMV???
+    @SerializedName("id") private int postID;
+    @SerializedName("date_created") private String postDate; // TODO: Change to Date???
+    @SerializedName("post_creator") private User postCreator; // TODO: RMV???
     private String profileImageURL; //TODO: Change to Image or ImageView???
-    private String postDate; // TODO: Change to Date???
-    private String postText;
-    private String mediaURL; //TODO: Change to Image or ImageView???
-    private Group postLikedBy;
-    private Feed replies;
+    @SerializedName("post_text") private String postText;
+    @SerializedName("post_liked") private Group postLikedBy;
+    @SerializedName("post_media") private String mediaURL; //TODO: Change to Image or ImageView???
+    @SerializedName("post_replies") private Feed replies;
     private int likes;
 
-    public Post(int postID, User postCreator, String profileImageURL, String postDate, String postText,
+    public Post(int postID, String postDate, User postCreator, String profileImageURL, String postText,
                 String mediaURL, Group group, Feed replies, int likes) {
         this.postID = postID;
+        this.postDate = postDate;
         this.postCreator = postCreator;
         this.profileImageURL = profileImageURL;
-        this.postDate = postDate;
         this.postText = postText;
         this.mediaURL = mediaURL;
         this.postLikedBy = group;
@@ -30,13 +31,14 @@ public class Post {
 
     // TODO: RMV or Change
     public Post(String text, String date) {
-        this.profileImageURL = "";
+        this.postID = -1;
         this.postDate = date;
+        this.profileImageURL = "";
         this.postText = text;
         this.mediaURL = "";
         this.postLikedBy = null;
         this.replies = null;
-        this.likes = 0;
+        this.likes = -1;
     }
 
     public int getPostID() {

@@ -37,7 +37,14 @@ public class APIClient {
                     .addInterceptor(loggingInterceptor)
                     .build();
 
-            Gson gson = new Gson().newBuilder().setLenient().create();
+            Gson gson = new Gson().newBuilder()
+//                    .registerTypeHierarchyAdapter(Conversations.class, MainAdapter.MessagesViewHolder.class)
+//                    .registerTypeAdapter(Conversations.class, new ConversationsCreator())
+//                    .registerTypeAdapter(Messages.class, new MessagesCreator())
+//                    .registerTypeAdapter(Message.class, new MessageCreator())
+                    .setLenient()
+                    .setPrettyPrinting()
+                    .create();
 
             retrofit2 = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

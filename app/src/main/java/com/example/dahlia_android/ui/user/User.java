@@ -4,29 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @SerializedName("id")
-    private int id;
-
-    @SerializedName("username")
-    private String username;
-
-    @SerializedName("email")
-    private String email;
-
-    @SerializedName("first_name")
-    private String firstName;
-
-    @SerializedName("last_name")
-    private String lastName;
-
-    @SerializedName("agency")
-    private String agency;
-
-    @SerializedName("created_dt")
-    private String created_dt;
-
-    @SerializedName("profile")
-    private UserProfile userProfile;
+    @SerializedName("id") private int id;
+    @SerializedName("username") private String username;
+    @SerializedName("email") private String email;
+    @SerializedName("first_name") private String firstName;
+    @SerializedName("last_name") private String lastName;
+    @SerializedName("agency") private String agency;
+    @SerializedName("created_dt") private String created_dt;
+    @SerializedName("profile") private UserProfile userProfile;
 
     private int followingCount;
     private int followerCount;

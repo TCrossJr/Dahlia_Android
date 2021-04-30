@@ -11,15 +11,7 @@ public class Conversations extends ArrayList {
     }
 
     public Conversations(ArrayList<Messages> messages) {
-        conversations = convertArrayList(messages);
-    }
-
-    private ArrayList<Messages> convertArrayList(ArrayList<Messages> conversations) {
-        ArrayList<Messages> messages = new ArrayList<>();
-        for( Messages msgs : conversations) {
-            messages.add(msgs);
-        }
-        return messages;
+        conversations = new ArrayList<>(messages);
     }
 
     public ArrayList<Messages> getConversations() {

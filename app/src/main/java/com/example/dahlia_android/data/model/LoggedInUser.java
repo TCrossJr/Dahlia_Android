@@ -7,14 +7,9 @@ import com.google.gson.annotations.SerializedName;
  */
 public class LoggedInUser {
 
-    @SerializedName("user_id")
-    private int userId;
-
-    @SerializedName("email")
-    private String userEmail;
-
-    @SerializedName("token")
-    private String userToken;
+    @SerializedName("user_id") private int userId;
+    @SerializedName("email") private String userEmail;
+    @SerializedName("token") private String userToken;
 
     // TODO: Check if these constructors are needed with SerializedClass being used
     public LoggedInUser(int userId, String userEmail, String userToken) {

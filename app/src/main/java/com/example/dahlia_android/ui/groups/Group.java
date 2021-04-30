@@ -31,14 +31,14 @@ public class Group {
         this.group_chat = group_chat;
     }
 
-    // TODO: RMV
-    public Group(String group_name, String group_description) {
+    // TODO: RMV???
+    public Group() {
         this.group_creator = null;
         this.group_admins = null;
         this.group_moderators = null;
         this.groupImageURL = "";
-        this.group_name = group_name;
-        this.group_description = group_description;
+        this.group_name = null;
+        this.group_description = null;
         this.group_members = null;
         this.group_chat = null;
     }

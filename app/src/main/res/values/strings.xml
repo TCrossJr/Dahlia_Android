@@ -82,4 +82,6 @@
     <string name="test_profile_followers">0</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="prompt_messages_failed">Messages failed to load.</string>
+    <string name="test_message_from1">Hey how\'s it going</string>
+    <string name="test_message_date">Thursday, Apr 21 4:08 PM</string>
 </resources>

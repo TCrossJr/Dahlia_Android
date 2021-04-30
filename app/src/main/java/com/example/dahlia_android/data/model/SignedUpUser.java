@@ -7,23 +7,12 @@ import com.google.gson.annotations.SerializedName;
  */
 public class SignedUpUser {
 
-    @SerializedName("username")
-    private String userName;
-
-    @SerializedName("email")
-    private String userEmail;
-
-    @SerializedName("first_name")
-    private String firstName;
-
-    @SerializedName("last_name")
-    private String lastName;
-
-    @SerializedName("agency")
-    private String agency;
-
-    @SerializedName("token")
-    private String newUserToken;
+    @SerializedName("username") private String userName;
+    @SerializedName("email") private String userEmail;
+    @SerializedName("first_name") private String firstName;
+    @SerializedName("last_name") private String lastName;
+    @SerializedName("agency") private String agency;
+    @SerializedName("token") private String newUserToken;
 
     public SignedUpUser(String userName, String userEmail, String firstName, String lastName, String agency) {
         this.userName = userName;

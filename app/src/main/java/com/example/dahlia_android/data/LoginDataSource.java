@@ -2,6 +2,7 @@ package com.example.dahlia_android.data;
 
 import android.util.Log;
 
+import com.example.dahlia_android.ApplicationUser;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.LoggedInUser;
@@ -42,6 +43,7 @@ public class LoginDataSource {
             Response<User> response = load.execute();
             User loadedUser = response.body();
             Log.d(TAG, "loadUser: User loaded." + response.body());
+            ApplicationUser.setCurrentUser(loadedUser);
 
             return new Result.Success<>(loadedUser);
         } catch (Exception e) {

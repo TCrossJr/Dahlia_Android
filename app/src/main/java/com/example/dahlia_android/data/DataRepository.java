@@ -2,7 +2,6 @@ package com.example.dahlia_android.data;
 
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.messages.Conversations;
-import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 
 /**
@@ -42,6 +41,17 @@ public class DataRepository {
 
     public FriendsList getFriendsList() {
         return friends_list;
+    }
+
+    public User getFriendByID(int userID) {
+        User user;
+        for( Object usr : friends_list ) {
+            user = (User) usr;
+            if( user.getUserID() == userID) {
+                return user;
+            }
+        }
+        return null;
     }
 
     public Conversations getConversations() {

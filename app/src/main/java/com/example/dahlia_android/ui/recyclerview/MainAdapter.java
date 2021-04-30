@@ -18,13 +18,18 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dahlia_android.ApplicationUser;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.api.RVService;
+import com.example.dahlia_android.data.DataRepository;
+import com.example.dahlia_android.data.DataSource;
+import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Message;
+import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
 import com.example.dahlia_android.ui.user.UserProfileActivity;
@@ -39,10 +44,11 @@ import retrofit2.Response;
 public class MainAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = "MainAdapter";
-    // TODO: RMV hardcoded USER_ID, TOKEN, and MSG_ID
+    // TODO: RMV hardcoded USER_ID, TOKEN, MSG_ID, etc...
     private static final int MY_USER_ID = 148;
     public static final String TOKEN = "4c82f31197fb2300a90b13de623c8d335854037a";
     public static final int MSG_ID = -1;
+    public static final int FRIEND_ID = -1;
     private static final int POST_ID = -1;
     private static final int GROUP_USER_ID = -1;
     private ArrayList<Object> dataList;
@@ -88,7 +94,13 @@ public class MainAdapter extends RecyclerView.Adapter {
                 list.add(AdapterType.GROUP_TYPE);
             }
             else if( obj instanceof Message ) {
-                list.add(AdapterType.MESSAGE_TYPE);
+                if(((Message) obj).getMessageCreator() == ApplicationUser.getCurrentUser().getUserID()) {
+                    list.add(AdapterType.MESSAGE_TO_TYPE);
+                } else
+                    list.add(AdapterType.MESSAGE_FROM_TYPE);
+            }
+            else if( obj instanceof Messages) {
+                list.add(AdapterType.MESSAGES_TYPE);
             }
         }
         return list;
@@ -112,10 +124,15 @@ public class MainAdapter extends RecyclerView.Adapter {
             return AdapterType.FRIEND_TYPE;
         else if( dataList.get(position) instanceof Group )
             return AdapterType.GROUP_TYPE;
-        else if( dataList.get(position) instanceof Message)
-            return AdapterType.MESSAGE_TYPE;
-        else
-            return -1;
+        else if( dataList.get(position) instanceof Messages)
+            return AdapterType.MESSAGES_TYPE;
+        else if( dataList.get(position) instanceof Message) {
+            if( ((Message) dataList.get(position)).getMessageCreator() == ApplicationUser.getCurrentUser().getUserID())
+                return AdapterType.MESSAGE_TO_TYPE;
+            else
+                return AdapterType.MESSAGE_FROM_TYPE;
+        }
+        return -1;
     }
 
     @NonNull
@@ -137,13 +154,22 @@ public class MainAdapter extends RecyclerView.Adapter {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_group, parent, false);
             return new GroupViewHolder(view);
         }
-        else if( viewType == AdapterType.MESSAGE_TYPE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_message, parent, false);
-            return new MessageViewHolder(view);
+        else if( viewType == AdapterType.MESSAGES_TYPE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_messages, parent, false);
+            return new MessagesViewHolder(view);
+        }
+        else if( viewType == AdapterType.MESSAGE_TO_TYPE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_message_to, parent, false);
+            return new MessageToViewHolder(view);
+        }
+        else if( viewType == AdapterType.MESSAGE_FROM_TYPE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_message_from, parent, false);
+            return new MessageFromViewHolder(view);
         }
         else if( viewType == AdapterType.TAB_BUTTONS_TYPE ) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_message, parent, false);
-            return new MessageViewHolder(view);
+            // TODO: Change to Buttons type RecyclerView item, create row layout
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_messages, parent, false);
+            return new MessagesViewHolder(view);
         }
         else
             return null;
@@ -212,17 +238,55 @@ public class MainAdapter extends RecyclerView.Adapter {
                 }
             });
         }
-        else if( holder instanceof MessageViewHolder ) {
-            Log.d(TAG, "Message->" + position + "<-position");
-            Message msg = (Message) dataList.get(position);
-            ((MessageViewHolder) holder).setMessageObject(msg, rvService);
-            ((MessageViewHolder) holder).setMessageProfileImageURL(""); // TODO: CHANGE/RMV
-            ((MessageViewHolder) holder).setMessagesDisplayName(msg.getMessageDisplayName());
-            ((MessageViewHolder) holder).setMessageText(msg.getMessageText());
-            ((MessageViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
+        else if( holder instanceof MessagesViewHolder) {
+            Log.d(TAG, "Messages->" + position + "<-position");
+            Messages msg = (Messages) dataList.get(position);
+            FriendsViewModel data = new FriendsViewModel(DataRepository.getInstance(new DataSource()));
+
+            User friend;
+            if(msg.getMessage(position).getMessageReceiver() != ApplicationUser.getCurrentUser().getUserID())
+                friend = data.getFriend(msg.getMessage(position).getMessageReceiver());
+            else
+                friend = data.getFriend(msg.getMessage(position).getMessageCreator());
+
+            ((MessagesViewHolder) holder).setMessagesObject(msg, rvService);
+            ((MessagesViewHolder) holder).setMessagesProfileImageURL(""); // TODO: CHANGE
+            ((MessagesViewHolder) holder).setMessagesDisplayName(friend.getUsername());
+            ((MessagesViewHolder) holder).setMessagesText(msg.getLastMessageText());
+            ((MessagesViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                // TODO: Handle when user clicks message... Message (New v  iew) Fragment???
+                // TODO: Handle when user clicks message... Open Conversation
+
+                }
+            });
+        }
+        else if( holder instanceof MessageToViewHolder ) {
+            Log.d(TAG, "MessageTo->" + position + "<-position");
+            Message msg = (Message) dataList.get(position);
+            ((MessageToViewHolder) holder).setMessageToObject(msg, rvService);
+            ((MessageToViewHolder) holder).setMessageToDate(msg.getMessageDate());
+            ((MessageToViewHolder) holder).setMessageToUserText(msg.getMessageText());
+            // TODO: Change to long press
+            ((MessageToViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                // TODO: Handle when user long presses message -> remove_message
+
+                }
+            });
+        }
+        else if( holder instanceof MessageFromViewHolder ) {
+            Log.d(TAG, "MessageFrom->" + position + "<-position");
+            Message msg = (Message) dataList.get(position);
+            ((MessageFromViewHolder) holder).setMessageFromObject(msg, rvService);
+            ((MessageFromViewHolder) holder).setMessageFromDate(msg.getMessageDate());
+            ((MessageFromViewHolder) holder).setMessageFromFriendText(msg.getMessageText());
+            // TODO: Change to long press
+            ((MessageFromViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                // TODO: Handle when user long presses message -> remove_message
 
                 }
             });
@@ -672,18 +736,18 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder {
+    public static class MessagesViewHolder extends RecyclerView.ViewHolder {
         private final FrameLayout frameLayout;
         private final ImageView messageProfileImageURL;
         private final TextView messageDisplayName;
         private final TextView messageText;
         private Button messageMoreOptions;
 
-        private Message current_message;
+        private Messages current_messages;
         private APIServiceInterface apiInterface;
         private RVService rvService;
 
-        public MessageViewHolder(@NonNull View view) {
+        public MessagesViewHolder(@NonNull View view) {
             super(view);
             frameLayout = view.findViewById(R.id.message_frame);
             messageProfileImageURL = view.findViewById(R.id.message_profile_image);
@@ -715,8 +779,8 @@ public class MainAdapter extends RecyclerView.Adapter {
                                             switch(which) {
                                                 case DialogInterface.BUTTON_POSITIVE:
                                                     // Yes, Remove Message
-                                                    removeMessage(current_message, rvService);
-                                                    Log.d(TAG, "removeMessage: Message removed." );
+                                                    removeConversation(current_messages, rvService);
+                                                    Log.d(TAG, "removeConversation: Conversation removed." );
                                                     break;
                                                 case DialogInterface.BUTTON_NEGATIVE:
                                                     // No Don't
@@ -738,20 +802,20 @@ public class MainAdapter extends RecyclerView.Adapter {
             });
         }
 
-        private void removeMessage(Message currentMessage, RVService rvService) {
+        public void removeConversation(Messages currentMessage, RVService rvService) {
             try {
                 apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 //                Call<Void> removeCall = apiInterface.removeMessage(TOKEN, currentMessage.getMessageID());
-                Call<Void> removeCall = apiInterface.removeMessage(TOKEN, MSG_ID); // TODO: Hardcoded
+                Call<Void> removeCall = apiInterface.removeMessages(TOKEN, MSG_ID,FRIEND_ID); // TODO: Hardcoded
                 Response<Void> response = removeCall.execute();
-                Log.d(TAG, "removeMessage: " + response.message() );
+                Log.d(TAG, "removeConversation: " + response.message() );
                 rvService.removeItem(getAdapterPosition());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        public void setMessageProfileImageURL(String imageURL) {
+        public void setMessagesProfileImageURL(String imageURL) {
             messageProfileImageURL.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
         }
 
@@ -759,13 +823,80 @@ public class MainAdapter extends RecyclerView.Adapter {
             this.messageDisplayName.setText(displayName);
         }
 
-        public void setMessageText(String messageText) {
+        public void setMessagesText(String messageText) {
             this.messageText.setText(messageText);
         }
 
-        public void setMessageObject(Message currentMessage, RVService service) {
-            this.current_message = currentMessage;
+        public void setMessagesObject(Messages currentMessages, RVService service) {
+            this.current_messages = currentMessages;
             this.rvService = service;
         }
     }
-}
+
+    public static class MessageToViewHolder extends RecyclerView.ViewHolder {
+        private final FrameLayout frameLayout;
+        private final TextView conversationUserText;
+        private final TextView conversationDateTo;
+
+        private Message current_message_to;
+        private APIServiceInterface apiInterface;
+        private RVService rvService;
+
+        public MessageToViewHolder(@NonNull View view) {
+            super(view);
+            frameLayout = view.findViewById(R.id.conversation_frame_to);
+            conversationUserText = view.findViewById(R.id.conversation_text_user);
+            conversationDateTo = view.findViewById(R.id.conversation_date_to);
+        }
+
+        public void setMessageToUserText(String messageText) {
+            this.conversationUserText.setText(messageText);
+        }
+
+        public void setMessageToDate(String messageText) {
+            this.conversationDateTo.setText(messageText);
+        }
+
+        public void setMessageToObject(Message currentMessage, RVService service) {
+            this.current_message_to = currentMessage;
+            this.rvService = service;
+        }
+    }
+
+    public static class MessageFromViewHolder extends RecyclerView.ViewHolder {
+            private final FrameLayout frameLayout;
+            private final ImageView conversationFriendProfileImageURL;
+            private final TextView conversationFriendText;
+            private final TextView conversationDateFrom;
+
+            private Message current_message_from;
+            private APIServiceInterface apiInterface;
+            private RVService rvService;
+
+        public MessageFromViewHolder(@NonNull View view) {
+                super(view);
+                frameLayout = view.findViewById(R.id.conversation_frame_from);
+                conversationFriendProfileImageURL = view.findViewById(R.id.conversation_friend_profile_image);
+                conversationFriendText = view.findViewById(R.id.conversation_text_friend);
+                conversationDateFrom = view.findViewById(R.id.conversation_date_from);
+            }
+
+            public void setMessageFromFriendProfileImageURL (String imageURL){
+                conversationFriendProfileImageURL.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
+            }
+
+            public void setMessageFromFriendText (String messageText){
+                this.conversationFriendText.setText(messageText);
+            }
+
+            public void setMessageFromDate (String messageText){
+                this.conversationDateFrom.setText(messageText);
+            }
+
+            public void setMessageFromObject (Message currentMessage, RVService service){
+                this.current_message_from = currentMessage;
+                this.rvService = service;
+            }
+        }
+    }
+

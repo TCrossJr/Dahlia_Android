@@ -1,10 +1,12 @@
 package com.example.dahlia_android.ui.messages;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Messages extends ArrayList {
 
-    private ArrayList<Message> messages;
+    @SerializedName("conversation") private ArrayList<Message> messages;
 
     public Messages() {
         this.messages = new ArrayList<>();
@@ -19,4 +21,8 @@ public class Messages extends ArrayList {
     public void addMessage( Message message ) { messages.add(message); }
 
     public void deleteMessage( Message message ) { messages.remove(message); }
+
+    public String getLastMessageText() {
+        return "Last message sent in this conversation";
+    }
 }

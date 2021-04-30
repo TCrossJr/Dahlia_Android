@@ -17,7 +17,7 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<com.example.dahlia_android.ui.login.LoginResult> loginResult = new MutableLiveData<>();
     private LoginRepository loginRepository;
 
-    LoginViewModel(LoginRepository loginRepository) {
+    public LoginViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 

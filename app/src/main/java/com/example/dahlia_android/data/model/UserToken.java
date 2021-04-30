@@ -4,8 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserToken {
 
-    @SerializedName("csrfToken")
-    private String token;
+    @SerializedName("csrfToken") private String token;
 
     public void setToken(String token) {
         this.token = token;

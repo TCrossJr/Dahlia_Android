@@ -8,24 +8,12 @@ public class UserProfile {
     private String thumbnailURL;
     private String displayName;
     private String username; // email
-    @SerializedName("date_created")
-    private String date_created;
-
-    @SerializedName("date_of_birth")
-    private String date_of_birth;
-
-    @SerializedName("town")
-    private String town;
-
-    @SerializedName("state")
-    private String state;
-
-    @SerializedName("zip_code")
-    private String zip_code;
-
-    @SerializedName("description")
-    private String description;
-
+    @SerializedName("date_created") private String date_created;
+    @SerializedName("date_of_birth") private String date_of_birth;
+    @SerializedName("town") private String town;
+    @SerializedName("state") private String state;
+    @SerializedName("zip_code") private String zip_code;
+    @SerializedName("description") private String description;
 
     public UserProfile(String bannerURL, String thumbnailURL, String displayName, String username, String date_created, String date_of_birth, String town, String state, String zipCode, String description) {
         this.bannerURL = bannerURL;

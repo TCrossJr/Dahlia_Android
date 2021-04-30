@@ -7,13 +7,14 @@ import androidx.lifecycle.ViewModel;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.data.DataRepository;
 import com.example.dahlia_android.data.Result;
+import com.example.dahlia_android.ui.user.User;
 
 public class FriendsViewModel extends ViewModel {
 
     private MutableLiveData<FriendsResult> friendsResult = new MutableLiveData<FriendsResult>();
     private DataRepository dataRepository;
 
-    FriendsViewModel(DataRepository dataRepository) { this.dataRepository = dataRepository; }
+    public FriendsViewModel(DataRepository dataRepository) { this.dataRepository = dataRepository; }
 
     LiveData<FriendsResult> getFriendsResult() { return friendsResult; }
 
@@ -30,5 +31,9 @@ public class FriendsViewModel extends ViewModel {
 
     public FriendsList getFriends() {
         return this.dataRepository.getFriendsList();
+    }
+
+    public User getFriend(int userID) {
+        return dataRepository.getFriendByID(userID);
     }
 }
