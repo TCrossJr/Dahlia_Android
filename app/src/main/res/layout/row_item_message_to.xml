@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:onClick="goToConversation">
+    android:paddingBottom="10dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,8 +31,9 @@
             android:id="@+id/conversation_text_user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
             android:gravity="end"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="@string/test_post_long"
             android:textAlignment="textStart"
             android:textSize="16sp"

@@ -755,15 +755,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             messageDisplayName = view.findViewById(R.id.message_user_from);
             messageText = view.findViewById(R.id.message_text);
             messageMoreOptions = view.findViewById(R.id.message_more_options);
-
-/*            frameLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), ConversationActivity.class);
-                    intent.putExtra("adapterPosition", getAdapterPosition());
-                    v.getContext().startActivity(intent);
-                }
-            });*/
+            
             messageMoreOptions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

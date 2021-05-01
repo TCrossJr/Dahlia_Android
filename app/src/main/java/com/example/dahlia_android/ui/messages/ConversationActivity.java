@@ -1,7 +1,6 @@
 package com.example.dahlia_android.ui.messages;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -29,8 +28,7 @@ public class ConversationActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
 
         Messages conversation = conversationViewModel.getConversation(0);
-//        conversationViewModel.getCoversationResult<>
-        conversation_adapter = new MainAdapter(conversation); //TODO: Move to ViewModel/DataSource/DataRepository
+        conversation_adapter = new MainAdapter(conversation);
         conversation_adapter.notifyDataSetChanged();
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
         rView.addItemDecoration(divider);

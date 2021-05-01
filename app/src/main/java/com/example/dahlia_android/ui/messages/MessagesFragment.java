@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.recyclerview.AdapterTypeList;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;

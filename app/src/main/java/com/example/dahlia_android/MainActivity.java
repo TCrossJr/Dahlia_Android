@@ -8,17 +8,12 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
 
-import com.example.dahlia_android.ui.friends.FriendsList;
-import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
-import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.ConversationActivity;
-import com.example.dahlia_android.ui.messages.Message;
-import com.example.dahlia_android.ui.messages.Messages;
+import com.example.dahlia_android.ui.messages.CreateMessageActivity;
 import com.example.dahlia_android.ui.user.User;
-import com.example.dahlia_android.ui.user.UserProfile;
 import com.example.dahlia_android.ui.user.UserProfileActivity;
 import com.example.dahlia_android.ui.user.UserProfileCombinedList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -125,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
     public void goToConversation(View view) {
         Intent intent = new Intent(this, ConversationActivity.class);
 //        intent.putExtra("adapterPosition", getAdapterPosition());
+        startActivity(intent);
+    }
+
+    public void createMessage(View view) {
+        Intent intent = new Intent(this, CreateMessageActivity.class);
         startActivity(intent);
     }
 }
