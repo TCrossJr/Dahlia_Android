@@ -32,12 +32,6 @@
             android:name=".ui.user.UserProfileActivity"
             android:label="@string/profile_title" />
         <activity
-            android:name=".ui.signup.SignUpActivity"
-            android:excludeFromRecents="true"
-            android:label="@string/title_activity_sign_up"
-            android:noHistory="true"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.DahliaAndroid.NoActionBar">

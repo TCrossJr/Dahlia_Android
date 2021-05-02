@@ -1,7 +1,6 @@
 package com.example.dahlia_android.ui.login;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,13 +21,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
 
-import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.signup.SignUpActivity;
+import com.example.dahlia_android.ui.signup.SignUpFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -50,6 +49,7 @@ public class LoginFragment extends Fragment {
         final EditText usernameEditText = view.findViewById(R.id.username);
         final EditText passwordEditText = view.findViewById(R.id.password);
         final Button loginButton = view.findViewById(R.id.login);
+        final TextView signUpTextButton = view.findViewById(R.id.register);
         final CheckBox rememberOption = view.findViewById(R.id.remember);
         final Button testUser = view.findViewById(R.id.test_user); // TODO: RMV
         final ProgressBar loadingProgressBar = view.findViewById(R.id.loading);
@@ -83,10 +83,6 @@ public class LoginFragment extends Fragment {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                getActivity().setResult(Activity.RESULT_OK);
-
-                //Complete and destroy login activity once successful
-                getActivity().finish(); // TODO: Need???
             }
         });
 
@@ -139,7 +135,17 @@ public class LoginFragment extends Fragment {
                         passwordEditText.getText().toString());
             }
         });
+        signUpTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setReorderingAllowed(false);
 
+                transaction.replace(R.id.nav_host_fragment, new SignUpFragment(), null);
+                transaction.commitNow();
+            }
+        });
         rememberOption.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

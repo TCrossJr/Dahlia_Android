@@ -46,8 +46,31 @@
     <fragment
         android:id="@+id/nav_login"
         android:name="com.example.dahlia_android.ui.login.LoginFragment"
-        android:label="@string/title_activity_login"
-        tools:layout="@layout/fragment_login" />
+        android:label="Sign In"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_nav_login_to_nav_signup"
+            app:destination="@id/nav_signup"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_login" />
+        <action
+            android:id="@+id/action_nav_login_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_signup"
+        android:name="com.example.dahlia_android.ui.signup.SignUpFragment"
+        android:label="Sign Up"
+        tools:layout="@layout/fragment_signup" >
+        <action
+            android:id="@+id/action_nav_signup_to_nav_login"
+            app:destination="@id/nav_login"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_login" />
+        <action
+            android:id="@+id/action_nav_signup_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <activity
         android:id="@+id/nav_conversation"
         android:name="com.example.dahlia_android.ui.messages.ConversationActivity"
