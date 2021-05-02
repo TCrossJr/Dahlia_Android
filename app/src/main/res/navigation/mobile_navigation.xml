@@ -47,7 +47,7 @@
         android:id="@+id/nav_login"
         android:name="com.example.dahlia_android.ui.login.LoginActivity"
         android:label="activity_signup"
-        tools:layout="@layout/activity_signup" />
+        tools:layout="@layout/fragment_signup" />
     <activity
         android:id="@+id/nav_conversation"
         android:name="com.example.dahlia_android.ui.messages.ConversationActivity"
