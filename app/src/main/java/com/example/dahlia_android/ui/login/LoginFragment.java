@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,32 +21,40 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
 
+import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.signup.SignUpActivity;
 
-public class LoginActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+public class LoginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_login);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+        final EditText usernameEditText = view.findViewById(R.id.username);
+        final EditText passwordEditText = view.findViewById(R.id.password);
+        final Button loginButton = view.findViewById(R.id.login);
+        final CheckBox rememberOption = view.findViewById(R.id.remember);
+        final Button testUser = view.findViewById(R.id.test_user); // TODO: RMV
+        final ProgressBar loadingProgressBar = view.findViewById(R.id.loading);
 
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
-        final CheckBox rememberOption = findViewById(R.id.remember);
-        final Button testUser = findViewById(R.id.test_user); // TODO: RMV
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-
-        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
+        loginViewModel.getLoginFormState().observe(getViewLifecycleOwner(), new Observer<LoginFormState>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
                 if (loginFormState == null) {
@@ -60,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
+        loginViewModel.getLoginResult().observe(getViewLifecycleOwner(), new Observer<LoginResult>() {
             @Override
             public void onChanged(@Nullable LoginResult loginResult) {
                 if (loginResult == null) {
@@ -73,10 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                setResult(Activity.RESULT_OK);
+                getActivity().setResult(Activity.RESULT_OK);
 
                 //Complete and destroy login activity once successful
-                finish();
+                getActivity().finish(); // TODO: Need???
             }
         });
 
@@ -115,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
+                SharedPreferences preferences = getActivity().getSharedPreferences("prefs", MODE_PRIVATE);
                 Boolean remember = preferences.getBoolean("remember", false ) ;
                 if( remember ) {
                     String userName = preferences.getString("username", "");
@@ -134,13 +144,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if( buttonView.isChecked() ) {
-                    SharedPreferences preferences = getSharedPreferences("remember", MODE_PRIVATE);
+                    SharedPreferences preferences = getActivity().getSharedPreferences("remember", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("remember", "yes" );
                     editor.apply();
                 }
                 else if( !buttonView.isChecked()) {
-                    SharedPreferences preferences = getSharedPreferences("remember", MODE_PRIVATE);
+                    SharedPreferences preferences = getActivity().getSharedPreferences("remember", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("remember", "no" );
                     editor.apply();
@@ -156,27 +166,18 @@ public class LoginActivity extends AppCompatActivity {
                 passwordEditText.setText("testAdminpw1");
             }
         });
+        return view;
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        // set header username
+        // set header username TODO: set nav_header
 /*        TextView username = findViewById(R.id.userName);
         username.setText(model.getDisplayName());*/
         String welcome = getString(R.string.prompt_welcome) + model.getDisplayName();
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_LONG).show();
-    }
-
-    public void goSignUp(View view) {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-    public void goLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        Toast.makeText(getContext(), errorString, Toast.LENGTH_LONG).show();
     }
 }

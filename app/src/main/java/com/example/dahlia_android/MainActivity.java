@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
-import com.example.dahlia_android.ui.login.LoginActivity;
+import com.example.dahlia_android.ui.login.LoginFragment;
 import com.example.dahlia_android.ui.messages.ConversationActivity;
 import com.example.dahlia_android.ui.messages.CreateMessageActivity;
 import com.example.dahlia_android.ui.user.User;
@@ -20,6 +20,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.GsonBuilder;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         // TODO: CHANGE to setOpenableLayout(Openable) and remove login_test
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby, R.id.nav_login_test)
+                R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby, R.id.nav_login)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -96,13 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void goLogin(MenuItem item) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
     public void goLogout(MenuItem item) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginFragment.class);
         startActivity(intent);
     }
 

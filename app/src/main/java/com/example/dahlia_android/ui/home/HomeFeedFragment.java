@@ -35,12 +35,10 @@ public class HomeFeedFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        homeViewModel =
-//                new ViewModelProvider(this).get(HomeFeedViewModel.class);
         homeViewModel =
                 new ViewModelProvider(this, new HomeFeedViewModelFactory())
                         .get(HomeFeedViewModel.class);
-        
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         rView = root.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());

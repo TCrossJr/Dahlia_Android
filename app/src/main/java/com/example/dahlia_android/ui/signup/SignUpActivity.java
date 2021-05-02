@@ -37,7 +37,7 @@ import android.widget.Toast;
 
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.data.model.SignedUpUser;
-import com.example.dahlia_android.ui.login.LoginActivity;
+import com.example.dahlia_android.ui.login.LoginFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -274,7 +274,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void goLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginFragment.class);
         startActivity(intent);
     }
 

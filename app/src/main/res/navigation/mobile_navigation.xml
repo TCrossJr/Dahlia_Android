@@ -43,11 +43,11 @@
         android:name="com.example.dahlia_android.ui.user.WelcomeProfileFragment"
         android:label="welcome_profile_fragment"
         tools:layout="@layout/fragment_welcome_profile" />
-    <activity
+    <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.dahlia_android.ui.login.LoginActivity"
-        android:label="activity_signup"
-        tools:layout="@layout/fragment_signup" />
+        android:name="com.example.dahlia_android.ui.login.LoginFragment"
+        android:label="@string/title_activity_login"
+        tools:layout="@layout/fragment_login" />
     <activity
         android:id="@+id/nav_conversation"
         android:name="com.example.dahlia_android.ui.messages.ConversationActivity"
