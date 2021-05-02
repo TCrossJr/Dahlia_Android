@@ -29,8 +29,6 @@ public class MessagesViewModel extends ViewModel {
     }
 
     public Conversations getConversations() {
-//        TODO: Uncomment and remove return statement
-//        return this.dataRepository.getMessages();
-        return new Conversations();
+        return this.dataRepository.getMessages();
     }
 }

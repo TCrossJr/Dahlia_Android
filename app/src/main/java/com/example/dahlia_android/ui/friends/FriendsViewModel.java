@@ -30,9 +30,7 @@ public class FriendsViewModel extends ViewModel {
     }
 
     public FriendsList getFriends() {
-        // TODO: Uncomment and remove return statement
-//        return this.dataRepository.getFriends();
-        return new FriendsList();
+        return this.dataRepository.getFriends();
     }
 
     public User getFriend(int userID) {

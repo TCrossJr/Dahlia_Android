@@ -29,10 +29,20 @@ public class User {
         this.followerCount = followerCount;
     }
 
-    public User(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public User(User user) {
+        this.id = user.id;
+        this.username = user.username;
+        this.email = user.email;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.agency = user.agency;
+        this.created_dt = user.created_dt;
+        this.userProfile = user.userProfile;
+        this.followingCount = user.followingCount;
+        this.followerCount = user.followerCount;
     }
 
+    //TODO: RMV
     public User() {
         this.userProfile = new UserProfile("testName1", "testUser1");
         this.followingCount = 0;
@@ -113,5 +123,9 @@ public class User {
 
     public void setFollowerCount(int followerCount) {
         this.followerCount = followerCount;
+    }
+
+    public User getUser() {
+        return this;
     }
 }
