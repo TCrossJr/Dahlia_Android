@@ -22,7 +22,6 @@ public class MessagesViewModel extends ViewModel {
 
         if(messagesResult instanceof Result.Success) {
             Conversations data = ((Result.Success<Conversations>) messagesResult).getData();
-//            this.friendsResult.setValue(new FriendsResult(new FriendsView((ArrayList<User>) friendsList)));
             this.messagesResult.setValue(new MessagesResult(new MessagesView((data.getConversations()))));
         } else {
             this.messagesResult.setValue(new MessagesResult(R.string.prompt_messages_failed));
@@ -30,6 +29,8 @@ public class MessagesViewModel extends ViewModel {
     }
 
     public Conversations getConversations() {
-        return this.dataRepository.getConversations();
+//        TODO: Uncomment and remove return statement
+//        return this.dataRepository.getMessages();
+        return new Conversations();
     }
 }

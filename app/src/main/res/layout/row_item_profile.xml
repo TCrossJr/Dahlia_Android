@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="12dp">
-<!--    <data>
-        <variable android:name="adapter" android:type="com.example.dahlia_android.ui.recyclerview.MainAdapter" />
-        <variable android:name="user" android:type="com.example.dahlia_android.ui.user.User" />
-        <variable android:name="viewModel" android:type="com.example.dahlia_android.ui.home.HomeViewModel" />
-        <variable android:name="act" android:type="com.example.dahlia_android.ui.user.UserProfileActivity" />
-    </data>-->
+    <!--    <data>
+            <variable android:name="adapter" android:type="com.example.dahlia_android.ui.recyclerview.MainAdapter" />
+            <variable android:name="user" android:type="com.example.dahlia_android.ui.user.User" />
+            <variable android:name="viewModel" android:type="com.example.dahlia_android.ui.home.HomeFeedViewModel" />
+            <variable android:name="act" android:type="com.example.dahlia_android.ui.user.UserProfileActivity" />
+        </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

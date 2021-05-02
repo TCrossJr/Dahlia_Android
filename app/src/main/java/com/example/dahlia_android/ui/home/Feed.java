@@ -11,6 +11,10 @@ public class Feed extends ArrayList{
         homeFeed = new ArrayList<>();
     }
 
+    public Feed(ArrayList<Post> feed) {
+        homeFeed = feed;
+    }
+
     public List<Post> getFeed() {
         return homeFeed;
     }
@@ -24,4 +28,8 @@ public class Feed extends ArrayList{
     }
 
     public void deletePost( Post post ) { homeFeed.remove(post); }
+
+    public ArrayList<Post> getHomeFeed() {
+        return homeFeed;
+    }
 }

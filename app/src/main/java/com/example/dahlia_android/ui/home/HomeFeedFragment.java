@@ -15,14 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.recyclerview.AdapterTypeList;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFeedFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private HomeFeedViewModel homeViewModel;
 
     protected MainAdapter feed_adapter;
     protected LinearLayoutManager layoutManager;
@@ -36,8 +35,12 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+//        homeViewModel =
+//                new ViewModelProvider(this).get(HomeFeedViewModel.class);
         homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+                new ViewModelProvider(this, new HomeFeedViewModelFactory())
+                        .get(HomeFeedViewModel.class);
+        
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         rView = root.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());

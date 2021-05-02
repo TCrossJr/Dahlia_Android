@@ -86,4 +86,7 @@
     <string name="test_message_date">Thursday, Apr 21 4:08 PM</string>
     <string name="messages_create_message">Message</string>
     <string name="messages_create_to">To:</string>
+    <string name="prompt_homefeed_failed">Feed failed to load.</string>
+    <string name="conversation_message_hint">Enter Message</string>
+    <string name="prompt_user_load_failed">Loading user failed.</string>
 </resources>

@@ -78,6 +78,8 @@ public class MainAdapter extends RecyclerView.Adapter {
     }
 
     private AdapterTypeList convertAdapterType(ArrayList<Object> typeList) {
+        if( typeList == null )
+            return new AdapterTypeList();
         AdapterTypeList list = new AdapterTypeList();
         for( int i = 0; i < typeList.size(); i++ ) {
             Object obj = typeList.get(i);
@@ -256,7 +258,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             ((MessagesViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                // TODO: Handle when user clicks message... Open Conversation
+                    // TODO: Handle when user clicks message... Open Conversation
 
                 }
             });
@@ -271,7 +273,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             ((MessageToViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                // TODO: Handle when user long presses message -> remove_message
+                    // TODO: Handle when user long presses message -> remove_message
 
                 }
             });
@@ -287,7 +289,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             ((MessageFromViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                // TODO: Handle when user long presses message -> remove_message
+                    // TODO: Handle when user long presses message -> remove_message
 
                 }
             });
@@ -755,7 +757,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             messageDisplayName = view.findViewById(R.id.message_user_from);
             messageText = view.findViewById(R.id.message_text);
             messageMoreOptions = view.findViewById(R.id.message_more_options);
-            
+
             messageMoreOptions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -866,39 +868,39 @@ public class MainAdapter extends RecyclerView.Adapter {
     }
 
     public static class MessageFromViewHolder extends RecyclerView.ViewHolder {
-            private final FrameLayout frameLayout;
-            private final ImageView conversationFriendProfileImageURL;
-            private final TextView conversationFriendText;
-            private final TextView conversationDateFrom;
+        private final FrameLayout frameLayout;
+        private final ImageView conversationFriendProfileImageURL;
+        private final TextView conversationFriendText;
+        private final TextView conversationDateFrom;
 
-            private Message current_message_from;
-            private APIServiceInterface apiInterface;
-            private RVService rvService;
+        private Message current_message_from;
+        private APIServiceInterface apiInterface;
+        private RVService rvService;
 
         public MessageFromViewHolder(@NonNull View view) {
-                super(view);
-                frameLayout = view.findViewById(R.id.conversation_frame_from);
-                conversationFriendProfileImageURL = view.findViewById(R.id.conversation_friend_profile_image);
-                conversationFriendText = view.findViewById(R.id.conversation_text_friend);
-                conversationDateFrom = view.findViewById(R.id.conversation_date_from);
-            }
+            super(view);
+            frameLayout = view.findViewById(R.id.conversation_frame_from);
+            conversationFriendProfileImageURL = view.findViewById(R.id.conversation_friend_profile_image);
+            conversationFriendText = view.findViewById(R.id.conversation_text_friend);
+            conversationDateFrom = view.findViewById(R.id.conversation_date_from);
+        }
 
-            public void setMessageFromFriendProfileImageURL (String imageURL){
-                conversationFriendProfileImageURL.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
-            }
+        public void setMessageFromFriendProfileImageURL (String imageURL){
+            conversationFriendProfileImageURL.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
+        }
 
-            public void setMessageFromFriendText (String messageText){
-                this.conversationFriendText.setText(messageText);
-            }
+        public void setMessageFromFriendText (String messageText){
+            this.conversationFriendText.setText(messageText);
+        }
 
-            public void setMessageFromDate (String messageText){
-                this.conversationDateFrom.setText(messageText);
-            }
+        public void setMessageFromDate (String messageText){
+            this.conversationDateFrom.setText(messageText);
+        }
 
-            public void setMessageFromObject (Message currentMessage, RVService service){
-                this.current_message_from = currentMessage;
-                this.rvService = service;
-            }
+        public void setMessageFromObject (Message currentMessage, RVService service){
+            this.current_message_from = currentMessage;
+            this.rvService = service;
         }
     }
+}
 
