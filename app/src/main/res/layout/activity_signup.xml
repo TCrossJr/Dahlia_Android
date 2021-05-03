@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.signup.SignUpFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -130,22 +130,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
-            <!--<EditText
-                android:id="@+id/agency"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/signup_agency"
-                android:imeActionLabel="@string/title_activity_login"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:selectAllOnFocus="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/last_name" />-->
-
             <Spinner
                 android:id="@+id/agencyS"
                 android:layout_width="match_parent"
@@ -185,7 +169,6 @@
                 android:layout_marginBottom="350dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="goLogin"
                 android:text="@string/title_activity_login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"

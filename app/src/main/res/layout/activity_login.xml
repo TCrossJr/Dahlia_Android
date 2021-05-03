@@ -68,7 +68,6 @@
         android:layout_marginTop="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="goSignUp"
         android:text="@string/title_activity_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

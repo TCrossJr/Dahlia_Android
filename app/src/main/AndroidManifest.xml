@@ -13,6 +13,18 @@
         android:roundIcon="@mipmap/dahlia_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DahliaAndroid">
+        <activity android:name=".ui.login.LoginActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_login"
+            android:noHistory="true">
+        </activity>
+
+        <activity android:name=".ui.signup.SignUpActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_sign_up"
+            android:noHistory="true">
+
+        </activity>
         <activity android:name=".ui.messages.ConversationActivity">
 
         </activity>

@@ -1,29 +1,15 @@
 package com.example.dahlia_android.ui.signup;
 
 import android.app.Activity;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,43 +24,43 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.data.model.SignedUpUser;
-import com.example.dahlia_android.ui.login.LoginFragment;
+import com.example.dahlia_android.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.content.Context.MODE_PRIVATE;
+public class SignUpActivity extends AppCompatActivity {
 
-public class SignUpFragment extends Fragment {
-
-    private static final String TAG = "SignUpFragment";
+    private static final String TAG = "SignUpActivity";
     private SignUpViewModel signUpViewModel;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.activity_signup);
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_signup, container, false);
         signUpViewModel = new ViewModelProvider(this, new SignUpViewModelFactory())
                 .get(SignUpViewModel.class);
 
-        final EditText usernameEditText = view.findViewById(R.id.user_name);
-        final EditText userEmailEditText = view.findViewById(R.id.user_email);
-        final EditText password1EditText = view.findViewById(R.id.password1);
-        final EditText password2EditText = view.findViewById(R.id.password2);
-        final EditText firstNameEditText = view.findViewById(R.id.first_name);
-        final EditText lastNameEditText = view.findViewById(R.id.last_name);
-        final TextView loginTextButton = view.findViewById(R.id.go_login);
-        //final EditText agencyEditText = view.findViewById(R.id.agency);
+        final EditText usernameEditText = findViewById(R.id.user_name);
+        final EditText userEmailEditText = findViewById(R.id.user_email);
+        final EditText password1EditText = findViewById(R.id.password1);
+        final EditText password2EditText = findViewById(R.id.password2);
+        final EditText firstNameEditText = findViewById(R.id.first_name);
+        final EditText lastNameEditText = findViewById(R.id.last_name);
+        final TextView loginTextButton = findViewById(R.id.go_login);
+        //final EditText agencyEditText = findViewById(R.id.agency);
         String[] agency = {"Select Au Pair Agency"};
-        final Spinner agencySpinner = view.findViewById(R.id.agencyS);
+        final Spinner agencySpinner = findViewById(R.id.agencyS);
 
 
         //agencySpinner drop down elements
@@ -95,7 +81,7 @@ public class SignUpFragment extends Fragment {
 
         //create adapter for agencySpinner
         final ArrayAdapter<String> agencyDataAdapter = new ArrayAdapter<String>(
-                getContext(), android.R.layout.simple_spinner_item, agencyList) {
+                this, android.R.layout.simple_spinner_item, agencyList) {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -124,11 +110,11 @@ public class SignUpFragment extends Fragment {
         //attaching data adapter to spinner
         agencySpinner.setAdapter(agencyDataAdapter);
 
-        final Button signUpButton = view.findViewById(R.id.signup);
-        final Button testSignUp = view.findViewById(R.id.test_signup);
-        final ProgressBar loadingProgressBar = view.findViewById(R.id.loading);
+        final Button signUpButton = findViewById(R.id.signup);
+        final Button testSignUp = findViewById(R.id.test_signup);
+        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-        signUpViewModel.getSignUpFormState().observe(getViewLifecycleOwner(), new Observer<SignUpFormState>() {
+        signUpViewModel.getSignUpFormState().observe(this, new Observer<SignUpFormState>() {
             @Override
             public void onChanged(@Nullable SignUpFormState signUpFormState) {
                 if (signUpFormState == null) {
@@ -145,7 +131,7 @@ public class SignUpFragment extends Fragment {
             }
         });
 
-        signUpViewModel.getSignUpResult().observe(getViewLifecycleOwner(), new Observer<SignUpResult>() {
+        signUpViewModel.getSignUpResult().observe(this, new Observer<SignUpResult>() {
             @Override
             public void onChanged(@Nullable SignUpResult signUpResult) {
                 if (signUpResult == null) {
@@ -158,10 +144,8 @@ public class SignUpFragment extends Fragment {
                 if (signUpResult.getSuccess() != null) {
                     updateUiWithUser(signUpResult.getSuccess());
                 }
-                getActivity().setResult(Activity.RESULT_OK);
-
-                //Complete and destroy signup activity once successful
-                getActivity().finish();
+                setResult(Activity.RESULT_OK);
+                finish();
             }
         });
 
@@ -185,8 +169,7 @@ public class SignUpFragment extends Fragment {
         };
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         password1EditText.addTextChangedListener(afterTextChangedListener);
-        //password2EditText.addTextChangedListener(afterTextChangedListener);
-        // agencyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener()
+        password2EditText.addTextChangedListener(afterTextChangedListener);
         password2EditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -207,8 +190,9 @@ public class SignUpFragment extends Fragment {
         agencySpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),0);
+                InputMethodManager imm =
+                        (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
                 return false;
             }
         });
@@ -231,7 +215,7 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(agency[0] == "Select Au Pair Agency") {
-                    Toast.makeText(getContext(),"Please Select Au Pair Agency", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Please Select Au Pair Agency", Toast.LENGTH_SHORT).show();
                 } else {
                     loadingProgressBar.setVisibility(View.VISIBLE);
                     signUpViewModel.signUp(usernameEditText.getText().toString(),
@@ -249,20 +233,17 @@ public class SignUpFragment extends Fragment {
         loginTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setReorderingAllowed(false);
-
-                transaction.replace(R.id.nav_host_fragment, new LoginFragment(), null);
-                transaction.commitNow();
+                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
+
         // TODO: For Testing RMV
         testSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usernameEditText.setText("TestUser");
-                userEmailEditText.setText("t76@test.com");
+                usernameEditText.setText("NUser");
+                userEmailEditText.setText("n@test.com");
                 password1EditText.setText("testUserpw1");
                 password2EditText.setText("testUserpw1");
                 firstNameEditText.setText("Tim");
@@ -270,13 +251,12 @@ public class SignUpFragment extends Fragment {
                 agency[0] = "Au Pair";
             }
         });
-        return view;
     }
 
     private void setupProfile(SignedUpUser user) {
         if( user != null ) {
             String token = user.getNewUserToken();
-            SharedPreferences preferences = getActivity().getSharedPreferences("userToken",MODE_PRIVATE);
+            SharedPreferences preferences = getSharedPreferences("userToken",MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("userToken", token );
             editor.apply();
@@ -290,10 +270,10 @@ public class SignUpFragment extends Fragment {
     private void updateUiWithUser(SignedUpUserView model) {
         String welcome = getString(R.string.prompt_welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience -> Set nav_header_main username to users name
-        Toast.makeText(getContext(), welcome, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
     private void showSignUpFailed(@StringRes Integer errorString) {
-        Toast.makeText(getContext(), errorString, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 }

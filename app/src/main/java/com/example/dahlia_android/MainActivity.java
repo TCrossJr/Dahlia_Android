@@ -10,9 +10,11 @@ import android.view.View;
 
 import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
+import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.login.LoginFragment;
 import com.example.dahlia_android.ui.messages.ConversationActivity;
 import com.example.dahlia_android.ui.messages.CreateMessageActivity;
+import com.example.dahlia_android.ui.signup.SignUpActivity;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfileActivity;
 import com.example.dahlia_android.ui.user.UserProfileCombinedList;
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         // TODO: CHANGE to setOpenableLayout(Openable) and remove login_test
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby, R.id.nav_login)
+                R.id.nav_home, R.id.nav_friends, R.id.nav_groups, R.id.nav_messages, R.id.nav_aupair_nearby, R.id.nav_login, R.id.nav_signup)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -103,25 +105,30 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // TODO: WIP
+    public void goToProfile(View view) {
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+
     public void goToProfile(View view, User usr) {
         Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("ThisUser", (Serializable) usr); // TODO: FIX/CHANGE/RMV doesn't pass User object
         startActivity(intent);
     }
 
-    public void goToProfile(View view) {
-        Intent intent = new Intent(this, UserProfileActivity.class);
+    public void createMessage(View view) {
+        Intent intent = new Intent(this, CreateMessageActivity.class);
         startActivity(intent);
     }
 
     public void goToConversation(View view) {
         Intent intent = new Intent(this, ConversationActivity.class);
-//        intent.putExtra("adapterPosition", getAdapterPosition());
         startActivity(intent);
     }
 
-    public void createMessage(View view) {
-        Intent intent = new Intent(this, CreateMessageActivity.class);
+    public void goLogin(MenuItem item) {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

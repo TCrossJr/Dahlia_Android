@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.dahlia_android.ui.home.HomeFeedFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_homefeed" />
 
     <fragment
         android:id="@+id/nav_messages"
@@ -43,37 +43,17 @@
         android:name="com.example.dahlia_android.ui.user.WelcomeProfileFragment"
         android:label="welcome_profile_fragment"
         tools:layout="@layout/fragment_welcome_profile" />
-    <fragment
+    <activity
         android:id="@+id/nav_login"
-        android:name="com.example.dahlia_android.ui.login.LoginFragment"
-        android:label="Sign In"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_nav_login_to_nav_signup"
-            app:destination="@id/nav_signup"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_login" />
-        <action
-            android:id="@+id/action_nav_login_to_nav_home"
-            app:destination="@id/nav_home" />
-    </fragment>
-    <fragment
+        android:name="com.example.dahlia_android.ui.login.LoginActivity"
+        tools:layout="@layout/activity_login"/>
+    <activity
         android:id="@+id/nav_signup"
-        android:name="com.example.dahlia_android.ui.signup.SignUpFragment"
-        android:label="Sign Up"
-        tools:layout="@layout/fragment_signup" >
-        <action
-            android:id="@+id/action_nav_signup_to_nav_login"
-            app:destination="@id/nav_login"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_login" />
-        <action
-            android:id="@+id/action_nav_signup_to_nav_home"
-            app:destination="@id/nav_home" />
-    </fragment>
+        android:name="com.example.dahlia_android.ui.signup.SignUpActivity"
+        tools:layout="@layout/activity_signup" />
     <activity
         android:id="@+id/nav_conversation"
         android:name="com.example.dahlia_android.ui.messages.ConversationActivity"
-        android:label="Coversation"
+        android:label="Conversation"
         tools:layout="@layout/activity_conversation" />
 </navigation>

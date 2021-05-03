@@ -13,11 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
-
-import java.util.ArrayList;
 
 public class HomeFeedFragment extends Fragment {
 
@@ -28,27 +25,32 @@ public class HomeFeedFragment extends Fragment {
 
     private RecyclerView rView;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static HomeFeedFragment newInstance() {
+        return new HomeFeedFragment();
     }
 
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_homefeed, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         homeViewModel =
                 new ViewModelProvider(this, new HomeFeedViewModelFactory())
                         .get(HomeFeedViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        rView = root.findViewById(R.id.feed_recycler_view);
+        rView = view.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        feed_adapter = new MainAdapter((ArrayList<Object>) MainActivity._homeFeed);
+        feed_adapter = new MainAdapter(homeViewModel.getFeed());
         feed_adapter.notifyDataSetChanged();
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);
         rView.scrollToPosition(0);
         rView.setAdapter(feed_adapter);
-        return root;
     }
 }
