@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 /**
  * Authentication result : success (user details) or error message.
  */
-class HomeFeedResult<T> {
+public class HomeFeedResult<T> {
     @Nullable
     private HomeFeedView success;
     @Nullable

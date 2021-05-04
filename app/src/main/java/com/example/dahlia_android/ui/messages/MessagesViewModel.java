@@ -15,7 +15,7 @@ public class MessagesViewModel extends ViewModel {
 
     MessagesViewModel(DataRepository dataRepository) { this.dataRepository = dataRepository; }
 
-    LiveData<MessagesResult> getMessagesResult() { return messagesResult; }
+    public LiveData<MessagesResult> getMessagesResult() { return messagesResult; }
 
     public void loadMessages() {
         Result<Conversations> messagesResult = dataRepository.loadConversations();

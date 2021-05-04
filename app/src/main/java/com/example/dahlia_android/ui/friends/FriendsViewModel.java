@@ -16,7 +16,7 @@ public class FriendsViewModel extends ViewModel {
 
     public FriendsViewModel(DataRepository dataRepository) { this.dataRepository = dataRepository; }
 
-    LiveData<FriendsResult> getFriendsResult() { return friendsResult; }
+    public LiveData<FriendsResult> getFriendsResult() { return friendsResult; }
 
     public void loadFriends() {
         Result<FriendsList> friendsResult = dataRepository.loadFriends();

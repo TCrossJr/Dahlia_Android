@@ -1,6 +1,7 @@
 package com.example.dahlia_android.ui.messages;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,11 +13,11 @@ import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 
 public class ConversationActivity extends AppCompatActivity {
+
     private ConversationViewModel conversationViewModel;
     protected MainAdapter conversation_adapter;
     protected LinearLayoutManager layoutManager;
     private RecyclerView rView;
-    public static Messages current_conversation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +27,19 @@ public class ConversationActivity extends AppCompatActivity {
                 new ViewModelProvider(this, new ConversationViewModelFactory()).get(ConversationViewModel.class);
         rView = findViewById(R.id.conversation_recycler);
         layoutManager = new LinearLayoutManager(this);
-
         Messages conversation = conversationViewModel.getConversation(0);
         conversation_adapter = new MainAdapter(conversation);
         conversation_adapter.notifyDataSetChanged();
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);
-        rView.scrollToPosition(0);
+        rView.scrollToPosition(conversation.size()-1);
+        rView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                rView.scrollToPosition(conversation.size()-1);
+            }
+        });
         rView.setAdapter(conversation_adapter);
     }
 }

@@ -17,8 +17,7 @@ public class DataRepository {
 
     private DataSource dataSource;
 
-    private LoggedInUser loggedInUser = null; //TODO: RMV???
-    private User user = null; // TODO:// RMV??? Might use for loadUser(User currently stored on LoginDataSource and MainActivity/SharedPreferences)
+    private User user = null; // TODO:// RMV??? Might use for loadUser
     private FriendsList friends_list = null;
     private Conversations conversations = null;
     private Feed feed = null;

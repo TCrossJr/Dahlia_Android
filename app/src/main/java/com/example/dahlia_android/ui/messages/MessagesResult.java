@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 /**
  * Authentication result : success (message details) or error message.
  */
-class MessagesResult<T> {
+public class MessagesResult<T> {
     @Nullable
     private MessagesView success;
     @Nullable

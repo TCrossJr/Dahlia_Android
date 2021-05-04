@@ -58,26 +58,34 @@ public class MessagesFragment extends Fragment {
         rView = root.findViewById(R.id.messages_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
 
-        messagesViewModel.loadMessages();
-        messagesViewModel.getMessagesResult().observe(getViewLifecycleOwner(), new Observer<MessagesResult>() {
-            @Override
-            public void onChanged(MessagesResult messagesResult) {
-                if(messagesResult == null) {
-                    return;
+        if( messagesViewModel.getConversations() == null) {
+            messagesViewModel.loadMessages();
+            messagesViewModel.getMessagesResult().observe(getViewLifecycleOwner(), new Observer<MessagesResult>() {
+                @Override
+                public void onChanged(MessagesResult messagesResult) {
+                    if (messagesResult == null) {
+                        return;
+                    }
+                    if (messagesResult.getError() != null) {
+                        showMessagesFailed(messagesResult.getError());
+                    }
+                    if (messagesResult.getSuccess() != null) {
+                        updateUiWithMessages(messagesResult.getSuccess());
+                    }
                 }
-                if(messagesResult.getError() != null) {
-                    showMessagesFailed(messagesResult.getError());
-                }
-                if(messagesResult.getSuccess() != null) {
-                    updateUiWithMessages(messagesResult.getSuccess());
-                }
-                getActivity().setResult(Activity.RESULT_OK);
-            }
-        });
+            });
+        } else
+            updateUI();
+
         return root;
     }
 
     private void updateUiWithMessages(MessagesView model) {
+        // not using MessagesView model currently
+        updateUI();
+    }
+
+    private void updateUI() {
         messages_adapter = new MainAdapter(messagesViewModel.getConversations());
         messages_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());

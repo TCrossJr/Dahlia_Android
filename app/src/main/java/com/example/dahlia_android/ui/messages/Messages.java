@@ -23,6 +23,11 @@ public class Messages extends ArrayList {
     public void deleteMessage( Message message ) { messages.remove(message); }
 
     public String getLastMessageText() {
-        return "Last message sent in this conversation";
+        if(this.size()==0) {
+            return "";
+        } else {
+            Message msg = (Message) this.get(this.size() - 1);
+            return msg.getMessageText();
+        }
     }
 }

@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 /**
  * Authentication result : success (user details) or error message.
  */
-class FriendsResult<T> {
+public class FriendsResult<T> {
     @Nullable
     private FriendsView success;
     @Nullable
@@ -20,12 +20,12 @@ class FriendsResult<T> {
     }
 
     @Nullable
-    FriendsView getSuccess() {
+    public FriendsView getSuccess() {
         return success;
     }
 
     @Nullable
-    Integer getError() {
+    public Integer getError() {
         return error;
     }
 }

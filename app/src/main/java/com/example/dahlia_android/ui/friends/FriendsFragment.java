@@ -40,26 +40,33 @@ public class FriendsFragment extends Fragment {
         rView = root.findViewById(R.id.friendslist_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
 
-        friendsViewModel.loadFriends();
-        friendsViewModel.getFriendsResult().observe(getViewLifecycleOwner(), new Observer<FriendsResult>() {
-            @Override
-            public void onChanged(FriendsResult friendsResult) {
-                if(friendsResult == null) {
-                    return;
+        if(friendsViewModel.getFriends() == null) {
+            friendsViewModel.loadFriends();
+            friendsViewModel.getFriendsResult().observe(getViewLifecycleOwner(), new Observer<FriendsResult>() {
+                @Override
+                public void onChanged(FriendsResult friendsResult) {
+                    if (friendsResult == null) {
+                        return;
+                    }
+                    if (friendsResult.getError() != null) {
+                        showFriendsFailed(friendsResult.getError());
+                    }
+                    if (friendsResult.getSuccess() != null) {
+                        updateUiWithFriends(friendsResult.getSuccess());
+                    }
                 }
-                if(friendsResult.getError() != null) {
-                    showFriendsFailed(friendsResult.getError());
-                }
-                if(friendsResult.getSuccess() != null) {
-                    updateUiWithFriends(friendsResult.getSuccess());
-                }
-                getActivity().setResult(Activity.RESULT_OK);
-            }
-        });
+            });
+        } else
+            updateUI();
         return root;
     }
 
     private void updateUiWithFriends(FriendsView model) {
+        // not using FriendsView model currently
+        updateUI();
+    }
+
+    private void updateUI() {
         friends_adapter = new MainAdapter(friendsViewModel.getFriends());
         friends_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());

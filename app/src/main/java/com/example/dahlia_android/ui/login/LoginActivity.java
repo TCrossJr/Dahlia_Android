@@ -24,11 +24,25 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dahlia_android.R;
+import com.example.dahlia_android.ui.friends.FriendsResult;
+import com.example.dahlia_android.ui.friends.FriendsViewModel;
+import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
+import com.example.dahlia_android.ui.groups.GroupsViewModel;
+import com.example.dahlia_android.ui.home.HomeFeedResult;
+import com.example.dahlia_android.ui.home.HomeFeedViewModel;
+import com.example.dahlia_android.ui.home.HomeFeedViewModelFactory;
+import com.example.dahlia_android.ui.messages.MessagesResult;
+import com.example.dahlia_android.ui.messages.MessagesViewModel;
+import com.example.dahlia_android.ui.messages.MessagesViewModelFactory;
 import com.example.dahlia_android.ui.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    private HomeFeedViewModel homeFeedViewModel;
+    private FriendsViewModel friendsViewModel;
+    private GroupsViewModel groupsViewModel;
+    private MessagesViewModel messagesViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +87,8 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {
+                    loadUserData();
                     updateUiWithUser(loginResult.getSuccess());
-/*                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                    transaction.setReorderingAllowed(false);
-                    transaction.replace(R.id.nav_host_fragment, HomeFeedFragment.newInstance(), null);
-                    transaction.commitNow();*/
                 }
                 setResult(Activity.RESULT_OK);
                 finish();
@@ -189,5 +199,75 @@ public class LoginActivity extends AppCompatActivity {
     public void goLogin(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    private void loadUserData() {
+        // TODO: uncomment when finished homefeed
+//        /* HomeFeed */
+//        homeFeedViewModel = new ViewModelProvider(this, new HomeFeedViewModelFactory())
+//                .get(HomeFeedViewModel.class);
+//        homeFeedViewModel.loadFeed();
+//        homeFeedViewModel.getFeed().observe(this, new Observer<HomeFeedResult>() {
+//            @Override
+//            public void onChanged(HomeFeedResult homeFeedResult) {
+//                if (homeFeedResult == null) {
+//                    return;
+//                }
+//                // do nothing first try, second try in HomeFeedFragment, if null then send error
+//
+//                // no UI update needed
+//            }
+//        });
+
+        /* Friends */
+        friendsViewModel = new ViewModelProvider(this, new FriendsViewModelFactory())
+                .get(FriendsViewModel.class);
+        friendsViewModel.loadFriends();
+        friendsViewModel.getFriendsResult().observe(this, new Observer<FriendsResult>() {
+            @Override
+            public void onChanged(FriendsResult friendsResult) {
+                if (friendsResult == null) {
+                    return;
+                }
+                if (friendsResult.getError() != null) {
+                    // do nothing first try, second try in FriendsFragment, if null then send error
+                }
+                if (friendsResult.getSuccess() != null) {
+                    // no UI update needed
+                }
+            }
+        });
+        // TODO: uncomment when Groups is finished
+//        /* Groups */
+//        groupsViewModel = new ViewModelProvider(this, new GroupsViewModelFactory())
+//                .get(GroupsViewModel.class);
+//        groupsViewModel.loadGroups();
+//        groupsViewModel.getGroupsResult().observe(this, new Observer<GroupsResult>() {
+//            @Override
+//            public void onChanged(GroupsResult groupsResult) {
+//                if (groupsResult == null) {
+//                    return;
+//                }
+//                // do nothing first try, second try in MessagesFragment, if null then send error
+//
+//                // no UI update needed
+//            }
+//        });
+
+        /* Messages */
+        messagesViewModel = new ViewModelProvider(this, new MessagesViewModelFactory())
+                .get(MessagesViewModel.class);
+        messagesViewModel.loadMessages();
+        messagesViewModel.getMessagesResult().observe(this, new Observer<MessagesResult>() {
+            @Override
+            public void onChanged(MessagesResult messagesResult) {
+                if (messagesResult == null) {
+                    return;
+                }
+                // do nothing first try, second try in MessagesFragment, if null then send error
+
+                // no UI update needed
+            }
+        });
     }
 }
