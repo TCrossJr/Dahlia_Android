@@ -89,4 +89,6 @@
     <string name="prompt_homefeed_failed">Feed failed to load.</string>
     <string name="conversation_message_hint">Enter Message</string>
     <string name="prompt_user_load_failed">Loading user failed.</string>
+    <string name="message_send">Send</string>
+    <string name="message_add_media">Add Media</string>
 </resources>

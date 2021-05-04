@@ -86,7 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 TextView initial = (TextView)super.getView(position, convertView, parent);
-                if(initial.getText().toString() == "Select Au Pair Agency") {
+                if(initial.getText().toString().equals("Select Au Pair Agency")) {
                     initial.setTextColor(Color.GRAY);
                 }
                 return initial;
@@ -95,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 TextView initial = (TextView)super.getDropDownView(position, convertView, parent);
-                if(initial.getText().toString() == "Select Au Pair Agency") {
+                if(initial.getText().toString().equals("Select Au Pair Agency")) {
                     initial.setVisibility(View.GONE);
                 } else {
                     initial.setVisibility(View.VISIBLE);

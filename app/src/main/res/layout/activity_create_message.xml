@@ -5,32 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/userTo"
+    <Spinner
+        android:id="@+id/user_to_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
         android:ems="15"
-        android:inputType="textPersonName"
         android:hint="@string/messages_create_to"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/text_message"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
         android:id="@+id/text_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:ems="15"
         android:hint="@string/messages_create_message"
-        android:textAlignment="textStart"
         android:inputType="textMultiLine"
+        android:maxLines="7"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@id/media_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_to_message" />
+
+
+    <ImageView
+        android:id="@+id/media_image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toTopOf="@+id/media_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_message"
+        app:srcCompat="@drawable/dahlia_logo_yellow_center_png" />
+
+    <Button
+        android:id="@+id/media_add"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/message_add_media"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/send_message"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/media_image" />
+
+    <Button
+        android:id="@+id/send_message"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/message_send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/userTo"
-        app:layout_constraintTop_toBottomOf="@id/userTo"
-        app:layout_constraintVertical_bias="0.04" />
-
+        app:layout_constraintStart_toEndOf="@+id/media_add"
+        app:layout_constraintTop_toBottomOf="@id/media_image"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

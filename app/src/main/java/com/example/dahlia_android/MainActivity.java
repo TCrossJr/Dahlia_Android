@@ -108,11 +108,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void createMessage(View view) {
-        Intent intent = new Intent(this, CreateMessageActivity.class);
-        startActivity(intent);
-    }
-
     public void goToConversation(View view) {
         Intent intent = new Intent(this, ConversationActivity.class);
         startActivity(intent);
