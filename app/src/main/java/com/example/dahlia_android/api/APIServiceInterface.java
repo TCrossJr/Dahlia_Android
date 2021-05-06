@@ -5,20 +5,27 @@ import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.messages.Conversations;
+import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
+import com.example.dahlia_android.ui.messages.RawMessage;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
 
 import java.util.ArrayList;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIServiceInterface {
 
@@ -69,7 +76,7 @@ public interface APIServiceInterface {
 
     //WIP
     @FormUrlEncoded
-    @GET("/rest-auth/create_profile/")
+    @POST("/rest-auth/create_profile/")
     Call<UserProfile> createProfile(
             @Header("Authorization") String token,
             @Field("date_of_birth") String dateOfBirth,
@@ -112,13 +119,28 @@ public interface APIServiceInterface {
             @Field("media") String mediaURL);
 
     //
+    @POST("/messages/send_message/")
+    Call<Void> sendMessage4(@Header("Authorization") String token,
+                               @Body RequestBody request);
+
+    //
+    @FormUrlEncoded
+    @POST("/messages/send_message/")
+    Call<Void> sendMessage(@Header("Authorization") String token,
+                            @Field("userID") int userID,
+                            @Field("friendID") int friendID,
+                            @Field("message") String message,
+                            @Field("media") String mediaURL);
+
+    //
+    @FormUrlEncoded
     @POST("/messages/send_message/{userID}/{friendID}")
-    Call<Void> sendMessage(
+    Call<Void> sendMessage5(
             @Header("Authorization") String token,
             @Path("userID") int userID,
             @Path("friendID") int friendID,
-            @Field("message") String message,
-            @Field("media") String mediaURL);
+            @Field(value = "message", encoded = true) String message,
+            @Field(value = "media", encoded = true) String mediaURL);
 
     //
     @GET("/messages/get_messages/{userID}")

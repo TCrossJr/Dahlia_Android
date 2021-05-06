@@ -1,35 +1,38 @@
 package com.example.dahlia_android.ui.messages;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.api.APIClient;
+import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
-import com.example.dahlia_android.ui.user.User;
+import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.IOException;
 
-import static java.util.Collections.*;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Response;
+
+import static com.example.dahlia_android.data.DataSource.TOKEN;
+import static com.example.dahlia_android.data.DataSource.USER_ID;
 
 public class CreateMessageActivity extends AppCompatActivity {
+    private static final String TAG = "CreateMessageActivity";
     private FriendsViewModel friendsViewModel;
+    private MessagesViewModel messagesViewModel;
+    private APIServiceInterface apiInterface;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,15 +42,18 @@ public class CreateMessageActivity extends AppCompatActivity {
         friendsViewModel =
                 new ViewModelProvider(this, new FriendsViewModelFactory())
                         .get(FriendsViewModel.class);
-        final Spinner messageToSpinner = findViewById(R.id.user_to_message);
-//        final EditText messageUserTo = findViewById(R.id.user_to_message);
+        messagesViewModel =
+                new ViewModelProvider(this, new MessagesViewModelFactory())
+                .get(MessagesViewModel.class);
+
+//        final Spinner messageToSpinner = findViewById(R.id.user_to_message);
+        final EditText messageUserTo = findViewById(R.id.user_to_message);
         final EditText messageText = findViewById(R.id.text_message);
         final ImageView messageMedia = findViewById(R.id.media_image);
         final Button messageAddMedia = findViewById(R.id.media_add);
         final Button messageSend = findViewById(R.id.send_message);
 
-
-        final FriendsList friends = friendsViewModel.getFriends();
+/*        final FriendsList friends = friendsViewModel.getFriends();
         final ArrayAdapter<User> userToAdapter = new ArrayAdapter<User>(
                 this, android.R.layout.simple_spinner_item,
                 friends != null ? new ArrayList<User>() : null ) {
@@ -71,6 +77,37 @@ public class CreateMessageActivity extends AppCompatActivity {
                 }
                 return initial;
             }
-        };
+        };*/
+        messageAddMedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Implement add media
+            }
+        });
+        messageSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //        int friendID = Integer.parseInt(messageUserTo.getText().toString());
+                int friendID = 152;
+                String message  = messageText.getText().toString();
+
+                try {
+                    apiInterface = APIClient.getClient().create(APIServiceInterface.class);
+                    String media = ""; // TODO: Implement
+                    RawMessage msg = new RawMessage(USER_ID, friendID, message, media);
+
+                    String json = new Gson().toJson(msg);
+                    RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
+//                    Call<Void> sendCall = apiInterface.sendMessage(TOKEN, body); // TODO: Hardcoded
+//                    Call<Void> sendCall = apiInterface.sendMessage(TOKEN, json); // TODO: Hardcoded
+                    Call<Void> sendCall = apiInterface.sendMessage(TOKEN, USER_ID, friendID, message, media); // TODO: Hardcoded
+//                    Call<Message> sendCall = apiInterface.sendMessage(msg); // TODO: Hardcoded
+                    Response<Void> response = sendCall.execute();
+                    Log.d(TAG, "sendMessage: " + response.message() );
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

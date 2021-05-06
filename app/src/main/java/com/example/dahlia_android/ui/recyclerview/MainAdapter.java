@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -29,6 +30,7 @@ import com.example.dahlia_android.data.DataSource;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.home.Post;
+import com.example.dahlia_android.ui.messages.CreateMessageActivity;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
@@ -243,11 +245,17 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
         else if( holder instanceof MessagesViewHolder) {
             Log.d(TAG, "Messages->" + position + "<-position");
-            Messages msg = (Messages) dataList.get(position);
             FriendsViewModel data = new FriendsViewModel(DataRepository.getInstance(new DataSource()));
-
+            int myID = 0;
+            try {
+                myID = data.getMyID();
+            } catch (NullPointerException e) {
+                // do nothing
+                return;
+            }
+            Messages msg = (Messages) dataList.get(position);
             User friend;
-            if(msg.getMessage(position).getMessageReceiver() != ApplicationUser.getCurrentUser().getUserID())
+            if(msg.getMessage(position).getMessageReceiver() != myID)
                 friend = data.getFriend(msg.getMessage(position).getMessageReceiver());
             else
                 friend = data.getFriend(msg.getMessage(position).getMessageCreator());

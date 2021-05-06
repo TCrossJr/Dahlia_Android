@@ -36,4 +36,12 @@ public class FriendsViewModel extends ViewModel {
     public User getFriend(int userID) {
         return dataRepository.getFriendByID(userID);
     }
+
+    public int getMyID() {
+        return dataRepository.getUser().getUserID();
+    }
+
+    public User getUser() {
+        return dataRepository.getUser();
+    }
 }

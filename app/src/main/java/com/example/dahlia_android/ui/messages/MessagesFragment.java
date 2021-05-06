@@ -40,11 +40,11 @@ public class MessagesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_messages, container, false);
+        View view = inflater.inflate(R.layout.fragment_messages, container, false);
         messagesViewModel =
                 new ViewModelProvider(this, new MessagesViewModelFactory())
                         .get(MessagesViewModel.class);
-        FloatingActionButton messageFab = root.findViewById(R.id.message_fab);
+        FloatingActionButton messageFab = view.findViewById(R.id.message_fab);
         messageFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,10 +55,10 @@ public class MessagesFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        rView = root.findViewById(R.id.messages_recycler_view);
+        rView = view.findViewById(R.id.messages_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
 
-        if( messagesViewModel.getConversations() == null) {
+        if (messagesViewModel.getConversations() == null) {
             messagesViewModel.loadMessages();
             messagesViewModel.getMessagesResult().observe(getViewLifecycleOwner(), new Observer<MessagesResult>() {
                 @Override
@@ -74,10 +74,9 @@ public class MessagesFragment extends Fragment {
                     }
                 }
             });
-        } else
-            updateUI();
-
-        return root;
+            } else
+                updateUI();
+        return view;
     }
 
     private void updateUiWithMessages(MessagesView model) {
