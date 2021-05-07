@@ -99,4 +99,9 @@
     <string name="prompt_post_failed_send">Failed to create post.</string>
     <string name="prompt_post_sent">Post created.</string>
     <string name="prompt_post_error_send">Error sending post.</string>
+    <string name="about_text">about_text</string>
+    <string name="about_HomeFeed">Home Feed</string>
+    <string name="string_textview" />
+    <string name="textview">TextView</string>
+    <string name="button">Button</string>
 </resources>
