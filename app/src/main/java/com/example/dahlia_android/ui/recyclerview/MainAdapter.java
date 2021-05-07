@@ -21,6 +21,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.ApplicationUser;
+import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
@@ -36,11 +37,21 @@ import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
 import com.example.dahlia_android.ui.user.UserProfileActivity;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 
@@ -482,7 +493,7 @@ public class MainAdapter extends RecyclerView.Adapter {
                                                 case DialogInterface.BUTTON_POSITIVE:
                                                     // Yes, Remove Post
                                                     removePost(current_Post, rvService);
-                                                    Log.d(TAG, "removePost: Post removed." );
+                                                    Log.d(TAG, "removePost: Removing post." );
                                                     break;
                                                 case DialogInterface.BUTTON_NEGATIVE:
                                                     // No Don't
@@ -508,10 +519,25 @@ public class MainAdapter extends RecyclerView.Adapter {
             try {
                 apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 //                Call<Void> removeCall = apiInterface.removePost(TOKEN, currentPost.getPostID()); // TODO: hardcoded token
-                Call<Void> removeCall = apiInterface.removePost(TOKEN, POST_ID, MY_USER_ID);
+                Call<Void> removeCall = apiInterface.removePost(TOKEN, currentPost.getPostID());
                 Response<Void> response = removeCall.execute();
+                if(response.isSuccessful()) {
+                    rvService.removeItem(getAdapterPosition());
+                } else {
+                    DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (which == DialogInterface.BUTTON_POSITIVE) {// Yes, Remove Post
+                                dialog.cancel();
+                                Log.d(TAG, "removePost: Error removing post.");
+                            }
+                        }
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                    builder.setMessage("Error deleting post. Try again later.")
+                            .setPositiveButton("OK", dialog).show();
+                }
                 Log.d(TAG, "removePost: " + response.message() );
-                rvService.removeItem(getAdapterPosition());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -523,7 +549,8 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
 
         public void setPostMedia(String mediaURL) {
-            postMedia.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
+            // TODO: Set Media image
+//            postMedia.setImageResource(R.drawable.dahlia_logo_yellow_center_png); // TODO: CHANGE/RMV
         }
 
         public void setPostText(String postText) {
@@ -531,7 +558,21 @@ public class MainAdapter extends RecyclerView.Adapter {
         }
 
         public void setPostDate(String postDate) {
-            this.postDate.setText(postDate);
+            SimpleDateFormat simpleDateFormat =
+                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+//            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+//            simpleDateFormat.setTimeZone(TimeZone.getDefault());
+//                    new SimpleDateFormat("YYYY-MM-DD'T'HH:MM:SS.S'Z'");
+            Date date = new Date();
+            try{
+                date = simpleDateFormat.parse(postDate);
+                assert date != null;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Date today = new Date();
+            long since = date.getTime() - today.getTime();
+            this.postDate.setText(String.valueOf(since));
         }
 
         public void setPostObject(Post post, RVService service) {
@@ -753,7 +794,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         private final ImageView messageProfileImageURL;
         private final TextView messageDisplayName;
         private final TextView messageText;
-        private Button messageMoreOptions;
+        private final Button messageMoreOptions;
 
         private Messages current_messages;
         private APIServiceInterface apiInterface;

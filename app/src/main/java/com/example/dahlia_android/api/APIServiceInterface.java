@@ -4,6 +4,9 @@ import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.home.Feed;
+import com.example.dahlia_android.ui.home.Post;
+import com.example.dahlia_android.ui.home.PostSend;
 import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
@@ -17,6 +20,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -102,7 +106,7 @@ public interface APIServiceInterface {
 
 
     // Works but removeFriends2 is preferred method using session authentication and retrieving userID
-    @POST("/friends/remove_friend/{friendID}/{userID}")
+    @DELETE("/friends/remove_friend/{friendID}/{userID}")
     Call<Void> removeFriend(
             @Header("Authorization") String token,
             @Path("friendID") int friendID,
@@ -170,7 +174,23 @@ public interface APIServiceInterface {
             @Field("friendID") int friendID);
 
 
+    /** ------------------------------------------------ */
     /** Posts */
+    //Works
+    @GET("/posts/feed/{userID}")
+    Call<Feed> getFeed(
+            @Header("Authorization") String token,
+            @Path("userID") int userID);
+
+    //Works
+    @FormUrlEncoded
+    @POST("/posts/create_post/")
+    Call<Post> createPost(
+            @Header("Authorization") String token,
+            @Field("post_creator") int userID,
+            @Field("post_text") String postText);
+
+    //
     // TODO: removeFriends2 is preferred method using session authentication and retrieving userID
     @POST("/posts/remove_post/{postID}")
     Call<Void> removePost2(
@@ -178,11 +198,10 @@ public interface APIServiceInterface {
             @Path("postID") int postID);
 
     //
-    @POST("/posts/remove_post/{postID}/{userID}")
+    @DELETE("/posts/remove_post/{postID}")
     Call<Void> removePost(
             @Header("Authorization") String token,
-            @Path("postID") int postID,
-            @Path("userID") int userID);
+            @Path("postID") int postID);
 
 
     /** Groups */

@@ -8,6 +8,7 @@ import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.home.Feed;
+import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
@@ -137,7 +138,36 @@ public class DataSource {
     }
 
     public Result<Feed> loadFeed() {
-        return null;
+        try {
+            /* handle loading homeFeed */
+            apiInterface = APIClient.getClient().create(APIServiceInterface.class);
+
+            // TODO: hardcoded token and userID
+            //Load Friends
+//            Call<Feed> callFeed = apiInterface.getFeed(TOKEN);
+            Call<Feed> callFeed = apiInterface.getFeed(TOKEN, USER_ID);
+            Response<Feed> response = callFeed.execute();
+//            Feed newFeed = (Feed)response.body();
+            Feed rawFeed = (Feed) response.body();
+
+            // convert and reconvert to correct type(FriendsList)...
+            Gson gson = new Gson();
+            String json = gson.toJson(rawFeed, Feed.class);
+//            Type feedType = new TypeToken<ArrayList<Post>>(){}.getType();
+            Type feedType = new TypeToken<Feed>(){}.getType();
+            Feed posts = gson.fromJson(json, feedType);
+//            ArrayList<Post> posts = gson.fromJson(json, feedType);
+            Feed newFeed = new Feed();
+            for ( Object rawPost : posts) {
+                Post post = new Post((LinkedTreeMap) rawPost);
+                newFeed.add(post);
+            }
+            Log.d(TAG, "loadFeed: Feed loaded." + newFeed.toString());
+            return new Result.Success<>(newFeed);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result.Error(new IOException("Error loading Feed", e));
+        }
     }
 
     public Result<User> loadUser() {

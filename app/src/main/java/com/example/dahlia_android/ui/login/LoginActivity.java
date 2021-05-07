@@ -203,21 +203,21 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loadUserData() {
         // TODO: uncomment when finished homefeed
-//        /* HomeFeed */
-//        homeFeedViewModel = new ViewModelProvider(this, new HomeFeedViewModelFactory())
-//                .get(HomeFeedViewModel.class);
-//        homeFeedViewModel.loadFeed();
-//        homeFeedViewModel.getFeed().observe(this, new Observer<HomeFeedResult>() {
-//            @Override
-//            public void onChanged(HomeFeedResult homeFeedResult) {
-//                if (homeFeedResult == null) {
-//                    return;
-//                }
-//                // do nothing first try, second try in HomeFeedFragment, if null then send error
-//
-//                // no UI update needed
-//            }
-//        });
+        /* HomeFeed */
+        homeFeedViewModel = new ViewModelProvider(this, new HomeFeedViewModelFactory())
+                .get(HomeFeedViewModel.class);
+        homeFeedViewModel.loadFeed();
+        homeFeedViewModel.getFeedResult().observe(this, new Observer<HomeFeedResult>() {
+            @Override
+            public void onChanged(HomeFeedResult homeFeedResult) {
+                if (homeFeedResult == null) {
+                    return;
+                }
+                // do nothing first try, second try in HomeFeedFragment, if null then send error
+
+                // no UI update needed
+            }
+        });
 
         /* Friends */
         friendsViewModel = new ViewModelProvider(this, new FriendsViewModelFactory())
@@ -229,12 +229,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (friendsResult == null) {
                     return;
                 }
-                if (friendsResult.getError() != null) {
                     // do nothing first try, second try in FriendsFragment, if null then send error
-                }
-                if (friendsResult.getSuccess() != null) {
+
                     // no UI update needed
-                }
             }
         });
         // TODO: uncomment when Groups is finished

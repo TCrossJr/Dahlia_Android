@@ -92,4 +92,11 @@
     <string name="message_send">Send</string>
     <string name="message_add_media">Add Media</string>
     <string name="prompt_send_message_failed">Message failed to send.</string>
+    <string name="prompt_post_failed_delete">Failed to delete post.</string>
+    <string name="post_create_post">Create Post</string>
+    <string name="post_send">Post</string>
+    <string name="title_create_post">Create Post</string>
+    <string name="prompt_post_failed_send">Failed to create post.</string>
+    <string name="prompt_post_sent">Post created.</string>
+    <string name="prompt_post_error_send">Error sending post.</string>
 </resources>

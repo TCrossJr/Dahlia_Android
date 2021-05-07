@@ -18,6 +18,10 @@ public class HomeFeedViewModel extends ViewModel {
 
     LiveData<HomeFeedResult> getHomeFeedResult() { return homeFeedResult; }
 
+    public LiveData<HomeFeedResult> getFeedResult() {
+        return homeFeedResult;
+    }
+
     public void loadFeed() {
         Result<Feed> feedResult = dataRepository.loadFeed();
 
@@ -35,5 +39,9 @@ public class HomeFeedViewModel extends ViewModel {
 
     public User getFriend(int userID) {
         return dataRepository.getFriendByID(userID);
+    }
+
+    public User getUser() {
+        return dataRepository.getUser();
     }
 }
