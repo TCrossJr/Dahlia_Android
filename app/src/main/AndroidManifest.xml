@@ -30,13 +30,13 @@
         </activity>
         <activity android:name=".ui.home.CreatePostActivity"
             android:excludeFromRecents="true"
-            android:label="@string/menu_message"
+            android:label="@string/title_create_post"
             android:noHistory="true">
 
         </activity>
         <activity android:name=".ui.messages.CreateMessageActivity"
             android:excludeFromRecents="true"
-            android:label="@string/title_create_post"
+            android:label="@string/menu_message"
             android:noHistory="true">
 
         </activity>

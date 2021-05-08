@@ -115,49 +115,30 @@ public interface APIServiceInterface {
 
     /** Messages */
     // Actual way we need to do it
-    @POST("/messages/send_message/")
-    Call<Void> sendMessage2(
-            @Header("Authorization") String token,
-            @Field("friendID") int friendID,
-            @Field("message") String message,
-            @Field("media") String mediaURL);
-
-    //
-    @POST("/messages/send_message/")
-    Call<Void> sendMessage4(@Header("Authorization") String token,
-                               @Body RequestBody request);
-
-    //
     @FormUrlEncoded
     @POST("/messages/send_message/")
-    Call<Void> sendMessage(@Header("Authorization") String token,
-                            @Field("userID") int userID,
-                            @Field("friendID") int friendID,
-                            @Field("message") String message,
-                            @Field("media") String mediaURL);
-
-    //
-    @FormUrlEncoded
-    @POST("/messages/send_message/{userID}/{friendID}")
-    Call<Void> sendMessage5(
+    Call<Message> sendMessage0(
             @Header("Authorization") String token,
-            @Path("userID") int userID,
-            @Path("friendID") int friendID,
-            @Field(value = "message", encoded = true) String message,
-            @Field(value = "media", encoded = true) String mediaURL);
+            @Field("message_creator") int creatorID,
+            @Field("message_receiver") int receiverID,
+            @Field("message_text") String messageText,
+            @Field("message_media") String messageMedia);
 
-    //
+
+    //Works
+    @FormUrlEncoded
+    @POST("/messages/send_message/")
+    Call<Message> sendMessage(
+            @Header("Authorization") String token,
+            @Field("message_creator") int creatorID,
+            @Field("message_receiver") int receiverID,
+            @Field("message_text") String messageText);
+
+    // Works
     @GET("/messages/get_messages/{userID}")
     Call<ArrayList<Messages>> getMessages(
             @Header("Authorization") String token,
             @Path("userID") int userID);
-
-    //
-    @FormUrlEncoded
-    @GET("/messages/get_messages/")
-    Call<Conversations> getMessages2(
-            @Header("Authorization") String token,
-            @Field(value="userID", encoded = true) int userID);
 
     //
     @POST("/messages/remove_message/")

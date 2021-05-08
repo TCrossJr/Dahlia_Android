@@ -1,11 +1,13 @@
 package com.example.dahlia_android.ui.messages;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
+import com.example.dahlia_android.ui.home.Post;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -23,6 +26,7 @@ import java.io.IOException;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.dahlia_android.data.DataSource.TOKEN;
@@ -87,24 +91,36 @@ public class CreateMessageActivity extends AppCompatActivity {
         messageSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //        int friendID = Integer.parseInt(messageUserTo.getText().toString());
                 int friendID = 152;
+//                String friendID = messageUserTo.getText().toString();
                 String message  = messageText.getText().toString();
+                String media = "testUrl/img.jpg"; // TODO: Implement
 
                 try {
                     apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-                    String media = ""; // TODO: Implement
-                    RawMessage msg = new RawMessage(USER_ID, friendID, message, media);
+//                    Call<Message> sendCall = apiInterface.sendMessage(TOKEN, USER_ID, friendID, message, media); // TODO: Hardcoded
+                    Call<Message> sendCall = apiInterface.sendMessage(TOKEN, USER_ID, friendID, message); // TODO: Hardcoded
+                    sendCall.enqueue(new Callback<Message>() {
+                        @Override
+                        public void onResponse(Call<Message> call, Response<Message> response) {
+                            if(response.isSuccessful()) {
+                                Toast.makeText(getBaseContext(), R.string.prompt_message_sent, Toast.LENGTH_LONG).show();
+                                Message msg = response.body();
+                                Log.d(TAG, "sendMessage: " + response.message());
+                                setResult(Activity.RESULT_OK);
+                                finish();
+                            } else {
+                                Toast.makeText(getBaseContext(), R.string.prompt_message_error_send, Toast.LENGTH_LONG).show();
+                            }
+                        }
 
-                    String json = new Gson().toJson(msg);
-                    RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
-//                    Call<Void> sendCall = apiInterface.sendMessage(TOKEN, body); // TODO: Hardcoded
-//                    Call<Void> sendCall = apiInterface.sendMessage(TOKEN, json); // TODO: Hardcoded
-                    Call<Void> sendCall = apiInterface.sendMessage(TOKEN, USER_ID, friendID, message, media); // TODO: Hardcoded
-//                    Call<Message> sendCall = apiInterface.sendMessage(msg); // TODO: Hardcoded
-                    Response<Void> response = sendCall.execute();
-                    Log.d(TAG, "sendMessage: " + response.message() );
-                } catch (IOException e) {
+                        @Override
+                        public void onFailure(Call<Message> call, Throwable t) {
+                            Toast.makeText(getBaseContext(), R.string.prompt_message_failed_send, Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "sendMessage: " + t.getMessage() );
+                        }
+                    });
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

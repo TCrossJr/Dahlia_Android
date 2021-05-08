@@ -191,16 +191,6 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, errorString, Toast.LENGTH_LONG).show();
     }
 
-    public void goSignUp(View view) {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-    public void goLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
     private void loadUserData() {
         // TODO: uncomment when finished homefeed
         /* HomeFeed */

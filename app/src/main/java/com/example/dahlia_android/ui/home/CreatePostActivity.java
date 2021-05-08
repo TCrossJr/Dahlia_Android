@@ -89,18 +89,11 @@ public class CreatePostActivity extends AppCompatActivity {
         postSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //        int friendID = Integer.parseInt(messageUserTo.getText().toString());
-                int friendID = 152;
                 String post  = postText.getText().toString();
                 String media = ""; // TODO: Implement
 
                 try {
                     apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-                    PostSend pst = new PostSend(USER_ID, post);
-//                    PostSend pst = new PostSend(USER_ID, post, media);
-//                    String json = new Gson().toJson(post, Post.class);
-//                    RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
-//                    Call<Post> sendCall = apiInterface.createPost(TOKEN, pst); // TODO: Hardcoded
                     Call<Post> sendCall = apiInterface.createPost(TOKEN, USER_ID, post); // TODO: Hardcoded
                     sendCall.enqueue(new Callback<Post>() {
                         @Override
@@ -109,13 +102,10 @@ public class CreatePostActivity extends AppCompatActivity {
                                 Toast.makeText(getBaseContext(), R.string.prompt_post_sent, Toast.LENGTH_LONG).show();
                                 Post p = response.body();
                                 Log.d(TAG, "createPost: " + response.message());
-                                homeFeedViewModel.loadFeed();
-//                                RecyclerView rv = findViewById(R.id.feed_recycler_view);
                                 setResult(Activity.RESULT_OK);
                                 finish();
                             } else {
                                 Toast.makeText(getBaseContext(), R.string.prompt_post_error_send, Toast.LENGTH_LONG).show();
-
                             }
                         }
 

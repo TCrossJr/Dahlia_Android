@@ -82,6 +82,7 @@ public class LoginViewModel extends ViewModel {
         return userResult;
     }
 
+    // TODO: Implement stored user
     public void loadUser() {
         Result<User> userResult = dataRepository.loadUser();
 
@@ -91,5 +92,9 @@ public class LoginViewModel extends ViewModel {
         } else {
             this.userResult.setValue(new UserResult(R.string.prompt_user_load_failed));
         }
+    }
+
+    public int getUserID() {
+        return dataRepository.getUser().getUserID();
     }
 }

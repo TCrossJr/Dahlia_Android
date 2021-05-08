@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.ApplicationUser;
@@ -31,6 +33,8 @@ import com.example.dahlia_android.data.DataSource;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.home.Post;
+import com.example.dahlia_android.ui.login.LoginViewModel;
+import com.example.dahlia_android.ui.login.LoginViewModelFactory;
 import com.example.dahlia_android.ui.messages.CreateMessageActivity;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
@@ -68,6 +72,7 @@ public class MainAdapter extends RecyclerView.Adapter {
     private ArrayList<Object> dataList;
     public static AdapterTypeList adapterList;
 
+    private LoginViewModel loginViewModel;
     private APIServiceInterface apiInterface;
     private RVService rvService;
 
@@ -110,7 +115,9 @@ public class MainAdapter extends RecyclerView.Adapter {
                 list.add(AdapterType.GROUP_TYPE);
             }
             else if( obj instanceof Message ) {
-                if(((Message) obj).getMessageCreator() == ApplicationUser.getCurrentUser().getUserID()) {
+                loginViewModel = new ViewModelProvider(ViewModelStore::new, new LoginViewModelFactory())
+                        .get(LoginViewModel.class);
+                if(((Message) obj).getMessageCreator() == loginViewModel.getUserID()) {
                     list.add(AdapterType.MESSAGE_TO_TYPE);
                 } else
                     list.add(AdapterType.MESSAGE_FROM_TYPE);
@@ -143,7 +150,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         else if( dataList.get(position) instanceof Messages)
             return AdapterType.MESSAGES_TYPE;
         else if( dataList.get(position) instanceof Message) {
-            if( ((Message) dataList.get(position)).getMessageCreator() == ApplicationUser.getCurrentUser().getUserID())
+            if( ((Message) dataList.get(position)).getMessageCreator() == loginViewModel.getUserID())
                 return AdapterType.MESSAGE_TO_TYPE;
             else
                 return AdapterType.MESSAGE_FROM_TYPE;
