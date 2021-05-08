@@ -56,4 +56,8 @@
         android:name="com.example.dahlia_android.ui.messages.ConversationActivity"
         android:label="Conversation"
         tools:layout="@layout/activity_conversation" />
+    <activity
+        android:id="@+id/aboutActivity"
+        android:name="com.example.dahlia_android.ui.about.AboutActivity"
+        android:label="AboutActivity" />
 </navigation>

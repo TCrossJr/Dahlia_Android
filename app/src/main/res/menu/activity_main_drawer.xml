@@ -35,11 +35,12 @@
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/about_icon"
-            android:title="@string/menu_about"/>
-        <item
+            android:title="@string/menu_about"
+            android:onClick="goAbout"/>
+<!--        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings_icon"
-            android:title="@string/action_settings" />
+            android:title="@string/action_settings" />-->
         <item
             android:id="@+id/nav_login"
             android:icon="@android:drawable/ic_lock_idle_lock"

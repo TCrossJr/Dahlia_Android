@@ -40,6 +40,12 @@
             android:noHistory="true">
 
         </activity>
+        <activity android:name=".ui.about.AboutActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/menu_about"
+            android:noHistory="true">
+
+        </activity>
         <activity android:name=".SearchableActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />

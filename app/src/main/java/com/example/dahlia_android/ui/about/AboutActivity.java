@@ -1,4 +1,4 @@
-package com.example.dahlia_android;
+package com.example.dahlia_android.ui.about;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +9,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-class AboutActivity extends AppCompatActivity {
+import com.example.dahlia_android.R;
+
+public class AboutActivity extends AppCompatActivity {
 
     private Button aboutButton, feedButton, profileButton, friendsButton, messageButton,  postButton, groupButton, findaupairButton, reportButton;
     private TextView aboutTextView, feedTextView, profileTextView, friendsTextView, messageTextView, postTextView, groupTextView, findaupairTextView;
