@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
-                Boolean remember = preferences.getBoolean("remember", false ) ;
+                boolean remember = preferences.getBoolean("remember", false ) ;
                 if( remember ) {
                     String userName = preferences.getString("username", "");
                     usernameEditText.setText(userName);

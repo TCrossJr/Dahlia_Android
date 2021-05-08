@@ -368,15 +368,15 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.menu_message_profile:
+                            switch (item.toString()) {
+                                case "Message":
                                     // TODO: Go to MSG. Should create a message to user being currently viewed
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.menu_invite_to_group_friends:
+                                case "Invite To Group":
                                     // TODO: Invite to group
                                     break;
-                                case R.id.menu_block_user_profile:
+                                case "Block User":
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -471,20 +471,20 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.menu_reply_post:
+                            switch (item.toString()) {
+                                case "Reply":
                                     // TODO: reply to Post
                                     break;
-                                case R.id.menu_like_post:
+                                case "Like Post":
                                     // TODO: like Post
                                     break;
-                                case R.id.menu_user_profile_post:
+                                case "UserProfile":
                                     // TODO: Go to profile of Post user
                                     break;
-                                case R.id.menu_invite_to_group_post:
+                                case "Invite To Group":
                                     // TODO: Invite Post user to Group
                                     break;
-                                case R.id.remove_post:
+                                case "Remove Post":
                                     // TODO: Prompt user if they want to remove post
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
@@ -617,18 +617,18 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.menu_message_friends:
+                            switch (item.toString()) {
+                                case "Message":
                                     // TODO: Go to MSG
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.menu_user_profile_friends:
+                                case "User Profile":
                                     // TODO: Go to Users profile
                                     break;
-                                case R.id.menu_invite_to_group_friends:
-                                    // TODO: Go to Users profile
+                                case "Invite To Group":
+                                    // TODO: Invite To Group
                                     break;
-                                case R.id.remove_friend:
+                                case "Remove Friend":
                                     // TODO: Prompt user if they want to remove friend
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
@@ -666,8 +666,24 @@ public class MainAdapter extends RecyclerView.Adapter {
                 Call<Void> removeCall = apiInterface.removeFriend(TOKEN, currentFriend.getUserID(), MY_USER_ID); // TODO: hardcoded token
                 Response<Void> response = removeCall.execute();
                 Log.d(TAG, "removeFriend: " + response.message() );
-                rvService.removeItem(getAdapterPosition());
-            } catch (IOException e) {
+                if(response.isSuccessful()) {
+                    rvService.removeItem(getAdapterPosition());
+                } else {
+                    DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (which == DialogInterface.BUTTON_POSITIVE) {// Yes, Remove Post
+                                dialog.cancel();
+                                Log.d(TAG, "removeFriend: Error removing Friend.");
+                            }
+                        }
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                    builder.setMessage("Error removing friend. Try again later.")
+                            .setPositiveButton("OK", dialog).show();
+                }
+                Log.d(TAG, "removeFriend: " + response.message() );
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -720,15 +736,12 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.menu_message_groups:
+                            switch (item.toString()) {
+                                case "Message":
                                     // TODO: Go to MSG // Change to Create Message
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.menu_invite_to_group_groups:
-                                    // TODO: Go to Users profile
-                                    break;
-                                case R.id.leave_group:
+                                case "Leave Group":
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -818,15 +831,18 @@ public class MainAdapter extends RecyclerView.Adapter {
                     menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.menu_reply_message:
+                            switch (item.toString()) {
+                                case "Reply":
                                     // TODO: Go to MSG // Change to Create Message
 //                                    Intent intent = new Intent(item.getMenuInfo(),)
                                     break;
-                                case R.id.menu_invite_to_group_messages:
+                                case "User Profile":
                                     // TODO: Go to Users profile
                                     break;
-                                case R.id.remove_message:
+                                case "Invite To Group":
+                                    // TODO: Invite To Group
+                                    break;
+                                case "Remove Message":
                                     DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
