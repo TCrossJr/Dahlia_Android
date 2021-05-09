@@ -125,13 +125,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-<<<<<<< HEAD
-    public void goHelp(MenuItem item){
-        Intent intent = new Intent(this, HelpActivity.class);
-=======
     public void goFindNearby(View view) {
         Intent intent = new Intent(this, AuPairNearByMapActivity.class);
->>>>>>> c02791cfd54bf5cc4e6150f0e03271d980348e6b
+
         startActivity(intent);
     }
 }
