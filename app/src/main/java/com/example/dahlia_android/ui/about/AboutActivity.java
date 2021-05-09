@@ -40,18 +40,18 @@ public class AboutActivity extends AppCompatActivity {
         findaupairTextView = findViewById(R.id.textView8);
 
         aboutButton.setText("About Dahlia");
-        feedButton.setText("News Feed");
+        feedButton.setText("RSS Feed");
         profileButton.setText("Profile");
         postButton.setText("Post");
         groupButton.setText("Group");
-        findaupairButton.setText("Find Au Pair Near By");
+        findaupairButton.setText("Find Au Pair Nearby");
         reportButton.setText("Report a Problem");
 
         aboutTextView.setText("..............");
         feedTextView.setText(".............");
         profileTextView.setText("............");
         postTextView.setText(".........");
-        groupTextView.setText("Groups are a function to shared interest with certain Au Pair friends. You can create group for your club, an event, a trip or anything.");
+        groupTextView.setText("Groups are a function to shared interest with certain Au Pair friends. You can create a group for your club, an event, a trip or anything.");
         findaupairTextView.setText("............");
 
         showText(aboutButton, aboutTextView);
@@ -78,5 +78,4 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
     }
-
 }

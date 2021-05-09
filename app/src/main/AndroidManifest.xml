@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dahlia_android">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -13,13 +19,33 @@
         android:roundIcon="@mipmap/dahlia_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DahliaAndroid">
-        <activity android:name=".ui.login.LoginActivity"
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <activity
+            android:name=".ui.nearby.AuPairNearByMapActivity"
+            android:label="@string/title_activity_au_pair_near_by_map">
+
+        </activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_activity_login"
             android:noHistory="true">
-        </activity>
 
-        <activity android:name=".ui.signup.SignUpActivity"
+        </activity>
+        <activity
+            android:name=".ui.signup.SignUpActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_activity_sign_up"
             android:noHistory="true">
@@ -28,19 +54,22 @@
         <activity android:name=".ui.messages.ConversationActivity">
 
         </activity>
-        <activity android:name=".ui.home.CreatePostActivity"
+        <activity
+            android:name=".ui.home.CreatePostActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_create_post"
             android:noHistory="true">
 
         </activity>
-        <activity android:name=".ui.messages.CreateMessageActivity"
+        <activity
+            android:name=".ui.messages.CreateMessageActivity"
             android:excludeFromRecents="true"
             android:label="@string/menu_message"
             android:noHistory="true">
 
         </activity>
-        <activity android:name=".ui.about.AboutActivity"
+        <activity
+            android:name=".ui.about.AboutActivity"
             android:excludeFromRecents="true"
             android:label="@string/menu_about"
             android:noHistory="true">
@@ -54,6 +83,13 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".ui.nearby.AuPairNearByActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/menu_aupair_nearby"
+            android:noHistory="true">
+
         </activity>
         <activity
             android:name=".ui.user.UserProfileActivity"

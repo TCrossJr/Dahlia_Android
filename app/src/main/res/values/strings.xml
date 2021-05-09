@@ -53,6 +53,11 @@
     <string name="messages_create_to">To:</string>
     <string name="message_send">Send</string>
     <string name="message_add_media">Add Media</string>
+    <string name="nearby_button_enable">Enable</string>
+    <string name="nearby_button_disable">Disable</string>
+    <string name="nearby_button_refresh">Refresh</string>
+    <string name="nearby_button_enabled">Enabled</string>
+    <string name="nearby_button_disabled">Disabled</string>
     <string name="post_create_post">Create Post</string>
     <string name="post_send">Post</string>
     <string name="prompt_homefeed_failed">Feed failed to load.</string>
@@ -70,6 +75,9 @@
     <string name="prompt_invalid_username">Not a valid username</string>
     <string name="prompt_invalid_password">Password must be >5 characters</string>
     <string name="prompt_welcome">"Welcome "</string>
+    <string name="prompt_message_sent">Message sent.</string>
+    <string name="prompt_message_error_send">Error sending message.</string>
+    <string name="prompt_message_failed_send">Failed to send message.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_text">about_text</string>
     <string name="about_HomeFeed">Home Feed</string>
@@ -103,7 +111,5 @@
     <string name="test_profile_followers">0</string>
     <string name="test_message_from1">Hey how\'s it going</string>
     <string name="test_message_date">Thursday, Apr 21 4:08 PM</string>
-    <string name="prompt_message_sent">Message sent.</string>
-    <string name="prompt_message_error_send">Error sending message.</string>
-    <string name="prompt_message_failed_send">Failed to send message.</string>
+    <string name="title_activity_au_pair_near_by_map">Map</string>
 </resources>

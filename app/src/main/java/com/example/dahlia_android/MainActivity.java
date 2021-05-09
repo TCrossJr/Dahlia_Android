@@ -21,6 +21,7 @@ import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.ConversationActivity;
+import com.example.dahlia_android.ui.nearby.AuPairNearByMapActivity;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfileActivity;
 import com.example.dahlia_android.ui.user.UserProfileCombinedList;
@@ -120,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goAbout(MenuItem item) {
         Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+
+    public void goFindNearby(View view) {
+        Intent intent = new Intent(this, AuPairNearByMapActivity.class);
         startActivity(intent);
     }
 }

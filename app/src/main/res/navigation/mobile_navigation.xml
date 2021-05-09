@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_groups" />
     <fragment
         android:id="@+id/nav_aupair_nearby"
-        android:name="com.example.dahlia_android.ui.nearby.AuPairNearByFragment"
+        android:name="com.example.dahlia_android.ui.nearby.AuPairNearbyFragment"
         android:label="Au Pair Nearby"
         tools:layout="@layout/au_pair_nearby_fragment" />
     <fragment
