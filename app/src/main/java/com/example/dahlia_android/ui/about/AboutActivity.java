@@ -40,6 +40,7 @@ public class AboutActivity extends AppCompatActivity {
         postButton = findViewById(R.id.button6);
         postTextView = findViewById(R.id.textView6);
 
+<<<<<<< HEAD
         likeButton = findViewById(R.id.button7);
         likeTextView = findViewById(R.id.textView7);
 
@@ -48,6 +49,22 @@ public class AboutActivity extends AppCompatActivity {
 
         groupButton = findViewById(R.id.button9);
         groupTextView = findViewById(R.id.textView9);
+=======
+        aboutButton.setText("About Dahlia");
+        feedButton.setText("RSS Feed");
+        profileButton.setText("Profile");
+        postButton.setText("Post");
+        groupButton.setText("Group");
+        findaupairButton.setText("Find Au Pair Nearby");
+        reportButton.setText("Report a Problem");
+
+        aboutTextView.setText("..............");
+        feedTextView.setText(".............");
+        profileTextView.setText("............");
+        postTextView.setText(".........");
+        groupTextView.setText("Groups are a function to shared interest with certain Au Pair friends. You can create a group for your club, an event, a trip or anything.");
+        findaupairTextView.setText("............");
+>>>>>>> c02791cfd54bf5cc4e6150f0e03271d980348e6b
 
         searchButton = findViewById(R.id.button10);
         searchTextView = findViewById(R.id.textView10);
@@ -118,5 +135,4 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
     }
-
 }
