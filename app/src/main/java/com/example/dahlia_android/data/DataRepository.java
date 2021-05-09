@@ -6,6 +6,7 @@ import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Messages;
+import com.example.dahlia_android.ui.nearby.NearbyUsers;
 import com.example.dahlia_android.ui.user.User;
 
 /**
@@ -22,6 +23,7 @@ public class DataRepository {
     private FriendsList friends_list = null;
     private Conversations conversations = null;
     private Feed feed = null;
+    private NearbyUsers nearbyUsers = null;
 
     // private constructor : singleton access
     private DataRepository(DataSource dataSource) {
@@ -138,5 +140,23 @@ public class DataRepository {
             setMessages(((Result.Success<Conversations>) conversationsResult).getData());
         }
         return conversationsResult;
+    }
+
+    /** AuPair Nearby */
+    public Result<NearbyUsers> loadNearby() {
+        // handle loading nearby
+        Result<NearbyUsers> nearbyUsersResult = dataSource.loadNearby();
+        if (nearbyUsersResult instanceof Result.Success) {
+            setNearby(((Result.Success<NearbyUsers>) nearbyUsersResult).getData());
+        }
+        return nearbyUsersResult;
+    }
+
+    private void setNearby(NearbyUsers data) {
+        this.nearbyUsers = data;
+    }
+
+    public NearbyUsers getNearbyUsers() {
+        return (NearbyUsers) nearbyUsers;
     }
 }
