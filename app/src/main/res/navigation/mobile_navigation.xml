@@ -60,4 +60,8 @@
         android:id="@+id/aboutActivity"
         android:name="com.example.dahlia_android.ui.about.AboutActivity"
         android:label="AboutActivity" />
+    <activity
+        android:id="@+id/helpActivity"
+        android:name="com.example.dahlia_android.ui.help.HelpActivity"
+        android:label="HelpActivity" />
 </navigation>

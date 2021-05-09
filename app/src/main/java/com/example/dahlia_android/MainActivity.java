@@ -18,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.dahlia_android.ui.about.AboutActivity;
 import com.example.dahlia_android.ui.groups.Groups;
+import com.example.dahlia_android.ui.help.HelpActivity;
 import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.ConversationActivity;
@@ -120,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goAbout(MenuItem item) {
         Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+
+    public void goHelp(MenuItem item){
+        Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
 }
