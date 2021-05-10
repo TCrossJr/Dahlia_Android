@@ -11,6 +11,8 @@ import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.messages.RawMessage;
+import com.example.dahlia_android.ui.nearby.AuPairNearby;
+import com.example.dahlia_android.ui.nearby.NearbyUsers;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
 
@@ -155,7 +157,6 @@ public interface APIServiceInterface {
             @Field("friendID") int friendID);
 
 
-    /** ------------------------------------------------ */
     /** Posts */
     //Works
     @GET("/posts/feed/{userID}")
@@ -198,4 +199,27 @@ public interface APIServiceInterface {
     Call<Void> removeGroup(
             @Header("Authorization") String token,
             @Path("groupID") int groupID);
+
+    /* ------------------------------------------------ */
+    /** AuPair Nearby */
+    //
+    @GET("/aupairnearby/get_nearby/")
+    Call<NearbyUsers> getNearby(
+            @Header("Authorization") String token);
+
+    //
+    @FormUrlEncoded
+    @POST("/aupairnearby/create_nearby/")
+    Call<AuPairNearby> createNearby(
+            @Header("Authorization") String token,
+            @Field("user") int user,
+            @Field("enable") boolean enable,
+            @Field("latitude") Double latitude,
+            @Field("longitude") Double longitude);
+
+    //
+    @DELETE("/aupairnearby/remove_nearby/{nearbyID}")
+    Call<Void> removeNearby(
+            @Header("Authorization") String token,
+            @Path("nearbyID") int nearbyID);
 }

@@ -127,7 +127,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goFindNearby(View view) {
         Intent intent = new Intent(this, AuPairNearByMapActivity.class);
+        startActivity(intent);
+    }
 
+    public void goHelp(MenuItem item) {
+        Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
 }

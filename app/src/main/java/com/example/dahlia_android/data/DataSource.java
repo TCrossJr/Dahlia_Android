@@ -12,6 +12,7 @@ import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
+import com.example.dahlia_android.ui.nearby.NearbyUsers;
 import com.example.dahlia_android.ui.user.User;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -167,6 +168,41 @@ public class DataSource {
         } catch (Exception e) {
             e.printStackTrace();
             return new Result.Error(new IOException("Error loading Feed", e));
+        }
+    }
+
+
+    public Result<NearbyUsers> loadNearby() {
+        try {
+            /* handle loading nearby */
+            apiInterface = APIClient.getClient().create(APIServiceInterface.class);
+
+            // TODO: hardcoded token and userID
+            //Load nearby
+//            Call<Feed> callFeed = apiInterface.getFeed(TOKEN);
+            Call<NearbyUsers> callFeed = apiInterface.getNearby(TOKEN);
+            Response<NearbyUsers> response = callFeed.execute();
+//            Feed newFeed = (Feed)response.body();
+            NearbyUsers newNearby = (NearbyUsers) response.body();
+/*
+            // convert and reconvert to correct type(FriendsList)...
+            Gson gson = new Gson();
+            String json = gson.toJson(rawFeed, Feed.class);
+//            Type feedType = new TypeToken<ArrayList<Post>>(){}.getType();
+            Type feedType = new TypeToken<Feed>(){}.getType();
+            Feed posts = gson.fromJson(json, feedType);
+//            ArrayList<Post> posts = gson.fromJson(json, feedType);
+            Feed newFeed = new Feed();
+            for ( Object rawPost : posts) {
+                Post post = new Post((LinkedTreeMap) rawPost);
+                newFeed.add(post);
+            }
+            */
+            Log.d(TAG, "loadNearby: Nearby loaded." + newNearby.toString());
+            return new Result.Success<>(newNearby);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result.Error(new IOException("Error loading Nearby Users", e));
         }
     }
 
