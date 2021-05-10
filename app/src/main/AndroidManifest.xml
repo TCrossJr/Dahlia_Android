@@ -18,7 +18,9 @@
         android:roundIcon="@mipmap/dahlia_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DahliaAndroid">
-        <activity android:name=".ui.help.HelpActivity"></activity>
+        <activity android:name=".ui.help.HelpActivity"
+            android:label="@string/menu_help">
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -28,38 +30,54 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
         <activity
             android:name=".ui.nearby.AuPairNearByMapActivity"
-            android:label="@string/title_activity_au_pair_near_by_map"></activity>
+            android:label="@string/title_activity_au_pair_near_by_map">
+
+        </activity>
         <activity
             android:name=".ui.login.LoginActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_activity_login"
-            android:noHistory="true"></activity>
+            android:noHistory="true">
+
+        </activity>
         <activity
             android:name=".ui.signup.SignUpActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_activity_sign_up"
-            android:noHistory="true"></activity>
+            android:noHistory="true">
+
+        </activity>
         <activity android:name=".ui.messages.ConversationActivity"></activity>
         <activity
             android:name=".ui.home.CreatePostActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_create_post"
-            android:noHistory="true"></activity>
+            android:noHistory="true">
+
+        </activity>
         <activity
             android:name=".ui.messages.CreateMessageActivity"
             android:excludeFromRecents="true"
             android:label="@string/menu_message"
-            android:noHistory="true"></activity>
+            android:noHistory="true">
+
+        </activity>
         <activity
             android:name=".ui.about.AboutActivity"
             android:excludeFromRecents="true"
             android:label="@string/menu_about"
-            android:noHistory="true"></activity>
+            android:noHistory="true">
+
+        </activity>
         <activity android:name=".SearchableActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
