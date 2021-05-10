@@ -4,6 +4,7 @@ import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.home.PostSend;
@@ -187,6 +188,12 @@ public interface APIServiceInterface {
 
 
     /** Groups */
+    //
+    @GET("/groups/get_groups/{userID}")
+    Call<Groups> getGroups(
+            @Header("Authorization") String token,
+            @Path("userID") int userID);
+
     // Remove User from Group
     @POST("/groups/remove_group_user/{groupID}/{userID}")
     Call<Void> removeGroupUser(
@@ -200,7 +207,7 @@ public interface APIServiceInterface {
             @Header("Authorization") String token,
             @Path("groupID") int groupID);
 
-    /* ------------------------------------------------ */
+
     /** AuPair Nearby */
     //
     @GET("/aupairnearby/get_nearby/")

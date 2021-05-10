@@ -2,16 +2,14 @@ package com.example.dahlia_android.ui.nearby;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.data.DataRepository;
 import com.example.dahlia_android.data.Result;
-import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.user.User;
 
-import java.util.ArrayList;
-
-public class AuPairNearbyViewModel {
+public class AuPairNearbyViewModel extends ViewModel {
 
     private MutableLiveData<AuPairNearbyResult> nearbyResult = new MutableLiveData<AuPairNearbyResult>();
     private DataRepository dataRepository;

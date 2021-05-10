@@ -1,9 +1,9 @@
 package com.example.dahlia_android.data;
 
-import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.groups.Group;
+import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
-import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.nearby.NearbyUsers;
@@ -24,6 +24,7 @@ public class DataRepository {
     private Conversations conversations = null;
     private Feed feed = null;
     private NearbyUsers nearbyUsers = null;
+    private Groups groups = null;
 
     // private constructor : singleton access
     private DataRepository(DataSource dataSource) {
@@ -158,5 +159,22 @@ public class DataRepository {
 
     public NearbyUsers getNearbyUsers() {
         return (NearbyUsers) nearbyUsers;
+    }
+
+    public Result<Groups> loadGroups() {
+        // handle loading groups
+        Result<Groups> groupsResult = dataSource.loadGroups();
+        if (groupsResult instanceof Result.Success) {
+            setGroups(((Result.Success<Groups>) groupsResult).getData());
+        }
+        return groupsResult;
+    }
+
+    private void setGroups(Groups data) {
+        this.groups = data;
+    }
+
+    public Groups getGroups() {
+        return (Groups)groups;
     }
 }

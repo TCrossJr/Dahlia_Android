@@ -55,8 +55,7 @@ public class AuPairNearByMapActivity extends FragmentActivity implements OnMapRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aupair_nearby);
 
-//        auPairNearbyViewModel = new ViewModelProvider(this, new AuPairNearbyViewModelFactory())
-//                .get(AuPairNearbyViewModel.class);
+        auPairNearbyViewModel = new ViewModelProvider(this, new AuPairNearbyViewModelFactory()).get(AuPairNearbyViewModel.class);
 //        auPairNearbyViewModel = new ViewModelStore(this, new AuPairNearbyViewModelFactory()).get(AuPairNearbyViewModel.class);
 //        binding = ActivityAuPairNearByMapBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());

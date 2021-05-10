@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dahlia_android.data.DataRepository;
 import com.example.dahlia_android.data.DataSource;
-import com.example.dahlia_android.ui.friends.FriendsViewModel;
 
 /**
  * ViewModel provider factory to instantiate MessagesViewModel.

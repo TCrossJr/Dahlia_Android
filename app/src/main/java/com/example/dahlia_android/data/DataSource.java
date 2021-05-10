@@ -7,6 +7,7 @@ import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Conversations;
@@ -208,5 +209,25 @@ public class DataSource {
 
     public Result<User> loadUser() {
         return null;
+    }
+
+    public Result<Groups> loadGroups() {
+        try {
+            /* handle loading groups */
+            apiInterface = APIClient.getClient().create(APIServiceInterface.class);
+
+            // TODO: hardcoded token and userID
+            //Load Groups
+//            Call<Groups> callGroups = apiInterface.getGroups(TOKEN);
+            Call<Groups> callGroups = apiInterface.getGroups(TOKEN, USER_ID);
+            Response<Groups> response = callGroups.execute();
+            Groups newGroups = (Groups) response.body();
+
+            Log.d(TAG, "loadGroups: Groups loaded." + newGroups.toString());
+            return new Result.Success<>(newGroups);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result.Error(new IOException("Error loading Groups.", e));
+        }
     }
 }

@@ -11,7 +11,7 @@ import com.example.dahlia_android.ui.user.User;
 
 public class MessagesViewModel extends ViewModel {
 
-    private MutableLiveData<MessagesResult> messagesResult = new MutableLiveData<MessagesResult>();
+    private MutableLiveData<MessagesResult> messagesResult = new MutableLiveData<>();
     private DataRepository dataRepository;
 
     MessagesViewModel(DataRepository dataRepository) { this.dataRepository = dataRepository; }

@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,19 +27,50 @@ public class GroupsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        groupsViewModel =
-                new ViewModelProvider(this).get(GroupsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_groups, container, false);
+        groupsViewModel =
+                new ViewModelProvider(this, new GroupsViewModelFactory())
+                        .get(GroupsViewModel.class);
         rView = root.findViewById(R.id.groups_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        groups_adapter = new MainAdapter(MainActivity._groupsList); //TODO: Move to ViewModel/DataSource/DataRepository
-        groups_adapter.notifyDataSetChanged();
+        if(groupsViewModel.getGroups() == null) {
+            groupsViewModel.loadGroups();
+            groupsViewModel.getGroupsResult().observe(getViewLifecycleOwner(), new Observer<GroupsResult>() {
+                @Override
+                public void onChanged(GroupsResult groupsResult) {
+                    if (groupsResult == null) {
+                        return;
+                    }
+                    if (groupsResult.getError() != null) {
+                        showGroupsFailed(groupsResult.getError());
+                    }
+                    if (groupsResult.getSuccess() != null) {
+                        updateUiWithGroups(groupsResult.getSuccess());
+                    }
+                }
+            });
+        } else
+            updateUI();
+        return root;
+    }
 
+    private void updateUiWithGroups(GroupsView model) {
+        updateUI();
+    }
+
+    private void updateUI() {
+        groups_adapter = new MainAdapter(MainActivity._groupsList); //TODO: Move to ViewModel/DataSource/DataRepository
+        groups_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
         rView.setLayoutManager(layoutManager);
         rView.scrollToPosition(0);
+        groups_adapter.notifyDataSetChanged();
         rView.setAdapter(groups_adapter);
-        return root;
+    }
+
+    private void showGroupsFailed(Integer error) {
+        // TODO: Change how to display(or not) error
+        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 }

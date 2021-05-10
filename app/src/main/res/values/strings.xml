@@ -64,6 +64,7 @@
     <string name="prompt_user_load_failed">Loading user failed.</string>
     <string name="prompt_send_message_failed">Message failed to send.</string>
     <string name="prompt_messages_failed">Messages failed to load.</string>
+    <string name="prompt_groups_failed">Groups failed to load.</string>
     <string name="prompt_post_failed_delete">Failed to delete post.</string>
     <string name="prompt_post_failed_send">Failed to create post.</string>
     <string name="prompt_post_sent">Post created.</string>
