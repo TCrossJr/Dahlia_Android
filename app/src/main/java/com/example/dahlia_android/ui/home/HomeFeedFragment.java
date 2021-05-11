@@ -58,8 +58,7 @@ public class HomeFeedFragment extends Fragment {
         rView = view.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
 
-//        if(homeViewModel.getFeed() == null && homeViewModel.getUser() != null) {
-        if(homeViewModel.getFeed() == null) {
+        if(homeViewModel.getFeed() == null && homeViewModel.getUser() != null) {
             homeViewModel.loadFeed();
             homeViewModel.getHomeFeedResult().observe(getViewLifecycleOwner(), new Observer<HomeFeedResult>() {
                 @Override

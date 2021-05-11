@@ -42,7 +42,7 @@ public class GroupsFragment extends Fragment {
         });
         rView = view.findViewById(R.id.groups_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
-        if(groupsViewModel.getGroups() == null) {
+        if(groupsViewModel.getGroups() == null && groupsViewModel.getUser() != null) {
             groupsViewModel.loadGroups();
             groupsViewModel.getGroupsResult().observe(getViewLifecycleOwner(), new Observer<GroupsResult>() {
                 @Override

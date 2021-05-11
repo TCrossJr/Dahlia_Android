@@ -1,25 +1,24 @@
 package com.example.dahlia_android.ui.nearby;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
+import com.example.dahlia_android.data.DataRepository;
+import com.example.dahlia_android.data.DataSource;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,8 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import static com.example.dahlia_android.data.DataSource.TOKEN;
-import static com.example.dahlia_android.data.DataSource.USER_ID;
+import static com.example.dahlia_android.data.DataSource.NEARBY_ID;
 //import com.example.dahlia_android.ui.nearby.databinding.ActivityAuPairNearByMapBinding;
 
 public class AuPairNearByMapActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -46,7 +44,6 @@ public class AuPairNearByMapActivity extends FragmentActivity implements OnMapRe
     private RecyclerView rView;
     protected MainAdapter nearby_adapter;
     protected LinearLayoutManager layoutManager;
-    private int NEARBY_ID = 3;
 //    private AuPairNearbyViewModel auPairNearbyViewModel;
 //    private ActivityAuPairNearByMapBinding binding;
 
@@ -180,7 +177,9 @@ public class AuPairNearByMapActivity extends FragmentActivity implements OnMapRe
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
             double latitude = 44.08444;
             double longitude = -73.35694;
-            Call<AuPairNearby> createCall = apiInterface.createNearby(TOKEN, USER_ID, true, latitude, longitude); // TODO: hardcoded token
+            DataRepository data = DataRepository.getInstance(new DataSource());
+            Call<AuPairNearby> createCall = apiInterface.createNearby(data.getTokenString(),
+                    data.getUser().getUserID(), true, latitude, longitude);
             Response<AuPairNearby> response = createCall.execute();
             Log.d(TAG, "createNearby: " + response.message() );
             if(response.isSuccessful()) {
@@ -209,7 +208,8 @@ public class AuPairNearByMapActivity extends FragmentActivity implements OnMapRe
     private void removeNearbyUser() {
         try {
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-            Call<Void> removeCall = apiInterface.removeNearby(TOKEN, NEARBY_ID); // TODO: hardcoded token
+            Call<Void> removeCall = apiInterface.removeNearby(
+                    DataRepository.getInstance(new DataSource()).getTokenString(), NEARBY_ID);
             Response<Void> response = removeCall.execute();
             Log.d(TAG, "removeNearby: " + response.message() );
             if(response.isSuccessful()) {

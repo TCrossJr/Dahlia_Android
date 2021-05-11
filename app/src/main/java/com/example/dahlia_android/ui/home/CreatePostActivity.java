@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
+import com.example.dahlia_android.data.DataRepository;
+import com.example.dahlia_android.data.DataSource;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
 import com.example.dahlia_android.ui.messages.MessagesViewModel;
@@ -33,8 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.dahlia_android.data.DataSource.TOKEN;
-import static com.example.dahlia_android.data.DataSource.USER_ID;
+//import static com.example.dahlia_android.data.DataSource.TOKEN;
+//import static com.example.dahlia_android.data.DataSource.USER_ID;
 
 public class CreatePostActivity extends AppCompatActivity {
     private static final String TAG = "CreateMessageActivity";
@@ -94,7 +96,8 @@ public class CreatePostActivity extends AppCompatActivity {
 
                 try {
                     apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-                    Call<Post> sendCall = apiInterface.createPost(TOKEN, USER_ID, post); // TODO: Hardcoded
+                    DataRepository data = DataRepository.getInstance(new DataSource());
+                    Call<Post> sendCall = apiInterface.createPost(data.getTokenString(), data.getUser().getUserID(), post);
                     sendCall.enqueue(new Callback<Post>() {
                         @Override
                         public void onResponse(Call<Post> call, Response<Post> response) {

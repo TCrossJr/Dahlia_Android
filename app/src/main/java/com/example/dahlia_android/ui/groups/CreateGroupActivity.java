@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,16 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
-import com.example.dahlia_android.ui.home.HomeFeedViewModel;
-import com.example.dahlia_android.ui.home.HomeFeedViewModelFactory;
-import com.example.dahlia_android.ui.home.Post;
+import com.example.dahlia_android.data.DataRepository;
+import com.example.dahlia_android.data.DataSource;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.example.dahlia_android.data.DataSource.TOKEN;
-import static com.example.dahlia_android.data.DataSource.USER_ID;
 
 public class CreateGroupActivity extends AppCompatActivity {
     private static final String TAG = "CreateGroupActivity";
@@ -50,7 +45,11 @@ public class CreateGroupActivity extends AppCompatActivity {
 
                 try {
                     apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-                    Call<Group> createCall = apiInterface.createGroup(TOKEN, USER_ID, name); // TODO: Hardcoded
+//                    Call<Group> createCall = apiInterface.createGroup(TOKEN, groupsViewModel.getUser(), name, groupsViewModel.getUser()); // TODO: Hardcoded token
+                    int userID = groupsViewModel.getUser().getUserID();
+                    Call<Group> createCall = apiInterface.createGroup(
+                            DataRepository.getInstance(new DataSource()).getTokenString(),
+                            userID, name, userID);
                     createCall.enqueue(new Callback<Group>() {
                         @Override
                         public void onResponse(Call<Group> call, Response<Group> response) {

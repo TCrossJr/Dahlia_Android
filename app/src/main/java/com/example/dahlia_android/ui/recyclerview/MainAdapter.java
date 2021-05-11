@@ -13,17 +13,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dahlia_android.ApplicationUser;
-import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
@@ -35,40 +31,26 @@ import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginViewModel;
 import com.example.dahlia_android.ui.login.LoginViewModelFactory;
-import com.example.dahlia_android.ui.messages.CreateMessageActivity;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
 import com.example.dahlia_android.ui.user.UserProfile;
 import com.example.dahlia_android.ui.user.UserProfileActivity;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class MainAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = "MainAdapter";
-    // TODO: RMV hardcoded USER_ID, TOKEN, MSG_ID, etc...
-    private static final int MY_USER_ID = 148;
-    public static final String TOKEN = "4c82f31197fb2300a90b13de623c8d335854037a";
-    public static final int MSG_ID = -1;
-    public static final int FRIEND_ID = -1;
-    private static final int POST_ID = -1;
-    private static final int GROUP_USER_ID = -1;
     private ArrayList<Object> dataList;
     public static AdapterTypeList adapterList;
 
@@ -219,8 +201,8 @@ public class MainAdapter extends RecyclerView.Adapter {
             Post post = (Post) dataList.get(position);
             ((PostViewHolder) holder).setPostObject(post, rvService);
             ((PostViewHolder) holder).setPostText(post.getPostText());
-            ((PostViewHolder) holder).setPostMedia("");// TODO: Change/RMV
-            ((PostViewHolder) holder).setPostProfileThumbnail("");// TODO: Change/RMV
+            ((PostViewHolder) holder).setPostMedia("");// TODO: Change
+            ((PostViewHolder) holder).setPostProfileThumbnail("");// TODO: Change
             ((PostViewHolder) holder).setPostDate(post.getPostDate());
             ((PostViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -234,7 +216,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             Log.d(TAG, "Friend->" + position + "<-position");
             User user = (User) dataList.get(position);
             ((FriendViewHolder) holder).setFriendObject(user, rvService);
-            ((FriendViewHolder) holder).setFriendsProfileThumbnail(""); // TODO: RMV/CHANGE
+            ((FriendViewHolder) holder).setFriendsProfileThumbnail(""); // TODO: Change
             ((FriendViewHolder) holder).setFriendsDisplayName(user.getUsername());
             ((FriendViewHolder) holder).setFriendsDescription(String.valueOf(user.getUserID())); // TODO: Change to description not UserID
             ((FriendViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -250,7 +232,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             Log.d(TAG, "Group->" + position + "<-position");
             Group group = (Group) dataList.get(position);
             ((GroupViewHolder) holder).setGroupObject(group, rvService);
-            ((GroupViewHolder) holder).setGroupThumbnail(""); // TODO: RMV
+            ((GroupViewHolder) holder).setGroupThumbnail(""); // TODO: Change
             ((GroupViewHolder) holder).setGroupName(group.getGroupName());
             ((GroupViewHolder) holder).setGroupDescription(group.getGroupDescription());
             ((GroupViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -279,7 +261,7 @@ public class MainAdapter extends RecyclerView.Adapter {
                 friend = data.getFriend(msg.getMessage(position).getMessageCreator());
 
             ((MessagesViewHolder) holder).setMessagesObject(msg, rvService);
-            ((MessagesViewHolder) holder).setMessagesProfileImageURL(""); // TODO: CHANGE
+            ((MessagesViewHolder) holder).setMessagesProfileImageURL(""); // TODO: Change
             ((MessagesViewHolder) holder).setMessagesDisplayName(friend.getUsername());
             ((MessagesViewHolder) holder).setMessagesText(msg.getLastMessageText());
             ((MessagesViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -525,8 +507,9 @@ public class MainAdapter extends RecyclerView.Adapter {
         private void removePost(Post currentPost, RVService rvService) {
             try {
                 apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-//                Call<Void> removeCall = apiInterface.removePost(TOKEN, currentPost.getPostID()); // TODO: hardcoded token
-                Call<Void> removeCall = apiInterface.removePost(TOKEN, currentPost.getPostID());
+                Call<Void> removeCall = apiInterface.removePost(
+                        DataRepository.getInstance(new DataSource()).getTokenString(),
+                        currentPost.getPostID());
                 Response<Void> response = removeCall.execute();
                 if(response.isSuccessful()) {
                     rvService.removeItem(getAdapterPosition());
@@ -669,8 +652,11 @@ public class MainAdapter extends RecyclerView.Adapter {
         private void removeFriend(User currentFriend, RVService rvService) {
             try {
                 apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-//                Call<Void> removeCall = apiInterface.removeFriend(TOKEN, currentFriend.getUserID());
-                Call<Void> removeCall = apiInterface.removeFriend(TOKEN, currentFriend.getUserID(), MY_USER_ID); // TODO: hardcoded token
+                DataRepository data = DataRepository.getInstance(new DataSource());
+                Call<Void> removeCall = apiInterface.removeFriend(
+                        data.getTokenString(),
+                        currentFriend.getUserID(),
+                        data.getUser().getUserID());
                 Response<Void> response = removeCall.execute();
                 Log.d(TAG, "removeFriend: " + response.message() );
                 if(response.isSuccessful()) {
@@ -781,8 +767,9 @@ public class MainAdapter extends RecyclerView.Adapter {
         private void removeGroup(Group currentGroup, RVService rvService) {
             try {
                 apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-//                Call<Void> removeCall = apiInterface.removeGroupUser(TOKEN, currentGroup.getGroupID(), GROUP_USER_ID , MY_USER_ID); // TODO: hardcoded token
-                Call<Void> removeCall = apiInterface.removeGroupUser(TOKEN, currentGroup.getGroupID(), MY_USER_ID); // TODO: hardcoded token
+                DataRepository data = DataRepository.getInstance(new DataSource());
+                Call<Void> removeCall = apiInterface.removeGroupUser(data.getTokenString(),
+                        currentGroup.getGroupID(), data.getUser().getUserID());
                 Response<Void> response = removeCall.execute();
                 Log.d(TAG, "removeGroup: " + response.message() );
                 rvService.removeItem(getAdapterPosition());
@@ -879,11 +866,13 @@ public class MainAdapter extends RecyclerView.Adapter {
             });
         }
 
-        public void removeConversation(Messages currentMessage, RVService rvService) {
+        public void removeConversation(Messages currentMessages, RVService rvService) {
             try {
                 apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-//                Call<Void> removeCall = apiInterface.removeMessage(TOKEN, currentMessage.getMessageID());
-                Call<Void> removeCall = apiInterface.removeMessages(TOKEN, MSG_ID,FRIEND_ID); // TODO: Hardcoded
+                Message msg = (Message) currentMessages.get(getAdapterPosition());
+                Call<Void> removeCall = apiInterface.removeMessages(
+                        DataRepository.getInstance(new DataSource()).getTokenString()
+                        , msg.getMessageCreator(), msg.getMessageReceiver());
                 Response<Void> response = removeCall.execute();
                 Log.d(TAG, "removeConversation: " + response.message() );
                 rvService.removeItem(getAdapterPosition());

@@ -56,7 +56,7 @@ public class MessagesFragment extends Fragment {
         rView = view.findViewById(R.id.messages_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
 
-        if (messagesViewModel.getConversations() == null) {
+        if(messagesViewModel.getConversations() == null && messagesViewModel.getUser() != null) {
             messagesViewModel.loadMessages();
             messagesViewModel.getMessagesResult().observe(getViewLifecycleOwner(), new Observer<MessagesResult>() {
                 @Override

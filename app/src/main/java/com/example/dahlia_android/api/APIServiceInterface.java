@@ -101,7 +101,7 @@ public interface APIServiceInterface {
             @Path("friendID") int friendID);
 
 
-    // Works but removeFriends2 is preferred method using session authentication and retrieving userID
+    //WORKS but removeFriends2 is preferred method using session authentication and retrieving userID
     @DELETE("/friends/remove_friend/{friendID}/{userID}")
     Call<Void> removeFriend(
             @Header("Authorization") String token,
@@ -121,7 +121,7 @@ public interface APIServiceInterface {
             @Field("message_media") String messageMedia);
 
 
-    //Works
+    //WORKS
     @FormUrlEncoded
     @POST("/messages/send_message/")
     Call<Message> sendMessage(
@@ -130,7 +130,7 @@ public interface APIServiceInterface {
             @Field("message_receiver") int receiverID,
             @Field("message_text") String messageText);
 
-    // Works
+    //WORKS
     @GET("/messages/get_messages/{userID}")
     Call<ArrayList<Messages>> getMessages(
             @Header("Authorization") String token,
@@ -143,7 +143,7 @@ public interface APIServiceInterface {
             @Field("messageID") int messageID);
 
 
-    //
+    //WORKS
     @POST("/messages/remove_messages/")
     Call<Void> removeMessages(
             @Header("Authorization") String token,
@@ -152,13 +152,13 @@ public interface APIServiceInterface {
 
 
     /** Posts */
-    //Works
+    //WORKS
     @GET("/posts/feed/{userID}")
     Call<Feed> getFeed(
             @Header("Authorization") String token,
             @Path("userID") int userID);
 
-    //Works
+    //WORKS
     @FormUrlEncoded
     @POST("/posts/create_post/")
     Call<Post> createPost(
@@ -173,7 +173,7 @@ public interface APIServiceInterface {
             @Header("Authorization") String token,
             @Path("postID") int postID);
 
-    //
+    //WORKS
     @DELETE("/posts/remove_post/{postID}")
     Call<Void> removePost(
             @Header("Authorization") String token,
@@ -181,15 +181,25 @@ public interface APIServiceInterface {
 
 
     /** Groups */
-    //
+    //WORKS
     @FormUrlEncoded
     @POST("/groups/create_group/")
     Call<Group> createGroup(
             @Header("Authorization") String token,
-            @Field("group_creator") int user,
-            @Field("group_name") String groupName);
+            @Field("group_creator") int creator,
+            @Field("group_name") String groupName,
+            @Field("group_users") int users);
 
-    //
+    //WIP
+    @FormUrlEncoded
+    @POST("/groups/create_group/")
+    Call<Group> createGroup0(
+            @Header("Authorization") String token,
+            @Field("group_creator") User creator,
+            @Field("group_name") String groupName,
+            @Field("group_users") User users);
+
+    //WORKS
     @GET("/groups/get_groups/{userID}")
     Call<Groups> getGroups(
             @Header("Authorization") String token,

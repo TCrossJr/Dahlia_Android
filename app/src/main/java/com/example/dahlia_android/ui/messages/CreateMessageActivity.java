@@ -16,6 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
+import com.example.dahlia_android.data.DataRepository;
+import com.example.dahlia_android.data.DataSource;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
 
@@ -23,8 +25,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.dahlia_android.data.DataSource.TOKEN;
-import static com.example.dahlia_android.data.DataSource.USER_ID;
+import static com.example.dahlia_android.data.DataSource.FRIEND_ID;
+
 
 public class CreateMessageActivity extends AppCompatActivity {
     private static final String TAG = "CreateMessageActivity";
@@ -92,8 +94,9 @@ public class CreateMessageActivity extends AppCompatActivity {
 
                 try {
                     apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-//                    Call<Message> sendCall = apiInterface.sendMessage(TOKEN, USER_ID, friendID, message, media); // TODO: Hardcoded
-                    Call<Message> sendCall = apiInterface.sendMessage(TOKEN, USER_ID, friendID, message); // TODO: Hardcoded
+                    DataRepository data = DataRepository.getInstance(new DataSource());
+                    Call<Message> sendCall = apiInterface.sendMessage(data.getTokenString(),
+                            data.getUser().getUserID(), FRIEND_ID, message);
                     sendCall.enqueue(new Callback<Message>() {
                         @Override
                         public void onResponse(Call<Message> call, Response<Message> response) {

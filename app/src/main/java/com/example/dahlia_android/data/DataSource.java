@@ -34,8 +34,9 @@ public class DataSource {
 
 
     private static final String TAG = "DataSource";
-    public static final String TOKEN = "4c82f31197fb2300a90b13de623c8d335854037a";
-    public static final int USER_ID = 148;
+        public static int FRIEND_ID = 152; // TODO: RMV
+        public static int NEARBY_ID = 3; // TODO: RMV
+
     private APIServiceInterface apiInterface;
 
     // TODO: The app is using cleartext enabled right now because https:// not implemented yet on server
@@ -51,15 +52,15 @@ public class DataSource {
                     credentials, username, password);
             Response<LoggedInUser> responseLogged = callUser.execute();
             LoggedInUser user = responseLogged.body();
-
-            String token = user.getUserToken();
-
+            if(user!=null) {
+                DataRepository.getInstance(this).setTokenString(user.getUserToken());
+            }
             //Load User
-            Call<User> load = apiInterface.getUser(token,user.getUserId());
+            Call<User> load = apiInterface.getUser(user.getUserToken(), user.getUserId());
             Response<User> response = load.execute();
             User loadedUser = response.body();
             Log.d(TAG, "loadUser: User loaded." + response.message());
-            ApplicationUser.setCurrentUser(loadedUser);
+//            ApplicationUser.setCurrentUser(loadedUser);
 
             return new Result.Success<>(loadedUser);
         } catch (Exception e) {
@@ -67,29 +68,28 @@ public class DataSource {
         }
     }
 
-    public void logout() {
+    public void logout(String token) {
         try {
-            // TODO: token is empty right now. Need to retrieve
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-            Response<String> logout = apiInterface.logout("").execute();
+            Response<String> logout = apiInterface.logout(token).execute();
             Log.d(TAG, "logout: Signed Out" + logout.body());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public Result<FriendsList> loadFriends() {
+    public Result<FriendsList> loadFriends(String token, int userID) {
 
         try {
             /* handle loading friendsList */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-            // TODO: hardcoded token and userID
 
             //Load Friends
-            Call<FriendsList> callFriends = apiInterface.getFriends(TOKEN, USER_ID);
+            Call<FriendsList> callFriends = apiInterface.getFriends(token, userID);
             Response<FriendsList> response = callFriends.execute();
             FriendsList rawFriendsList = (FriendsList) response.body();
 
+            // TODO: Change to Deserializer
             // convert and reconvert to correct type(FriendsList)
             Gson gson = new Gson();
             String json = gson.toJson(rawFriendsList);
@@ -108,15 +108,14 @@ public class DataSource {
         }
     }
 
-    public Result<Conversations> loadMessages() {
+    public Result<Conversations> loadMessages(String token, int userID) {
 
         try {
             /* handle loading messages */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 
-            // TODO: hardcoded token and userID
             //Load Conversations
-            Call<ArrayList<Messages>> callMessages = apiInterface.getMessages(TOKEN, USER_ID);
+            Call<ArrayList<Messages>> callMessages = apiInterface.getMessages(token, userID);
             Response<ArrayList<Messages>> response = callMessages.execute();
             ArrayList<Messages> rawMessages = response.body();
             Conversations newMessages = new Conversations();
@@ -138,26 +137,21 @@ public class DataSource {
         }
     }
 
-    public Result<Feed> loadFeed() {
+    public Result<Feed> loadFeed(String token, int userID) {
         try {
             /* handle loading homeFeed */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 
-            // TODO: hardcoded token and userID
             //Load Friends
-//            Call<Feed> callFeed = apiInterface.getFeed(TOKEN);
-            Call<Feed> callFeed = apiInterface.getFeed(TOKEN, USER_ID);
+            Call<Feed> callFeed = apiInterface.getFeed(token, userID);
             Response<Feed> response = callFeed.execute();
-//            Feed newFeed = (Feed)response.body();
             Feed rawFeed = (Feed) response.body();
 
-            // convert and reconvert to correct type(FriendsList)...
+            // TODO: Deserialize
             Gson gson = new Gson();
             String json = gson.toJson(rawFeed, Feed.class);
-//            Type feedType = new TypeToken<ArrayList<Post>>(){}.getType();
             Type feedType = new TypeToken<Feed>(){}.getType();
             Feed posts = gson.fromJson(json, feedType);
-//            ArrayList<Post> posts = gson.fromJson(json, feedType);
             Feed newFeed = new Feed();
             for ( Object rawPost : posts) {
                 Post post = new Post((LinkedTreeMap) rawPost);
@@ -172,32 +166,17 @@ public class DataSource {
     }
 
 
-    public Result<NearbyUsers> loadNearby() {
+    public Result<NearbyUsers> loadNearby(String token) {
         try {
             /* handle loading nearby */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 
-            // TODO: hardcoded token and userID
+            // TODO: Finish AuPairNearby
             //Load nearby
-//            Call<Feed> callFeed = apiInterface.getFeed(TOKEN);
-            Call<NearbyUsers> callFeed = apiInterface.getNearby(TOKEN);
+            Call<NearbyUsers> callFeed = apiInterface.getNearby(token);
             Response<NearbyUsers> response = callFeed.execute();
-//            Feed newFeed = (Feed)response.body();
             NearbyUsers newNearby = (NearbyUsers) response.body();
-/*
-            // convert and reconvert to correct type(FriendsList)...
-            Gson gson = new Gson();
-            String json = gson.toJson(rawFeed, Feed.class);
-//            Type feedType = new TypeToken<ArrayList<Post>>(){}.getType();
-            Type feedType = new TypeToken<Feed>(){}.getType();
-            Feed posts = gson.fromJson(json, feedType);
-//            ArrayList<Post> posts = gson.fromJson(json, feedType);
-            Feed newFeed = new Feed();
-            for ( Object rawPost : posts) {
-                Post post = new Post((LinkedTreeMap) rawPost);
-                newFeed.add(post);
-            }
-            */
+
             Log.d(TAG, "loadNearby: Nearby loaded." + response.message());
             return new Result.Success<>(newNearby);
         } catch (Exception e) {
@@ -206,26 +185,31 @@ public class DataSource {
         }
     }
 
+    // TODO: Not used currently
     public Result<User> loadUser() {
         return null;
     }
 
-    public Result<Groups> loadGroups() {
+    public Result<Groups> loadGroups(String token, int userID) {
         try {
             /* handle loading groups */
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
 
-            // TODO: hardcoded token and userID
             //Load Groups
-//            Call<Groups> callGroups = apiInterface.getGroups(TOKEN);
-            Call<Groups> callGroups = apiInterface.getGroups(TOKEN, USER_ID);
+            Call<Groups> callGroups = apiInterface.getGroups(token, userID);
             Response<Groups> response = callGroups.execute();
-            Groups newGroups = (Groups) response.body();
-            Log.d(TAG, "loadGroups: Groups loaded." + response.message());
+            Groups newGroups = null;
+            if(response.isSuccessful()) {
+                newGroups = (Groups) response.body();
+                Log.d(TAG, "loadGroups: Groups loaded." + response.message());
+            }
             return new Result.Success<>(newGroups);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
             return new Result.Error(new IOException("Error loading Groups.", e));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result.Error(new IOException("Failed loading Groups.", e));
         }
     }
 }

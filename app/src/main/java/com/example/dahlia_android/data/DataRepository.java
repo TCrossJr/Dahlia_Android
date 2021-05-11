@@ -25,6 +25,7 @@ public class DataRepository {
     private Feed feed = null;
     private NearbyUsers nearbyUsers = null;
     private Groups groups = null;
+    private static String tokenString = null;
 
     // private constructor : singleton access
     private DataRepository(DataSource dataSource) {
@@ -40,7 +41,7 @@ public class DataRepository {
 
     public void logout() {
         user = null;
-        dataSource.logout();
+        dataSource.logout(getTokenString());
     }
 
     /** User/Login */
@@ -53,6 +54,14 @@ public class DataRepository {
             }
         }
         return null;
+    }
+
+    public String getTokenString() {
+        return tokenString;
+    }
+
+    public void setTokenString(String tokenString) {
+        this.tokenString = tokenString;
     }
 
     public User getUser() {
@@ -98,7 +107,7 @@ public class DataRepository {
 
     public Result<Feed> loadFeed() {
         // handle loading feed
-        Result<Feed> feedResult = dataSource.loadFeed();
+        Result<Feed> feedResult = dataSource.loadFeed(getTokenString(),getUser().getUserID());
         if (feedResult instanceof Result.Success) {
             setFeed(((Result.Success<Feed>) feedResult).getData());
         }
@@ -116,7 +125,7 @@ public class DataRepository {
 
     public Result<FriendsList> loadFriends() {
         // handle loading friends
-        Result<FriendsList> friendsListResult = dataSource.loadFriends();
+        Result<FriendsList> friendsListResult = dataSource.loadFriends(getTokenString(),getUser().getUserID());
         if (friendsListResult instanceof Result.Success) {
             setFriends(((Result.Success<FriendsList>) friendsListResult).getData());
         }
@@ -136,7 +145,7 @@ public class DataRepository {
 
     public Result<Conversations> loadConversations() {
         // handle loading messages
-        Result<Conversations> conversationsResult = dataSource.loadMessages();
+        Result<Conversations> conversationsResult = dataSource.loadMessages(tokenString, getUser().getUserID());
         if (conversationsResult instanceof Result.Success) {
             setMessages(((Result.Success<Conversations>) conversationsResult).getData());
         }
@@ -146,7 +155,7 @@ public class DataRepository {
     /** AuPair Nearby */
     public Result<NearbyUsers> loadNearby() {
         // handle loading nearby
-        Result<NearbyUsers> nearbyUsersResult = dataSource.loadNearby();
+        Result<NearbyUsers> nearbyUsersResult = dataSource.loadNearby(getTokenString());
         if (nearbyUsersResult instanceof Result.Success) {
             setNearby(((Result.Success<NearbyUsers>) nearbyUsersResult).getData());
         }
@@ -163,7 +172,7 @@ public class DataRepository {
 
     public Result<Groups> loadGroups() {
         // handle loading groups
-        Result<Groups> groupsResult = dataSource.loadGroups();
+        Result<Groups> groupsResult = dataSource.loadGroups(getTokenString(),getUser().getUserID());
         if (groupsResult instanceof Result.Success) {
             setGroups(((Result.Success<Groups>) groupsResult).getData());
         }

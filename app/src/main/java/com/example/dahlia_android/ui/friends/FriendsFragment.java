@@ -45,7 +45,7 @@ public class FriendsFragment extends Fragment {
         rView = root.findViewById(R.id.friendslist_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
 
-        if(friendsViewModel.getFriends() == null) {
+        if(friendsViewModel.getFriends() == null && friendsViewModel.getUser() != null) {
             friendsViewModel.loadFriends();
             friendsViewModel.getFriendsResult().observe(getViewLifecycleOwner(), new Observer<FriendsResult>() {
                 @Override
