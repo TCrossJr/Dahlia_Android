@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
@@ -31,6 +32,7 @@ import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.login.LoginViewModel;
 import com.example.dahlia_android.ui.login.LoginViewModelFactory;
+import com.example.dahlia_android.ui.messages.CreateMessageActivity;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
@@ -610,7 +612,9 @@ public class MainAdapter extends RecyclerView.Adapter {
                             switch (item.toString()) {
                                 case "Message":
                                     // TODO: Go to MSG
-//                                    Intent intent = new Intent(item.getMenuInfo(),)
+                                    Intent intent = new Intent(view.getContext(), CreateMessageActivity.class);
+                                    intent.putExtra("friendID", current_Friend.getUserID());
+                                    view.getContext().startActivity(intent);
                                     break;
                                 case "User Profile":
                                     // TODO: Go to Users profile

@@ -87,8 +87,11 @@ public class CreateMessageActivity extends AppCompatActivity {
         messageSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int friendID = 152;
-//                String friendID = messageUserTo.getText().toString();
+                // TODO: Fix
+                int friendID = getIntent().getIntExtra("friendID",-1);
+                if(friendID==-1){
+                    friendID  = Integer.parseInt(messageUserTo.getText().toString());
+                }
                 String message  = messageText.getText().toString();
                 String media = "testUrl/img.jpg"; // TODO: Implement
 
@@ -96,7 +99,7 @@ public class CreateMessageActivity extends AppCompatActivity {
                     apiInterface = APIClient.getClient().create(APIServiceInterface.class);
                     DataRepository data = DataRepository.getInstance(new DataSource());
                     Call<Message> sendCall = apiInterface.sendMessage(data.getTokenString(),
-                            data.getUser().getUserID(), FRIEND_ID, message);
+                            data.getUser().getUserID(), friendID, message);
                     sendCall.enqueue(new Callback<Message>() {
                         @Override
                         public void onResponse(Call<Message> call, Response<Message> response) {
