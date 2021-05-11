@@ -25,8 +25,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.dahlia_android.data.DataSource.FRIEND_ID;
-
 
 public class CreateMessageActivity extends AppCompatActivity {
     private static final String TAG = "CreateMessageActivity";

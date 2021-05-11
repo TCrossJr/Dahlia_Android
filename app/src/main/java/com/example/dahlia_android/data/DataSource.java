@@ -34,8 +34,7 @@ public class DataSource {
 
 
     private static final String TAG = "DataSource";
-        public static int FRIEND_ID = 152; // TODO: RMV
-        public static int NEARBY_ID = 3; // TODO: RMV
+        public static int NEARBY_ID = 3; // TODO: RMV/Not finished
 
     private APIServiceInterface apiInterface;
 
