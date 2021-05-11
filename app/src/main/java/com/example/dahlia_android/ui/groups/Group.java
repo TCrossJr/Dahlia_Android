@@ -1,25 +1,26 @@
 package com.example.dahlia_android.ui.groups;
 
 import com.example.dahlia_android.ui.friends.FriendsList;
-import com.example.dahlia_android.ui.messages.Message;
+import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.user.User;
-
-import java.util.ArrayList;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
 
 public class Group {
-    private int group_ID;
-    private User group_creator;
+    @SerializedName("id") private int group_ID;
+    @SerializedName("date_created") private String dateCreated;
+    @SerializedName("group_creator") private User group_creator;
     private FriendsList group_admins;
     private FriendsList group_moderators;
-    private String groupImageURL; // TODO: Change to Image???
-    private String group_name;
+    private String groupImageURL;
+    @SerializedName("group_name") private String group_name;
     private String group_description;
-    private FriendsList group_members;
-    private ArrayList<Message> group_chat;
+    @SerializedName("group_users") private FriendsList group_members;
+    @SerializedName("group_chat") private Messages group_chat;
 
     public Group(User group_creator, FriendsList group_admins, FriendsList group_moderators,
                  String groupImageURL, String group_name, String group_description,
-                 FriendsList group_members, ArrayList<Message> group_chat) {
+                 FriendsList group_members, Messages group_chat) {
 
         this.group_creator = group_creator;
         this.group_admins = group_admins;
@@ -43,71 +44,62 @@ public class Group {
         this.group_chat = null;
     }
 
+
+    public Group(LinkedTreeMap group) {
+        double id = Double.parseDouble(String.valueOf(group.get("id")));
+        this.group_ID = (int) id;
+        this.dateCreated = (String) group.get("date_created");
+        LinkedTreeMap usr = (LinkedTreeMap) group.get("group_creator");
+        User user = new User(usr);
+        this.group_creator = user;
+//        this.group_creator = (User) group.get("group_creator");
+        this.group_name = (String) group.get("group_name");
+        this.group_members = (FriendsList) group.get("group_users");
+        this.group_chat = (Messages) group.get("group_chat");
+    }
+
+    public Group(int groupID, String date_created, User groupCreator, String group_name, FriendsList users, Messages chat) {
+        this.group_ID = groupID;
+        this.dateCreated = date_created;
+        this.group_creator = groupCreator;
+        this.group_name = group_name;
+        this.group_members = users;
+        this.group_chat = chat;
+    }
+
     public int getGroupID() {
         return this.group_ID;
     }
 
-    public User getGroup_creator() {
+    public User getGroupCreator() {
         return group_creator;
     }
 
-    public void setGroup_creator(User group_creator) {
-        this.group_creator = group_creator;
-    }
-
-    public FriendsList getGroup_admins() {
+    public FriendsList getGroupAdmins() {
         return group_admins;
     }
 
-    public void setGroup_admins(FriendsList group_admins) {
-        this.group_admins = group_admins;
-    }
-
-    public FriendsList getGroup_moderators() {
+    public FriendsList getGroupModerators() {
         return group_moderators;
-    }
-
-    public void setGroup_moderators(FriendsList group_moderators) {
-        this.group_moderators = group_moderators;
     }
 
     public String getGroupImageURL() {
         return groupImageURL;
     }
 
-    public void setGroupImageURL(String groupImageURL) {
-        this.groupImageURL = groupImageURL;
-    }
-
     public String getGroupName() {
         return group_name;
-    }
-
-    public void setGroup_name(String group_name) {
-        this.group_name = group_name;
     }
 
     public String getGroupDescription() {
         return group_description;
     }
 
-    public void setGroup_description(String group_description) {
-        this.group_description = group_description;
-    }
-
-    public FriendsList getGroup_members() {
+    public FriendsList getGroupMembers() {
         return group_members;
     }
 
-    public void setGroup_members(FriendsList group_members) {
-        this.group_members = group_members;
-    }
-
-    public ArrayList<Message> getGroup_chat() {
+    public Messages getGroupChat() {
         return group_chat;
-    }
-
-    public void setGroup_chat(ArrayList<Message> group_chat) {
-        this.group_chat = group_chat;
     }
 }

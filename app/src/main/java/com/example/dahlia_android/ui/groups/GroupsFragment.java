@@ -1,5 +1,6 @@
 package com.example.dahlia_android.ui.groups;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class GroupsFragment extends Fragment {
 
@@ -27,11 +28,19 @@ public class GroupsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_groups, container, false);
+        View view = inflater.inflate(R.layout.fragment_groups, container, false);
         groupsViewModel =
                 new ViewModelProvider(this, new GroupsViewModelFactory())
                         .get(GroupsViewModel.class);
-        rView = root.findViewById(R.id.groups_recycler_view);
+        FloatingActionButton groupFab = view.findViewById(R.id.group_fab);
+        groupFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), CreateGroupActivity.class);
+                startActivity(intent);
+            }
+        });
+        rView = view.findViewById(R.id.groups_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
         if(groupsViewModel.getGroups() == null) {
             groupsViewModel.loadGroups();
@@ -51,7 +60,7 @@ public class GroupsFragment extends Fragment {
             });
         } else
             updateUI();
-        return root;
+        return view;
     }
 
     private void updateUiWithGroups(GroupsView model) {
@@ -59,7 +68,7 @@ public class GroupsFragment extends Fragment {
     }
 
     private void updateUI() {
-        groups_adapter = new MainAdapter(MainActivity._groupsList); //TODO: Move to ViewModel/DataSource/DataRepository
+        groups_adapter = new MainAdapter(groupsViewModel.getGroups());
         groups_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         rView.addItemDecoration(divider);
@@ -70,7 +79,6 @@ public class GroupsFragment extends Fragment {
     }
 
     private void showGroupsFailed(Integer error) {
-        // TODO: Change how to display(or not) error
         Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.dahlia_android.api;
 
+import com.example.dahlia_android.ui.groups.Groups;
 import com.google.gson.Gson;
 
 import okhttp3.OkHttpClient;
@@ -36,10 +37,7 @@ public class APIClient {
                     .build();
 
             Gson gson = new Gson().newBuilder()
-//                    .registerTypeHierarchyAdapter(Conversations.class, MainAdapter.MessagesViewHolder.class)
-//                    .registerTypeAdapter(Conversations.class, new ConversationsCreator())
-//                    .registerTypeAdapter(Messages.class, new MessagesCreator())
-//                    .registerTypeAdapter(Message.class, new MessageCreator())
+                    .registerTypeAdapter(Groups.class, new GroupsDeserializer())
                     .setLenient()
                     .setPrettyPrinting()
                     .create();

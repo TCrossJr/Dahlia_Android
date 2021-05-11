@@ -48,7 +48,6 @@ public class HomeFeedFragment extends Fragment {
         postFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Implement fab createNewPost
                 Snackbar.make(view, "Starting post...", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Intent intent = new Intent(getContext(), CreatePostActivity.class);
@@ -98,7 +97,6 @@ public class HomeFeedFragment extends Fragment {
     }
 
     private void showFriendsFailed(Integer error) {
-        // TODO: Change how to display(or not) error
         Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 }

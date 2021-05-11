@@ -18,13 +18,7 @@ import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
-import com.example.dahlia_android.ui.home.Post;
-import com.google.gson.Gson;
 
-import java.io.IOException;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,11 +45,11 @@ public class CreateMessageActivity extends AppCompatActivity {
                 .get(MessagesViewModel.class);
 
 //        final Spinner messageToSpinner = findViewById(R.id.user_to_message);
-        final EditText messageUserTo = findViewById(R.id.user_to_message);
+        final EditText messageUserTo = findViewById(R.id.name_group);
         final EditText messageText = findViewById(R.id.text_message);
         final ImageView messageMedia = findViewById(R.id.media_image);
         final Button messageAddMedia = findViewById(R.id.media_add);
-        final Button messageSend = findViewById(R.id.send_message);
+        final Button messageSend = findViewById(R.id.create_group);
 
 /*        final FriendsList friends = friendsViewModel.getFriends();
         final ArrayAdapter<User> userToAdapter = new ArrayAdapter<User>(

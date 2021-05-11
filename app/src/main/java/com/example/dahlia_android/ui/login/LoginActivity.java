@@ -27,7 +27,9 @@ import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.friends.FriendsResult;
 import com.example.dahlia_android.ui.friends.FriendsViewModel;
 import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
+import com.example.dahlia_android.ui.groups.GroupsResult;
 import com.example.dahlia_android.ui.groups.GroupsViewModel;
+import com.example.dahlia_android.ui.groups.GroupsViewModelFactory;
 import com.example.dahlia_android.ui.home.HomeFeedResult;
 import com.example.dahlia_android.ui.home.HomeFeedViewModel;
 import com.example.dahlia_android.ui.home.HomeFeedViewModelFactory;
@@ -192,7 +194,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadUserData() {
-        // TODO: uncomment when finished homefeed
         /* HomeFeed */
         homeFeedViewModel = new ViewModelProvider(this, new HomeFeedViewModelFactory())
                 .get(HomeFeedViewModel.class);
@@ -224,22 +225,21 @@ public class LoginActivity extends AppCompatActivity {
                     // no UI update needed
             }
         });
-        // TODO: uncomment when Groups is finished
-//        /* Groups */
-//        groupsViewModel = new ViewModelProvider(this, new GroupsViewModelFactory())
-//                .get(GroupsViewModel.class);
-//        groupsViewModel.loadGroups();
-//        groupsViewModel.getGroupsResult().observe(this, new Observer<GroupsResult>() {
-//            @Override
-//            public void onChanged(GroupsResult groupsResult) {
-//                if (groupsResult == null) {
-//                    return;
-//                }
-//                // do nothing first try, second try in MessagesFragment, if null then send error
-//
-//                // no UI update needed
-//            }
-//        });
+        /* Groups */
+        groupsViewModel = new ViewModelProvider(this, new GroupsViewModelFactory())
+                .get(GroupsViewModel.class);
+        groupsViewModel.loadGroups();
+        groupsViewModel.getGroupsResult().observe(this, new Observer<GroupsResult>() {
+            @Override
+            public void onChanged(GroupsResult groupsResult) {
+                if (groupsResult == null) {
+                    return;
+                }
+                // do nothing first try, second try in GroupsFragment, if null then send error
+
+                // no UI update needed
+            }
+        });
 
         /* Messages */
         messagesViewModel = new ViewModelProvider(this, new MessagesViewModelFactory())

@@ -58,7 +58,7 @@ public class DataSource {
             Call<User> load = apiInterface.getUser(token,user.getUserId());
             Response<User> response = load.execute();
             User loadedUser = response.body();
-            Log.d(TAG, "loadUser: User loaded." + response.body());
+            Log.d(TAG, "loadUser: User loaded." + response.message());
             ApplicationUser.setCurrentUser(loadedUser);
 
             return new Result.Success<>(loadedUser);
@@ -100,7 +100,7 @@ public class DataSource {
                 newFriends.add(user);
             }
 
-            Log.d(TAG, "loadFriends: Friends stored." + newFriends.toString());
+            Log.d(TAG, "loadFriends: Friends stored." + response.toString());
             return new Result.Success<>(newFriends);
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,7 +121,6 @@ public class DataSource {
             ArrayList<Messages> rawMessages = response.body();
             Conversations newMessages = new Conversations();
 
-            // TODO: FIX/Change to InstanceCreator or Deserializer
             for ( Messages msgs : rawMessages) {
                 Messages messages = new Messages();
                 for( Object msg : msgs ) {
@@ -131,7 +130,7 @@ public class DataSource {
                 newMessages.add((Messages)messages);
             }
 
-            Log.d(TAG, "loadMessages: Conversations loaded." + newMessages.toString());
+            Log.d(TAG, "loadMessages: Conversations loaded." + response.toString());
             return new Result.Success<>(newMessages);
         } catch (Exception e) {
             e.printStackTrace();
@@ -164,7 +163,7 @@ public class DataSource {
                 Post post = new Post((LinkedTreeMap) rawPost);
                 newFeed.add(post);
             }
-            Log.d(TAG, "loadFeed: Feed loaded." + newFeed.toString());
+            Log.d(TAG, "loadFeed: Feed loaded." + response.message());
             return new Result.Success<>(newFeed);
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,7 +198,7 @@ public class DataSource {
                 newFeed.add(post);
             }
             */
-            Log.d(TAG, "loadNearby: Nearby loaded." + newNearby.toString());
+            Log.d(TAG, "loadNearby: Nearby loaded." + response.message());
             return new Result.Success<>(newNearby);
         } catch (Exception e) {
             e.printStackTrace();
@@ -222,8 +221,7 @@ public class DataSource {
             Call<Groups> callGroups = apiInterface.getGroups(TOKEN, USER_ID);
             Response<Groups> response = callGroups.execute();
             Groups newGroups = (Groups) response.body();
-
-            Log.d(TAG, "loadGroups: Groups loaded." + newGroups.toString());
+            Log.d(TAG, "loadGroups: Groups loaded." + response.message());
             return new Result.Success<>(newGroups);
         } catch (Exception e) {
             e.printStackTrace();

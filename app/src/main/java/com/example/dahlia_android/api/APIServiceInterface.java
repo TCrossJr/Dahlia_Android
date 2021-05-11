@@ -4,14 +4,12 @@ import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.data.model.SignedUpUser;
 import com.example.dahlia_android.data.model.UserToken;
 import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.home.Post;
-import com.example.dahlia_android.ui.home.PostSend;
-import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
-import com.example.dahlia_android.ui.messages.RawMessage;
 import com.example.dahlia_android.ui.nearby.AuPairNearby;
 import com.example.dahlia_android.ui.nearby.NearbyUsers;
 import com.example.dahlia_android.ui.user.User;
@@ -19,20 +17,15 @@ import com.example.dahlia_android.ui.user.UserProfile;
 
 import java.util.ArrayList;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface APIServiceInterface {
 
@@ -188,6 +181,14 @@ public interface APIServiceInterface {
 
 
     /** Groups */
+    //
+    @FormUrlEncoded
+    @POST("/groups/create_group/")
+    Call<Group> createGroup(
+            @Header("Authorization") String token,
+            @Field("group_creator") int user,
+            @Field("group_name") String groupName);
+
     //
     @GET("/groups/get_groups/{userID}")
     Call<Groups> getGroups(

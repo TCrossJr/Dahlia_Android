@@ -1,10 +1,13 @@
 package com.example.dahlia_android.ui.user;
 
+import com.example.dahlia_android.ui.friends.FriendsList;
+import com.example.dahlia_android.ui.messages.Messages;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
 
 public class User {
 
-    @SerializedName("id") private int id;
+    @SerializedName("id") private int userID;
     @SerializedName("username") private String username;
     @SerializedName("email") private String email;
     @SerializedName("first_name") private String firstName;
@@ -16,8 +19,8 @@ public class User {
     private int followingCount;
     private int followerCount;
 
-    public User(int id, String username, String email, String firstName, String lastName, String agency, String created_dt, UserProfile userProfile, int followingCount, int followerCount) {
-        this.id = id;
+    public User(int userID, String username, String email, String firstName, String lastName, String agency, String created_dt, UserProfile userProfile, int followingCount, int followerCount) {
+        this.userID = userID;
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -30,7 +33,7 @@ public class User {
     }
 
     public User(User user) {
-        this.id = user.id;
+        this.userID = user.userID;
         this.username = user.username;
         this.email = user.email;
         this.firstName = user.firstName;
@@ -49,80 +52,64 @@ public class User {
         this.followerCount = 0;
     }
 
+    public User(LinkedTreeMap user) {
+        double id = Double.parseDouble(String.valueOf(user.get("id")));
+        this.userID = (int) id;
+        this.username = (String) user.get("username");
+        this.email = (String) user.get("email");
+        this.firstName = (String) user.get("first_name");
+        this.lastName = (String) user.get("last_name");
+        this.agency = (String) user.get("agency");
+//        this.userProfile = (String) user.get("profile");
+    }
+
+    public User(int id, String username, String email, String first_name, String last_name, String agency) {
+        this.userID = id;
+        this.username = username;
+        this.email = email;
+        this.firstName = first_name;
+        this.lastName = last_name;
+        this.agency = agency;
+    }
+
     public int getUserID() {
-        return id;
+        return userID;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getAgency() {
         return agency;
     }
 
-    public void setAgency(String agency) {
-        this.agency = agency;
-    }
-
     public String getCreated_dt() {
         return created_dt;
-    }
-
-    public void setCreated_dt(String created_dt) {
-        this.created_dt = created_dt;
     }
 
     public UserProfile getUserProfile() {
         return userProfile;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
-    }
-
     public int getFollowingCount() {
         return followingCount;
     }
 
-    public void setFollowingCount(int followingCount) {
-        this.followingCount = followingCount;
-    }
-
     public int getFollowerCount() {
         return followerCount;
-    }
-
-    public void setFollowerCount(int followerCount) {
-        this.followerCount = followerCount;
     }
 
     public User getUser() {

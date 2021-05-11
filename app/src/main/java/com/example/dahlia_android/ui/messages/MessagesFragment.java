@@ -47,7 +47,6 @@ public class MessagesFragment extends Fragment {
         messageFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Implement fab createNewBlankMsg
                 Snackbar.make(view, "Starting message...", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Intent intent = new Intent(getContext(), CreateMessageActivity.class);
@@ -95,7 +94,6 @@ public class MessagesFragment extends Fragment {
     }
 
     private void showMessagesFailed(Integer error) {
-        // TODO: Change how to display(or not) error
         Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 }
