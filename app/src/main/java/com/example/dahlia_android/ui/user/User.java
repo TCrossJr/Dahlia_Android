@@ -1,9 +1,13 @@
 package com.example.dahlia_android.ui.user;
 
+import androidx.annotation.NonNull;
+
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
+
+import org.jetbrains.annotations.NotNull;
 
 public class User {
 
@@ -114,5 +118,12 @@ public class User {
 
     public User getUser() {
         return this;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return this.username;
     }
 }
