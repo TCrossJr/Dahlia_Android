@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("userObject", MODE_PRIVATE);
         String userJsonString = preferences.getString("user", "" );
         User user = new GsonBuilder().create().fromJson(userJsonString, User.class);
-        ApplicationUser.setCurrentUser(user);
     }
 
     @Override

@@ -60,4 +60,11 @@ public class HomeFeedViewModel extends ViewModel {
             this.postResult.setValue(new PostResult(R.string.prompt_post_create_failed));
         }
     }
+    public Post getPost(){
+        return dataRepository.getPost();
+    }
+
+    public void setPost(Post post) {
+        dataRepository.setPost(post);
+    }
 }

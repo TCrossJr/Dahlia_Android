@@ -1,7 +1,5 @@
 package com.example.dahlia_android.ui.home;
 
-import com.example.dahlia_android.ui.groups.Group;
-import com.example.dahlia_android.ui.user.User;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 
@@ -42,8 +40,6 @@ public class Post {
         double id = Double.parseDouble(String.valueOf(post.get("id")));
         this.postID = (int) id;
         this.postDate = (String) post.get("date_created");
-//        String rawCreator = (String) post.get("post_creator");
-//        assert rawCreator != null;
         double creator = Double.parseDouble(String.valueOf(post.get("post_creator")));
         this.postCreator = (int) creator;
         this.postText = (String) post.get("post_text");

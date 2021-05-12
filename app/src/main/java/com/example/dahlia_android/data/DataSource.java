@@ -1,16 +1,12 @@
 package com.example.dahlia_android.data;
 
-import android.app.Activity;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.dahlia_android.R;
 import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
 import com.example.dahlia_android.data.model.LoggedInUser;
 import com.example.dahlia_android.ui.friends.FriendsList;
 import com.example.dahlia_android.ui.groups.Groups;
-import com.example.dahlia_android.ui.home.CreatePostActivity;
 import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Conversations;
@@ -28,7 +24,6 @@ import java.util.ArrayList;
 
 import okhttp3.Credentials;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -63,7 +58,6 @@ public class DataSource {
             Response<User> response = load.execute();
             User loadedUser = response.body();
             Log.d(TAG, "loadUser: User loaded." + response.message());
-//            ApplicationUser.setCurrentUser(loadedUser);
 
             return new Result.Success<>(loadedUser);
         } catch (Exception e) {
