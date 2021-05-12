@@ -73,6 +73,7 @@
     <string name="prompt_group_created">Group created.</string>
     <string name="prompt_group_error_create">Error creating group.</string>
     <string name="prompt_group_failed_create">Failed to create group.</string>
+    <string name="prompt_post_create_failed">Failed to create post.</string>
     <string name="prompt_post_failed_delete">Failed to delete post.</string>
     <string name="prompt_post_failed_send">Failed to create post.</string>
     <string name="prompt_post_sent">Post created.</string>
@@ -123,5 +124,6 @@
     <string name="test_profile_followers">0</string>
     <string name="test_message_from1">Hey how\'s it going</string>
     <string name="test_message_date">Thursday, Apr 21 4:08 PM</string>
+    <string name="prompt_groups_null">Error loading Groups.</string>
 </resources>
 

@@ -52,6 +52,18 @@ public class Post {
 //        this.mediaURL = (String) post.get("post_media");
     }
 
+    public Post(Post post) {
+        this.postID = post.postID;
+        this.postDate = post.postDate;
+        this.postCreator = post.postCreator;
+        this.profileImageURL = post.profileImageURL;
+        this.postText = post.postText;
+        this.mediaURL = post.mediaURL;
+        this.postLikedBy = post.postLikedBy;
+        this.replies = post.replies;
+        this.likes = post.likes;
+    }
+
     public int getPostID() {
         return postID;
     }
@@ -86,5 +98,9 @@ public class Post {
 
     public int getLikes() {
         return likes;
+    }
+
+    public Post getPost() {
+        return this;
     }
 }

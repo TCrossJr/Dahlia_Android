@@ -9,14 +9,15 @@ import com.example.dahlia_android.data.DataRepository;
 import com.example.dahlia_android.data.Result;
 import com.example.dahlia_android.ui.user.User;
 
+import java.net.HttpCookie;
+
 public class HomeFeedViewModel extends ViewModel {
 
-    private MutableLiveData<HomeFeedResult> homeFeedResult = new MutableLiveData<HomeFeedResult>();
+    private MutableLiveData<HomeFeedResult> homeFeedResult = new MutableLiveData<>();
+    private MutableLiveData<PostResult> postResult = new MutableLiveData<>();
     private DataRepository dataRepository;
 
     public HomeFeedViewModel(DataRepository dataRepository) { this.dataRepository = dataRepository; }
-
-    LiveData<HomeFeedResult> getHomeFeedResult() { return homeFeedResult; }
 
     public LiveData<HomeFeedResult> getFeedResult() {
         return homeFeedResult;
@@ -43,5 +44,20 @@ public class HomeFeedViewModel extends ViewModel {
 
     public User getUser() {
         return dataRepository.getUser();
+    }
+
+    public LiveData<PostResult> getCreatePostResult() {
+        return postResult;
+    }
+
+    public void createPost(String post) {
+        Result<Post> postResult = dataRepository.createPost(post);
+
+        if(postResult instanceof Result.Success) {
+            Post data = ((Result.Success<Post>) postResult).getData();
+            this.postResult.setValue(new PostResult(new PostView((data.getPost()))));
+        } else {
+            this.postResult.setValue(new PostResult(R.string.prompt_post_create_failed));
+        }
     }
 }

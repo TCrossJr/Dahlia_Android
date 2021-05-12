@@ -26,6 +26,12 @@ public class GroupsFragment extends Fragment {
     private LinearLayoutManager layoutManager;
     private MainAdapter groups_adapter;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateUI();
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_groups, container, false);

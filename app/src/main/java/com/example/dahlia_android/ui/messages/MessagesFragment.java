@@ -31,6 +31,12 @@ public class MessagesFragment extends Fragment {
     private AdapterTypeList adapterTypeList = new AdapterTypeList();
 
     @Override
+    public void onStart() {
+        super.onStart();
+        updateUI();
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }

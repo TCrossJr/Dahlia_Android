@@ -35,6 +35,13 @@ public class HomeFeedFragment extends Fragment {
         return new HomeFeedFragment();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+//        updateUI();
+        reloadUI();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,10 +64,14 @@ public class HomeFeedFragment extends Fragment {
 
         rView = view.findViewById(R.id.feed_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
+        reloadUI();
+        return view;
+    }
 
+    void reloadUI() {
         if(homeViewModel.getFeed() == null && homeViewModel.getUser() != null) {
             homeViewModel.loadFeed();
-            homeViewModel.getHomeFeedResult().observe(getViewLifecycleOwner(), new Observer<HomeFeedResult>() {
+            homeViewModel.getFeedResult().observe(getViewLifecycleOwner(), new Observer<HomeFeedResult>() {
                 @Override
                 public void onChanged(HomeFeedResult homeFeedResult) {
                     if (homeFeedResult == null) {
@@ -76,7 +87,6 @@ public class HomeFeedFragment extends Fragment {
             });
         } else
             updateUI();
-        return view;
     }
 
     private void updateUiWithFriends(HomeFeedView model) {
@@ -84,7 +94,7 @@ public class HomeFeedFragment extends Fragment {
         updateUI();
     }
 
-    private void updateUI() {
+    void updateUI() {
         feed_adapter = new MainAdapter(homeViewModel.getFeed());
         feed_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());

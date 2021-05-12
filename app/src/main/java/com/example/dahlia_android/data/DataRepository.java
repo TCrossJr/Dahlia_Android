@@ -1,9 +1,9 @@
 package com.example.dahlia_android.data;
 
 import com.example.dahlia_android.ui.friends.FriendsList;
-import com.example.dahlia_android.ui.groups.Group;
 import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.home.Feed;
+import com.example.dahlia_android.ui.home.Post;
 import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.nearby.NearbyUsers;
@@ -26,6 +26,7 @@ public class DataRepository {
     private NearbyUsers nearbyUsers = null;
     private Groups groups = null;
     private static String tokenString = null;
+    private Post post = null;
 
     // private constructor : singleton access
     private DataRepository(DataSource dataSource) {
@@ -185,5 +186,23 @@ public class DataRepository {
 
     public Groups getGroups() {
         return (Groups)groups;
+    }
+
+    public Result<Post> createPost(String post) {
+        // handle creating posts
+        Result<Post> postResult = dataSource.createPost(getTokenString(),getUser().getUserID(), post);
+        if (postResult instanceof Result.Success) {
+            setPost(((Result.Success<Post>) postResult).getData());
+        }
+        return postResult;
+
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    private void setPost(Post data) {
+        this.post = data;
     }
 }

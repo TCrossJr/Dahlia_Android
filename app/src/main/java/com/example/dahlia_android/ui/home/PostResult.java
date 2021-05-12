@@ -3,24 +3,24 @@ package com.example.dahlia_android.ui.home;
 import androidx.annotation.Nullable;
 
 /**
- * Authentication result : success (homeFeed details) or error message.
+ * Authentication result : success (post details) or error message.
  */
-public class HomeFeedResult<T> {
+public class PostResult<T> {
     @Nullable
-    private HomeFeedView success;
+    private PostView success;
     @Nullable
     private Integer error;
 
-    HomeFeedResult(@Nullable Integer error) {
+    PostResult(@Nullable Integer error) {
         this.error = error;
     }
 
-    HomeFeedResult(@Nullable HomeFeedView success) {
+    PostResult(@Nullable PostView success) {
         this.success = success;
     }
 
     @Nullable
-    HomeFeedView getSuccess() {
+    PostView getSuccess() {
         return success;
     }
 

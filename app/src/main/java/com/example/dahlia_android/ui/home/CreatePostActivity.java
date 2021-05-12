@@ -2,7 +2,6 @@ package com.example.dahlia_android.ui.home;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,29 +10,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.api.APIClient;
 import com.example.dahlia_android.api.APIServiceInterface;
-import com.example.dahlia_android.data.DataRepository;
-import com.example.dahlia_android.data.DataSource;
-import com.example.dahlia_android.ui.friends.FriendsViewModel;
-import com.example.dahlia_android.ui.friends.FriendsViewModelFactory;
-import com.example.dahlia_android.ui.messages.MessagesViewModel;
-import com.example.dahlia_android.ui.messages.MessagesViewModelFactory;
-import com.example.dahlia_android.ui.messages.RawMessage;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 //import static com.example.dahlia_android.data.DataSource.TOKEN;
 //import static com.example.dahlia_android.data.DataSource.USER_ID;
@@ -94,35 +76,47 @@ public class CreatePostActivity extends AppCompatActivity {
                 String post  = postText.getText().toString();
                 String media = ""; // TODO: Implement
 
-                try {
-                    apiInterface = APIClient.getClient().create(APIServiceInterface.class);
-                    DataRepository data = DataRepository.getInstance(new DataSource());
-                    Call<Post> sendCall = apiInterface.createPost(data.getTokenString(), data.getUser().getUserID(), post);
-                    sendCall.enqueue(new Callback<Post>() {
-                        @Override
-                        public void onResponse(Call<Post> call, Response<Post> response) {
-                            if(response.isSuccessful()) {
-                                Toast.makeText(getBaseContext(), R.string.prompt_post_sent, Toast.LENGTH_LONG).show();
-                                Post p = response.body();
-                                Log.d(TAG, "createPost: " + response.message());
-                                setResult(Activity.RESULT_OK);
-                                finish();
-                            } else {
-                                Toast.makeText(getBaseContext(), R.string.prompt_post_error_send, Toast.LENGTH_LONG).show();
-                            }
+                homeFeedViewModel.createPost(post);
+                final Observer<PostResult> postObserver = new Observer<PostResult>() {
+                    @Override
+                    public void onChanged(PostResult postResult) {
+                        if (postResult == null) {
+                            return;
                         }
-
-                        @Override
-                        public void onFailure(Call<Post> call, Throwable t) {
-                            Toast.makeText(getBaseContext(), R.string.prompt_post_failed_send, Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "createPost: " + t.getMessage() );
-
+                        if (postResult.getError() != null) {
+                            showPostFailed(postResult.getError());
                         }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                        if (postResult.getSuccess() != null) {
+                            updateUiWithPost(postResult.getSuccess());
+                        }
+                        setResult(Activity.RESULT_OK);
+                        finish();
+                    }
+                };
+                homeFeedViewModel.getCreatePostResult().observe(CreatePostActivity.this, postObserver);
+/*                homeFeedViewModel.getCreatePostResult().observe(this, new Observer<PostResult>() {
+                    @Override
+                    public void onChanged(PostResult postResult) {
+                        if (postResult == null) {
+                            return;
+                        }
+                        if (postResult.getError() != null) {
+                            showPostFailed(postResult.getError());
+                        }
+                        if (postResult.getSuccess() != null) {
+                            updateUiWithPost(postResult.getSuccess());
+                        }
+                    }
+                });*/
             }
         });
+    }
+
+    private void updateUiWithPost(PostView success) {
+//        success.getPost();
+    }
+
+    private void showPostFailed(Integer error) {
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 }

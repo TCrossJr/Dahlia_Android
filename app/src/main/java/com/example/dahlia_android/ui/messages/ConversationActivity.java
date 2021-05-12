@@ -20,6 +20,12 @@ public class ConversationActivity extends AppCompatActivity {
     private RecyclerView rView;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        updateUI();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation);
@@ -27,6 +33,10 @@ public class ConversationActivity extends AppCompatActivity {
                 new ViewModelProvider(this, new ConversationViewModelFactory()).get(ConversationViewModel.class);
         rView = findViewById(R.id.conversation_recycler);
         layoutManager = new LinearLayoutManager(this);
+        updateUI();
+    }
+
+    private void updateUI() {
         Messages conversation = conversationViewModel.getConversation(0);
         conversation_adapter = new MainAdapter(conversation);
         conversation_adapter.notifyDataSetChanged();
