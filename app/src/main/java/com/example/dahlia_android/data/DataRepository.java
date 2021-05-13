@@ -8,6 +8,7 @@ import com.example.dahlia_android.ui.messages.Conversations;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.nearby.NearbyUsers;
 import com.example.dahlia_android.ui.user.User;
+import com.example.dahlia_android.ui.user.UserList;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -20,6 +21,7 @@ public class DataRepository {
     private DataSource dataSource;
 
     private User user = null; // TODO:// RMV??? Might use for loadUser
+    private UserList user_list = null;
     private FriendsList friends_list = null;
     private Conversations conversations = null;
     private Feed feed = null;
@@ -114,6 +116,22 @@ public class DataRepository {
         }
         return feedResult;
     }
+    /** UserList */
+    public UserList getUserList() {
+        return user_list;
+    }
+
+    private void setUserList(UserList data) {
+        this.user_list = data;
+    }
+
+    public Result<UserList> loadUserList() {
+        Result<UserList> userListResult = dataSource.loadUserList(getTokenString(),getUser().getUserID());
+        if(userListResult instanceof Result.Success) {
+            setUserList(((Result.Success<UserList>) userListResult).getData());
+        }
+        return userListResult;
+    }
 
     /** FriendsList */
     public FriendsList getFriends() {
@@ -205,4 +223,5 @@ public class DataRepository {
     private void setPost(Post data) {
         this.post = data;
     }
+
 }

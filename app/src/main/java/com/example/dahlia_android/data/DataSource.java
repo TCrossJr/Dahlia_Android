@@ -18,6 +18,7 @@ import com.example.dahlia_android.ui.messages.Message;
 import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.nearby.NearbyUsers;
 import com.example.dahlia_android.ui.user.User;
+import com.example.dahlia_android.ui.user.UserList;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
@@ -78,6 +79,30 @@ public class DataSource {
             Log.d(TAG, "logout: Signed Out" + logout.body());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public Result<UserList> loadUserList(String token, int userID) {
+
+        try {
+            apiInterface = APIClient.getClient().create(APIServiceInterface.class);
+            //Load UserList
+            Call<UserList> callUserList = apiInterface.getUserList(token, userID);
+            Response<UserList> response = callUserList.execute();
+            UserList rawUserList = (UserList) response.body();
+
+            Gson gson = new Gson();
+            String json = gson.toJson(rawUserList);
+            Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
+            ArrayList<User> userList = gson.fromJson(json, userListType);
+            UserList newUserList = new UserList();
+            for (User user: userList) {
+                newUserList.add(user);
+            }
+            return new Result.Success<>(newUserList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result.Error(new IOException("Error loading UserList", e));
         }
     }
 

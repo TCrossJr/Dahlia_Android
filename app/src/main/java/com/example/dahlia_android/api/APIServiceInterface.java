@@ -13,6 +13,7 @@ import com.example.dahlia_android.ui.messages.Messages;
 import com.example.dahlia_android.ui.nearby.AuPairNearby;
 import com.example.dahlia_android.ui.nearby.NearbyUsers;
 import com.example.dahlia_android.ui.user.User;
+import com.example.dahlia_android.ui.user.UserList;
 import com.example.dahlia_android.ui.user.UserProfile;
 
 import java.util.ArrayList;
@@ -85,6 +86,12 @@ public interface APIServiceInterface {
             @Field("zipcode") String zipCode,
             @Field("description") String description
     );
+
+    @FormUrlEncoded
+    @GET("/rest-auth/usr_list/")
+    Call<UserList> getUserList(
+            @Header("Authorization") String token,
+            @Path("userID") int userID);
 
 
     /** Friends */
