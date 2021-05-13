@@ -45,6 +45,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -220,7 +221,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             ((FriendViewHolder) holder).setFriendObject(user, rvService);
             ((FriendViewHolder) holder).setFriendsProfileThumbnail(""); // TODO: Change
             ((FriendViewHolder) holder).setFriendsDisplayName(user.getUsername());
-            ((FriendViewHolder) holder).setFriendsDescription(String.valueOf(user.getUserID())); // TODO: Change to description not UserID
+            ((FriendViewHolder) holder).setFriendsDescription(user.getAgency()); // TODO: Change to description not agency
             ((FriendViewHolder) holder).frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -552,19 +553,20 @@ public class MainAdapter extends RecyclerView.Adapter {
         public void setPostDate(String postDate) {
             SimpleDateFormat simpleDateFormat =
                     new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-//            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
-//            simpleDateFormat.setTimeZone(TimeZone.getDefault());
-//                    new SimpleDateFormat("YYYY-MM-DD'T'HH:MM:SS.S'Z'");
-            Date date = new Date();
+            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+            String dateString = "";
+            Date date = null;
             try{
                 date = simpleDateFormat.parse(postDate);
-                assert date != null;
+                simpleDateFormat.applyPattern("EEE MMM yy hh:mm aa");
+                dateString = simpleDateFormat.format(date);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Date today = new Date();
-            long since = date.getTime() - today.getTime();
-            this.postDate.setText(String.valueOf(since));
+//            Date today = new Date();
+//            long since = date.getTime() - today.getTime();
+//            this.postDate.setText(String.valueOf(since));
+            this.postDate.setText(dateString);
         }
 
         public void setPostObject(Post post, RVService service) {

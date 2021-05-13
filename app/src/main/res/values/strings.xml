@@ -78,6 +78,7 @@
     <string name="prompt_post_failed_send">Failed to create post.</string>
     <string name="prompt_post_sent">Post created.</string>
     <string name="prompt_post_error_send">Error sending post.</string>
+    <string name="prompt_post_error_date">Date Error.</string>
     <string name="prompt_signup_same_user">User with this email already exists.</string>
     <string name="prompt_signup_failed">Sign Up Failed</string>
     <string name="prompt_login_failed">"Login failed"</string>

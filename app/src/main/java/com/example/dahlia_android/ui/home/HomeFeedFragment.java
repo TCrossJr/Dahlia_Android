@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dahlia_android.R;
-import com.example.dahlia_android.ui.messages.CreateMessageActivity;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,7 +37,7 @@ public class HomeFeedFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-//        updateUI();
+//        updateUI(true);
         reloadUI();
     }
 
@@ -81,20 +80,24 @@ public class HomeFeedFragment extends Fragment {
                         showFriendsFailed(homeFeedResult.getError());
                     }
                     if (homeFeedResult.getSuccess() != null) {
-                        updateUiWithFriends(homeFeedResult.getSuccess());
+                        updateUiWithPosts(homeFeedResult.getSuccess());
                     }
                 }
             });
         } else
-            updateUI();
+            updateUI(false);
     }
 
-    private void updateUiWithFriends(HomeFeedView model) {
+    private void updateUiWithPosts(HomeFeedView model) {
         // not using HomeFeedView model currently
-        updateUI();
+        updateUI(false);
     }
 
-    void updateUI() {
+    void updateUI(Boolean reload) {
+        if(homeViewModel.getPost()!=null) {
+            homeViewModel.getFeed().add(0,homeViewModel.getPost());
+            homeViewModel.setPost(null);
+        }
         feed_adapter = new MainAdapter(homeViewModel.getFeed());
         feed_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
@@ -103,6 +106,9 @@ public class HomeFeedFragment extends Fragment {
         rView.scrollToPosition(0);
         feed_adapter.notifyDataSetChanged();
         rView.setAdapter(feed_adapter);
+        if(reload) {
+            reloadUI();
+        }
     }
 
     private void showFriendsFailed(Integer error) {

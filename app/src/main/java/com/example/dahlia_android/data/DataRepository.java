@@ -22,6 +22,7 @@ public class DataRepository {
 
     private User user = null; // TODO:// RMV??? Might use for loadUser
     private UserList user_list = null;
+
     private FriendsList friends_list = null;
     private Conversations conversations = null;
     private Feed feed = null;
@@ -220,7 +221,7 @@ public class DataRepository {
         return post;
     }
 
-    private void setPost(Post data) {
+    public void setPost(Post data) {
         this.post = data;
     }
 
