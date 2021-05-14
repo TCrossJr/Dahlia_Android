@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dahlia_android.MainActivity;
 import com.example.dahlia_android.R;
 import com.example.dahlia_android.ui.recyclerview.AdapterTypeList;
 import com.example.dahlia_android.ui.recyclerview.MainAdapter;
@@ -31,7 +30,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 new ViewModelProvider(this).get(UserProfileViewModel.class);
         rView = findViewById(R.id.profile_combined_recycler);
         layoutManager = new LinearLayoutManager(this);
-        profile_adapter = new MainAdapter(MainActivity._user_profile); //TODO: Move to ViewModel/DataSource/DataRepository
+        profile_adapter = new MainAdapter(new UserProfileCombinedList()); //TODO: Move to ViewModel/DataSource/DataRepository
         profile_adapter.notifyDataSetChanged();
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
         rView.addItemDecoration(divider);

@@ -1,7 +1,6 @@
 package com.example.dahlia_android;
 
 import android.app.SearchManager;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,13 +10,11 @@ import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -26,16 +23,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.dahlia_android.ui.about.AboutActivity;
-import com.example.dahlia_android.ui.groups.Groups;
 import com.example.dahlia_android.ui.help.HelpActivity;
-import com.example.dahlia_android.ui.home.Feed;
 import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.ConversationActivity;
 import com.example.dahlia_android.ui.nearby.AuPairNearByMapActivity;
 import com.example.dahlia_android.ui.user.User;
-
 import com.example.dahlia_android.ui.user.UserProfileActivity;
-import com.example.dahlia_android.ui.user.UserProfileCombinedList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.GsonBuilder;
@@ -46,11 +39,6 @@ public class MainActivity extends AppCompatActivity
         implements SearchView.OnQueryTextListener {
 
     private AppBarConfiguration mAppBarConfiguration;
-
-    // TODO: MOVE to data classes(ViewModels/Repositories)
-    public static UserProfileCombinedList _user_profile = new UserProfileCombinedList(); // TODO: MOVE/RMV
-    public static Feed _homeFeed = new Feed(); // TODO: MOVE/RMV
-    public static Groups _groupsList = new Groups(); // TODO: MOVE/RMV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,6 +155,10 @@ public class MainActivity extends AppCompatActivity
     public void goHelp(MenuItem item) {
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
+    }
+
+    public void goLogout(View view) {
+        //TODO: Implement
     }
 
     @Override

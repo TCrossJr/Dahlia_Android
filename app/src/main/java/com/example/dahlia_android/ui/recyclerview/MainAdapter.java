@@ -560,14 +560,15 @@ public class MainAdapter extends RecyclerView.Adapter {
 
         public void setPostDate(String postDate) {
             SimpleDateFormat simpleDateFormat =
-                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
             String dateString = "";
             Date date = null;
             try{
                 date = simpleDateFormat.parse(postDate);
+                Date newDate = new Date(date.getTime()-(14400*1000));
                 simpleDateFormat.applyPattern("EEE MMM yy hh:mm aa");
-                dateString = simpleDateFormat.format(date);
+                dateString = simpleDateFormat.format(newDate);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

@@ -2,8 +2,8 @@
     <string name="app_name">Dahlia</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">[Not currently logged in]</string>
-    <string name="nav_header_subtitle">[Login/Logout Link HERE]</string>
+    <string name="nav_header_title"> </string>
+    <string name="nav_header_subtitle">Logout</string>
     <string name="description_nav_header">Navigation header</string>
     <string name="action_settings">Settings</string>
 

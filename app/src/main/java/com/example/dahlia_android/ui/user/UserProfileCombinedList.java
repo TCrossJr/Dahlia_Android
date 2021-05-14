@@ -9,6 +9,12 @@ public class UserProfileCombinedList extends ArrayList{
 
     public UserProfileCombinedList() {
         profile_combined = new ArrayList<>(0);
+        profile_combined.add(new UserProfile("DisplayName","UserName"));
+    }
+
+    public UserProfileCombinedList(Object obj) {
+        profile_combined = new ArrayList<Object>();
+        profile_combined.add(obj);
     }
 
     public ArrayList<Object> getProfileCombined() {

@@ -67,4 +67,9 @@ public class HomeFeedViewModel extends ViewModel {
     public void setPost(Post post) {
         dataRepository.setPost(post);
     }
+
+    public void logout() {
+        dataRepository.logout();
+        dataRepository.clearData();
+    }
 }

@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private FriendsViewModel friendsViewModel;
     private GroupsViewModel groupsViewModel;
     private MessagesViewModel messagesViewModel;
+    private ProgressBar loadingProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         final TextView signUpTextButton = findViewById(R.id.register);
         final CheckBox rememberOption = findViewById(R.id.remember);
         final Button testUser = findViewById(R.id.test_user); // TODO: RMV
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        loadingProgressBar = findViewById(R.id.loading);
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -120,8 +121,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                // TODO: Think I need to add storing preferences(or change to ViewModel, DataSource, and DataRepository) here also. This gets called if Enter is pressed if complete
+                // TODO: Think we need to add storing preferences(or change to ViewModel, DataSource, and DataRepository) here also. This gets called if Enter is pressed if complete
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    loadingProgressBar.setVisibility(View.VISIBLE);
                     loginViewModel.login(usernameEditText.getText().toString(),
                             passwordEditText.getText().toString());
                 }
@@ -132,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadingProgressBar.setVisibility(View.VISIBLE);
                 SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
                 boolean remember = preferences.getBoolean("remember", false ) ;
                 if( remember ) {
@@ -141,7 +144,6 @@ public class LoginActivity extends AppCompatActivity {
                     passwordEditText.setText(creds);
                 }
 
-                loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
@@ -195,6 +197,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loadUserData() {
         /* HomeFeed */
+        loadingProgressBar.setVisibility(View.VISIBLE);
         homeFeedViewModel = new ViewModelProvider(this, new HomeFeedViewModelFactory())
                 .get(HomeFeedViewModel.class);
         homeFeedViewModel.loadFeed();

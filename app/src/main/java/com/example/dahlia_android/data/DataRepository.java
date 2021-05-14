@@ -225,4 +225,15 @@ public class DataRepository {
         this.post = data;
     }
 
+    public void clearData() {
+        user = null;
+        user_list = null;
+        friends_list = null;
+        conversations = null;
+        feed = null;
+        nearbyUsers = null;
+        groups = null;
+        tokenString = null;
+        post = null;
+    }
 }
