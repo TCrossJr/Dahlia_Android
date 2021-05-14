@@ -14,27 +14,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/post_profile_image"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:contentDescription="@string/description_profile_image"
-            android:padding="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/post_text"
-            tools:srcCompat="@tools:sample/avatars" />
-
         <TextView
             android:id="@+id/post_liked"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@id/post_text"
             app:layout_constraintEnd_toStartOf="@id/post_date"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/post_profile_image"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/post_date" />
+
+        <TextView
+            android:id="@+id/post_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_post_username"
+            app:layout_constraintEnd_toEndOf="@+id/post_liked"
+            app:layout_constraintEnd_toStartOf="@id/post_date"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/post_profile_image"
+            app:layout_constraintStart_toStartOf="@+id/post_liked"
+            app:layout_constraintBottom_toTopOf="@id/post_text"
+            app:layout_constraintTop_toBottomOf="@+id/post_liked" />
 
         <TextView
             android:id="@+id/post_text"
@@ -45,8 +47,19 @@
             android:text="@string/test_post_long"
             app:layout_constraintBottom_toTopOf="@id/post_media"
             app:layout_constraintEnd_toStartOf="@id/post_date"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/post_profile_image"
-            app:layout_constraintTop_toBottomOf="@+id/post_liked" />
+            app:layout_constraintTop_toBottomOf="@+id/post_user" />
+
+        <ImageView
+            android:id="@+id/post_profile_image"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:contentDescription="@string/description_profile_image"
+            android:padding="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/post_user"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/post_date"

@@ -92,6 +92,7 @@
     <string name="prompt_nearby_users_failed">Loading NearbyUsers failed.</string>
     <string name="prompt_nearby_created">AuPairNearby user created.</string>
     <string name="prompt_nearby_removed">AuPairNearby location removed.</string>
+    <string name="prompt_groups_null">Error loading Groups.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_text">about_text</string>
     <string name="about_HomeFeed">Home Feed</string>
@@ -125,6 +126,6 @@
     <string name="test_profile_followers">0</string>
     <string name="test_message_from1">Hey how\'s it going</string>
     <string name="test_message_date">Thursday, Apr 21 4:08 PM</string>
-    <string name="prompt_groups_null">Error loading Groups.</string>
+    <string name="test_post_username">\@UserName</string>
 </resources>
 

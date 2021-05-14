@@ -203,6 +203,12 @@ public class MainAdapter extends RecyclerView.Adapter {
             Log.d(TAG, "Post->" + position + "<-position");
             Post post = (Post) dataList.get(position);
             ((PostViewHolder) holder).setPostObject(post, rvService);
+            User user = (User) post.getFriendByID(post.getPostCreator());
+            try {
+                ((PostViewHolder) holder).setPostUsername("@"+user.getUsername());
+            } catch (NullPointerException e) {
+                ((PostViewHolder) holder).setPostUsername("@"+ post.getPostCreator());
+            }
             ((PostViewHolder) holder).setPostText(post.getPostText());
             ((PostViewHolder) holder).setPostMedia("");// TODO: Change
             ((PostViewHolder) holder).setPostProfileThumbnail("");// TODO: Change
@@ -422,6 +428,7 @@ public class MainAdapter extends RecyclerView.Adapter {
         private final FrameLayout frameLayout;
         private final ImageView postProfileImageURL;
         private final TextView postText;
+        private final TextView postUsername;
         private final TextView postDate;
         private final Button postReply;
         private final Button postLike;
@@ -436,6 +443,7 @@ public class MainAdapter extends RecyclerView.Adapter {
             super(view);
             frameLayout = view.findViewById(R.id.post_frame);
             postProfileImageURL = view.findViewById(R.id.post_profile_image);
+            postUsername = view.findViewById(R.id.post_user);
             postText = view.findViewById(R.id.post_text);
             postDate = view.findViewById(R.id.post_date);
             postReply = view.findViewById(R.id.post_button_reply);
@@ -572,6 +580,10 @@ public class MainAdapter extends RecyclerView.Adapter {
         public void setPostObject(Post post, RVService service) {
             this.current_Post = post;
             this.rvService = service;
+        }
+
+        public void setPostUsername(String postUsername) {
+            this.postUsername.setText(postUsername);
         }
     }
 

@@ -1,5 +1,8 @@
 package com.example.dahlia_android.ui.home;
 
+import com.example.dahlia_android.data.DataRepository;
+import com.example.dahlia_android.data.DataSource;
+import com.example.dahlia_android.ui.user.User;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 
@@ -98,5 +101,10 @@ public class Post {
 
     public Post getPost() {
         return this;
+    }
+
+    public User getFriendByID(int postCreator) {
+        User user = (User) DataRepository.getInstance(new DataSource()).getFriendByID(postCreator);
+        return user;
     }
 }
