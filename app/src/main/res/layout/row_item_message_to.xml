@@ -18,6 +18,7 @@
             android:id="@+id/conversation_date_to"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:gravity="center_horizontal"
             android:text="@string/test_message_date"
             android:textSize="12sp"

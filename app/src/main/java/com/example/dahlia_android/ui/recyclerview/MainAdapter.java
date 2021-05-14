@@ -561,20 +561,15 @@ public class MainAdapter extends RecyclerView.Adapter {
         public void setPostDate(String postDate) {
             SimpleDateFormat simpleDateFormat =
                     new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
             String dateString = "";
-            Date date = null;
             try{
-                date = simpleDateFormat.parse(postDate);
+                Date date = simpleDateFormat.parse(postDate);
                 Date newDate = new Date(date.getTime()-(14400*1000));
                 simpleDateFormat.applyPattern("EEE MMM yy hh:mm aa");
                 dateString = simpleDateFormat.format(newDate);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-//            Date today = new Date();
-//            long since = date.getTime() - today.getTime();
-//            this.postDate.setText(String.valueOf(since));
             this.postDate.setText(dateString);
         }
 
@@ -938,8 +933,18 @@ public class MainAdapter extends RecyclerView.Adapter {
             this.conversationUserText.setText(messageText);
         }
 
-        public void setMessageToDate(String messageText) {
-            this.conversationDateTo.setText(messageText);
+        public void setMessageToDate(String msgDate) {
+            SimpleDateFormat simpleDateFormat =
+                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+            String dateString = "";
+            try{
+                Date date = simpleDateFormat.parse(msgDate);
+                Date newDate = new Date(date.getTime()-(14400*1000));
+                simpleDateFormat.applyPattern("EEE MMM yy hh:mm aa");
+                dateString = simpleDateFormat.format(newDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         public void setMessageToObject(Message currentMessage, RVService service) {
@@ -974,8 +979,18 @@ public class MainAdapter extends RecyclerView.Adapter {
             this.conversationFriendText.setText(messageText);
         }
 
-        public void setMessageFromDate (String messageText){
-            this.conversationDateFrom.setText(messageText);
+        public void setMessageFromDate (String msgDate){
+            SimpleDateFormat simpleDateFormat =
+                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+            String dateString = "";
+            try{
+                Date date = simpleDateFormat.parse(msgDate);
+                Date newDate = new Date(date.getTime()-(14400*1000));
+                simpleDateFormat.applyPattern("EEE MMM yy hh:mm aa");
+                dateString = simpleDateFormat.format(newDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         public void setMessageFromObject (Message currentMessage, RVService service){

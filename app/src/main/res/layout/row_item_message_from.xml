@@ -21,17 +21,16 @@
             android:contentDescription="@string/description_profile_image"
             android:onClick="goToProfile"
             android:padding="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/conversation_text_friend"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/conversation_date_from"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="@+id/conversation_text_friend"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/conversation_date_from"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:gravity="center_horizontal"
             android:text="@string/test_message_date"
             android:textSize="12sp"
@@ -54,8 +53,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/conversation_friend_profile_image"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintTop_toBottomOf="@id/conversation_date_from" />
+            app:layout_constraintTop_toBottomOf="@id/conversation_date_from"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

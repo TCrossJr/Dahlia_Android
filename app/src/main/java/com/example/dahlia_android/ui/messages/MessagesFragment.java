@@ -33,7 +33,8 @@ public class MessagesFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        updateUI();
+//        updateUI();
+        reloadUI();
     }
 
     @Override
@@ -61,7 +62,11 @@ public class MessagesFragment extends Fragment {
         });
         rView = view.findViewById(R.id.messages_recycler_view);
         layoutManager = new LinearLayoutManager(getActivity());
+        reloadUI();
+        return view;
+    }
 
+    private void reloadUI() {
         if(messagesViewModel.getConversations() == null && messagesViewModel.getUser() != null) {
             messagesViewModel.loadMessages();
             messagesViewModel.getMessagesResult().observe(getViewLifecycleOwner(), new Observer<MessagesResult>() {
@@ -78,17 +83,16 @@ public class MessagesFragment extends Fragment {
                     }
                 }
             });
-            } else
-                updateUI();
-        return view;
+        } else
+            updateUI(false);
     }
 
     private void updateUiWithMessages(MessagesView model) {
         // not using MessagesView model currently
-        updateUI();
+        updateUI(false);
     }
 
-    private void updateUI() {
+    private void updateUI(Boolean reload) {
         messages_adapter = new MainAdapter(messagesViewModel.getConversations());
         messages_adapter.onAttachedToRecyclerView(rView);
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
@@ -97,6 +101,8 @@ public class MessagesFragment extends Fragment {
         rView.scrollToPosition(0);
         messages_adapter.notifyDataSetChanged();
         rView.setAdapter(messages_adapter);
+        if(reload)
+            reloadUI();
     }
 
     private void showMessagesFailed(Integer error) {
