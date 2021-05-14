@@ -81,7 +81,7 @@ public class DataSource {
         try {
             apiInterface = APIClient.getClient().create(APIServiceInterface.class);
             //Load UserList
-            Call<UserList> callUserList = apiInterface.getUserList(token, userID);
+            Call<UserList> callUserList = apiInterface.getUserList(token);
             Response<UserList> response = callUserList.execute();
             UserList rawUserList = (UserList) response.body();
 

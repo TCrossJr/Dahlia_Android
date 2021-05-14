@@ -90,8 +90,8 @@ public interface APIServiceInterface {
     @FormUrlEncoded
     @GET("/rest-auth/usr_list/")
     Call<UserList> getUserList(
-            @Header("Authorization") String token,
-            @Path("userID") int userID);
+            @Header("Authorization") String token);
+           // @Path("userID") int userID);
 
 
     /** Friends */

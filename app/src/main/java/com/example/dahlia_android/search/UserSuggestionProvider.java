@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,13 +21,13 @@ import com.example.dahlia_android.ui.user.UserListViewModelFactory;
 
 import java.util.ArrayList;
 
-import okhttp3.OkHttpClient;
+
 
 public class UserSuggestionProvider extends ContentProvider {
 
     private UserListViewModel userListViewModel;
     private ArrayList<User> users;
-    private String AUTHORITY = "com.example.dahlia_android.search";
+    final String AUTHORITY = "com.example.dahlia_android.search.UserSuggestionProvider";
 
     private static final int TYPE_ALL_SUGGESTIONS = 1;
     private static final int TYPE_SINGLE_SUGGESTION = 2;
@@ -62,6 +63,7 @@ public class UserSuggestionProvider extends ContentProvider {
                 int lenght = users.size();
                 for(int i = 0; i<lenght && cursor.getCount() < limit; i++){
                     User user = users.get(i);
+                    Log.i("userlist","User: "+user.getUsername());
                     if (user.getUsername().toUpperCase().contains(query)) {
                         cursor.addRow(new Object[]{i, user, i});
                     }

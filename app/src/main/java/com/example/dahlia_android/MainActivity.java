@@ -1,5 +1,9 @@
 package com.example.dahlia_android;
 
+import android.app.SearchManager;
+
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,8 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,6 +33,7 @@ import com.example.dahlia_android.ui.login.LoginActivity;
 import com.example.dahlia_android.ui.messages.ConversationActivity;
 import com.example.dahlia_android.ui.nearby.AuPairNearByMapActivity;
 import com.example.dahlia_android.ui.user.User;
+
 import com.example.dahlia_android.ui.user.UserProfileActivity;
 import com.example.dahlia_android.ui.user.UserProfileCombinedList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,7 +42,8 @@ import com.google.gson.GsonBuilder;
 
 import java.io.Serializable;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements SearchView.OnQueryTextListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -87,7 +98,31 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(
+                new ComponentName(this,SearchableActivity.class)
+        ));
+        searchView.setIconifiedByDefault(false);
+
         return true;
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Toast.makeText(this, "Searching by: " + query, Toast.LENGTH_SHORT).show();
+        } else if(Intent.ACTION_VIEW.equals(intent.getAction())) {
+            String uri = intent.getDataString();
+            Toast.makeText(this,"Suggestion: "+uri, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -132,5 +167,15 @@ public class MainActivity extends AppCompatActivity {
     public void goHelp(MenuItem item) {
         Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }
