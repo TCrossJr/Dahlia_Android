@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(
                 new ComponentName(this,SearchableActivity.class)
         ));
-        searchView.setIconifiedByDefault(false);
+        searchView.setIconifiedByDefault(true);
 
         return true;
     }

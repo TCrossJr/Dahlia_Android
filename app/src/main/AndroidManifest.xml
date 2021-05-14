@@ -26,7 +26,6 @@
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-
         <activity
             android:name=".ui.help.HelpActivity"
             android:label="@string/menu_help" >
@@ -87,20 +86,6 @@
             android:label="@string/menu_about"
             android:noHistory="true" >
         </activity>
-        <activity android:name=".SearchableActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-        <activity
-            android:name=".ui.nearby.AuPairNearByActivity"
-            android:excludeFromRecents="true"
-            android:label="@string/menu_aupair_nearby"
-            android:noHistory="true" />
         <activity
             android:name=".ui.user.UserProfileActivity"
             android:label="@string/profile_title" />
