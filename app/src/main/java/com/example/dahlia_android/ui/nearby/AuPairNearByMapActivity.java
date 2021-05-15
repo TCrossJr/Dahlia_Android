@@ -47,6 +47,7 @@ public class AuPairNearByMapActivity extends FragmentActivity implements OnMapRe
 //    private AuPairNearbyViewModel auPairNearbyViewModel;
 //    private ActivityAuPairNearByMapBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -37,7 +37,12 @@
         android:id="@+id/nav_aupair_nearby"
         android:name="com.example.dahlia_android.ui.nearby.AuPairNearbyFragment"
         android:label="Au Pair Nearby"
-        tools:layout="@layout/au_pair_nearby_fragment" />
+        tools:layout="@layout/au_pair_nearby_fragment" >
+        <action
+            android:id="@+id/action_nav_aupair_nearby_to_auPairNearByMapActivity"
+            app:destination="@id/auPairNearByMapActivity"
+            app:popUpTo="@id/nav_aupair_nearby" />
+    </fragment>
     <fragment
         android:id="@+id/nav_welcome"
         android:name="com.example.dahlia_android.ui.user.WelcomeProfileFragment"
@@ -64,4 +69,9 @@
         android:id="@+id/helpActivity"
         android:name="com.example.dahlia_android.ui.help.HelpActivity"
         android:label="HelpActivity" />
+    <activity
+        android:id="@+id/auPairNearByMapActivity"
+        android:name="com.example.dahlia_android.ui.nearby.AuPairNearByMapActivity"
+        android:label="activity_au_pair_near_by_map"
+        tools:layout="@layout/activity_au_pair_near_by_map" />
 </navigation>

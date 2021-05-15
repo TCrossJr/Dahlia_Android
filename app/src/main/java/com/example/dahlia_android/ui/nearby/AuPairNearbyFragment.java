@@ -23,6 +23,13 @@ public class AuPairNearbyFragment extends Fragment {
     public static AuPairNearbyFragment newInstance() {
         return new AuPairNearbyFragment();
     }
+    private ProgressBar loading;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loading.setVisibility(View.GONE);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -31,7 +38,7 @@ public class AuPairNearbyFragment extends Fragment {
 //        mViewModel = new ViewModelProvider(this).get(AuPairNearbyViewModel.class);
 
         final Button findNearby = view.findViewById(R.id.nearby_btn_find);
-        final ProgressBar loading = view.findViewById(R.id.nearby_loading);
+        loading = view.findViewById(R.id.nearby_loading);
 
 
         findNearby.setOnClickListener(new View.OnClickListener() {
